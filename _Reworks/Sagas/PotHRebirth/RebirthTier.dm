@@ -58,25 +58,42 @@ sagaTierUpMessages/Rebirth
 							src.AddSkill(new/obj/Skills/Projectile/Rude_Buster)
 							src.AddSkill(new/obj/Skills/Buffs/Rebirth/Devilsknife)
 						if(src.RebirthHeroType=="Rainbow")
-							src.RebirthHeroType="Purple"
-							src<< "You are now the Purple Hero of Hope, who attacks with dark energy."
+							src.RebirthHeroPath="Unsung"
+							src<<"Sorry, there is no way in hell that fate could ever account for you. Nice try, though."
+							src.AddSkill(new/obj/Skills/AutoHit/NeverSeeItComing)
+							src<< "nyoro~n :3c"
+							src.AddSkill(new/obj/Skills/Utility/NeverTooEarly)
+					/*		src.RebirthHeroType="Yellow"
+							src<< "You are now the Yellow Hero of Connection, who can attack with Ice Magic.."
 							src.AddSkill(new/obj/Skills/Projectile/Rude_Buster)
 							src.AddSkill(new/obj/Skills/Buffs/Rebirth/Devilsknife)
 							src<< "..but you could still choose to become the Yellow Hero of Tragedy. After all, this wasn't supposed to be your story."
 							src.AddSkill(new/obj/Skills/Buffs/Rebirth/ThornRing)
-							src.AddSkill(new/obj/Skills/AutoHit/Snowgrave)
+							src.AddSkill(new/obj/Skills/AutoHit/Snowgrave)*/
 			if(3)
 				src.SagaLevel=3
 				if(src.RebirthHeroType=="Cyan")
+					src<< "You have unlocked the green SOUL color, which reduces the damage you take as you build ACT. You also gain the BlackShard, a small weapon that can hardly be considered one, but carries great power..."
 					src.AddSkill(new/obj/Skills/Utility/SoulShiftGreen)
+					src.AddSkill(new/obj/Skills/Buffs/Rebirth/BlackShard)
 				if(src.RebirthHeroType=="Purple")
-					src<< "You can attempt to heal people now. You're doing your best, and I'm sure people will be proud of you for it."
+					src<< "You can attempt to heal people now. You're doing your best, and I'm sure people will be proud of you for it. You can also utilize the Axe of Justice, but you're not quite ready for what that entails."
 					src.AddSkill(new/obj/Skills/Utility/UltimateHeal)
+					src.AddSkill(new/obj/Skills/Buffs/Rebirth/JusticeAxe)
 				if(src.RebirthHeroType=="Blue")
 					src.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Shining_Star)
 				if(src.RebirthHeroType=="Red")
 					src.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Unwavering_Soul)
 		//		if(src.RebirthHeroType=="Rainbow")
 			if(4)
+				src.SagaLevel=4
+				if(src.RebirthHeroType=="Purple")
+					src<< "Your story has finally come into its own. You have become the Axe of Justice, with hope crossed on your heart."
+					src.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Axe_of_Justice)
+				if(src.RebirthHeroType=="Rainbow")
+					src<<"Surprise! You're a woman now. RP accordingly."
+					if(src.Gender=="Female")
+						src<<"Oh, wait, you were before? Uh. Okay."
+					src.Gender="Female"
 			if(5)
 			if(6)

@@ -4,7 +4,7 @@ race
 		desc = "Makaioshins are a mysterious race who's origins can't be accurately traced, but most claim to be something akin to fallen angels. While being able to flawlessly wield the powers of light and darkness- Angels and Demons- in equal measure, they tend towards having a chaotic nature due to their contradictory existence."
 		visual = 'Eldritch.png'
 		locked = TRUE
-		power = 2.5
+		power = 1.5
 		strength = 1.75
 		endurance = 2
 		speed = 1.5
@@ -14,7 +14,7 @@ race
 		regeneration = 3
 		imagination = 3
 		skills = list(/obj/Skills/Buffs/SlotlessBuffs/Devil_Arm2, /obj/Skills/Buffs/SlotlessBuffs/Regeneration, /obj/Skills/Buffs/SlotlessBuffs/Falldown_Mode/Makaioshin)
-		passives = list("HolyMod" = 0.5, "AbyssMod" = 0.5, "HellPower" = 1, "StaticWalk" = 1, "SpaceWalk" = 1, "SpiritPower" = 1, "MartialMagic" = 1, "BladeFisting" = 1)
+		passives = list("HolyMod" = 0.5, "AbyssMod" = 0.5, "HellPower" = 1, "FakePeace"=1, "StaticWalk" = 1, "SpaceWalk" = 1, "SpiritPower" = 1, "MartialMagic" = 1, "BladeFisting" = 1)
 		var/devil_arm_upgrades = 1
 		var/sub_devil_arm_upgrades = 0
 		proc/findFalldown(mob/p)
@@ -39,7 +39,6 @@ race
 							p << "Your secondary devil arm evolves, toggle it on and off to use it"
 		onFinalization(mob/user)
 			..()
-			user.Timeless = 1
 			user.TrueName=input(user, "Your demonic nature has a mind of its own. What name shall you use to call upon it?", "Get True Name") as text
 			user << "The name your demonic half goes by is <b>[user.TrueName]</b>."
 			user.EnhancedSmell = 1

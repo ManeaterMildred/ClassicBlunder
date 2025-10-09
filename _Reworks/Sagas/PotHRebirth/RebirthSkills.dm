@@ -36,6 +36,13 @@ obj/Skills/Buffs/SlotlessBuffs/Autonomous/Unwavering_Soul
 	EndMult = 1.5
 	Cooldown = 1
 	passives = list("BioArmor" = 1, "Unstoppable" =1)
+//t4 path buffs
+obj/Skills/Buffs/SlotlessBuffs/Autonomous/Axe_of_Justice
+	AlwaysOn=1
+	EndMult = 1.25
+	ForMult=1.5
+	Cooldown = 1
+	passives = list("Neverending Hope" = 1, "Unstoppable" =1)
 obj/Skills/AutoHit
 	var/IsSnowgrave
 	var/HahaWhoops
@@ -77,6 +84,25 @@ obj/Skills/AutoHit
 			set name="Never See It Coming (Act 1)"
 			if(world.realtime < src.RebirthLastUse+(600*60*24))
 				usr << "You can only use this technique once every 24 hours."
+				return
+			RandomMult=rand(1,10)
+			DamageMult=RandomMult
+			usr.Activate(src)
+			usr.TriggerAwakeningSkill(ActNumber)
+	PowerWordGenderDysphoria
+		ActNumber=1
+		SpecialAttack=1
+		GuardBreak=1
+		DamageMult=0
+		Distance=15
+		WindUp=0.5
+		WindupMessage="foreshadows their imminent future, maybe."
+		Area="Target"
+		verb/GenderDysphoria()
+			set category="Skills"
+			set name="Power Word: Gender Dysphoria (Act 2)"
+			if(world.realtime < src.RebirthLastUse+(600*60*72))
+				usr << "You can only use this technique once every 72 hours."
 				return
 			RandomMult=rand(1,10)
 			DamageMult=RandomMult
@@ -151,6 +177,21 @@ obj/Skills/Utility
 			RandomMult=rand(1,25)
 			usr.HealHealth(RandomMult)
 			usr.TriggerAwakeningSkill(ActNumber)
+	TheBlueExperience
+		Copyable=0
+		ActNumber=2
+		icon_state="Heal"
+		desc="You ask for a little more time."
+		verb/TheBlueExperience()
+			set category="Utility"
+			set name="The Blue Experience (Act 2)"
+			if(world.realtime < src.RebirthLastUse+(600*60*72))
+				src << "You can only use this technique once every 3 days."
+				return
+			if(usr.Health>50)
+				usr<<"Can't use yet!"
+				return
+			src.RebirthLastUse=world.realtime
 	SoulShift
 		Copyable=0
 		verb/SoulRed()
@@ -159,12 +200,14 @@ obj/Skills/Utility
 			usr.passive_handler.Set("Determination(Red)", 1)
 			usr.passive_handler.Set("Determination(Yellow)", 0)
 			usr.passive_handler.Set("Determination(Green)", 0)
+			usr<<"You are now using the Red SOUL color."
 		verb/SoulYellow()
 			set category="Utility"
 			set name="SOUL Shift (Yellow)"
 			usr.passive_handler.Set("Determination(Red)", 0)
 			usr.passive_handler.Set("Determination(Yellow)", 1)
 			usr.passive_handler.Set("Determination(Green)", 0)
+			usr<<"You are now using the Yellow SOUL color."
 	SoulShiftGreen
 		Copyable=0
 		verb/SoulGreen()
@@ -173,12 +216,21 @@ obj/Skills/Utility
 			usr.passive_handler.Set("Determination(Red)", 0)
 			usr.passive_handler.Set("Determination(Yellow)", 0)
 			usr.passive_handler.Set("Determination(Green)", 1)
+			usr<<"You are now using the Green SOUL color."
 	UltimateHeal
 		ManaCost=100
 		Cooldown=-1
 		icon_state="Heal"
 		desc="This allows you to attempt to heal people you are facing. At least it clears their fatigue, right?"
 		verb/Ultimate_Heal()
+			set category="Utility"
+			usr.SkillX("UltimateHeal",src)
+	BetterHeal
+		ManaCost=75
+		Cooldown=-1
+		icon_state="Heal"
+		desc="A strong, costly heal."
+		verb/Better_Heal()
 			set category="Utility"
 			usr.SkillX("UltimateHeal",src)
 obj/Skills/Projectile
@@ -234,6 +286,37 @@ obj/Skills/Projectile
 			usr.UseProjectile(src)
 obj/Skills/Buffs
 	Rebirth
+		RemoveSOUL
+			MakesSword=1
+			SwordName="SOUL Sword"
+			SwordIcon='PlaceholderBlackScythe.dmi'
+			SwordX=-32
+			SwordY=-32
+			SwordClass="Medium"
+			PowerMult=3
+			Cooldown = 1
+			HealthCost = 50
+			ActiveMessage="tears their heart from their chest."
+			OffMessage="places their still-beating heart back into their chest."
+			verb/RemoveSOUL()
+				set category="Skills"
+				adjust(usr)
+				src.Trigger(usr)
+		BlackShard
+			MakesSword=1
+			SwordName="Black Shard"
+			SwordIcon='PlaceholderBlackScythe.dmi'
+			SwordX=-32
+			SwordY=-32
+			SwordClass="Small"
+			PowerMult=2
+			Cooldown = 1
+			ActiveMessage="pulls out a small shard of glass that seems barely usable as a weapon."
+			OffMessage="puts the black shard away."
+			verb/BlackShard()
+				set category="Skills"
+				adjust(usr)
+				src.Trigger(usr)
 		Devilsknife
 			MakesSword=1
 			SwordName="Devilsknife"
@@ -249,11 +332,24 @@ obj/Skills/Buffs
 			verb/Devilsknife()
 				set category="Skills"
 				adjust(usr)
-		//		if(usr.SagaLevel>=3)
-		//			BuffTechniques
 				src.Trigger(usr)
 				if(prob(2))
 					OMsg(usr, "<b>MY HEARTS GO OUT TO ALL YOU SINNERS!</b>")
+		JusticeAxe
+			MakesSword=1
+			SwordName="Axe of Justice"
+			SwordIcon='PlaceholderBlackScythe.dmi'
+			SwordX=-32
+			SwordY=-32
+			SwordClass="Heavy"
+			PowerMult=1.5
+			Cooldown = 1
+			ActiveMessage="faces fate with the Axe of Justice."
+			OffMessage="puts the Axe of Justice away."
+			verb/Devilsknife()
+				set category="Skills"
+				adjust(usr)
+				src.Trigger(usr)
 		Spookysword
 			MakesSword=1
 			SwordName="Spookysword"

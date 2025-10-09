@@ -1624,3 +1624,50 @@ mob
 					src.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/KanshouByakuya)
 				if("Caladbolg")
 					src.AddSkill(new/obj/Skills/Projectile/Zone_Attacks/Caladbolg)
+mob/Admin3/verb
+    SagaRemoval(mob/Players/P in players)
+        set category="Admin"
+        var/Choice=input(usr, "Are you sure you want to remove [P]'s saga?", "Saga Decision") in list("Yes", "No")
+        if(Choice=="No")
+            return
+
+        var/list/obj/Skills/SagaSkills = list("/obj/Skills/Buffs/SpecialBuff/Spiral","/obj/Skills/Buffs/SpecialBuff/King_Of_Courage",\
+    "/obj/Skills/AutoHit/Pegasus_Meteor_Fist","/obj/Skills/Queue/Rising_Dragon_Fist",\
+    "/obj/Skills/Projectile/Diamond_Dust","/obj/Skills/Projectile/Nebula_Stream",\
+    "/obj/Skills/Queue/Phoenix_Demon_Illusion_Strike","/obj/Skills/AutoHit/Unicorn_Gallop",\
+    "/obj/Skills/Buffs/ActiveBuffs/Persona","/obj/Skills/Buffs/SpecialBuffs/King_Of_Braves",\
+    "/obj/Skills/Buffs/SlotlessBuffs/Will_Knife","/obj/Skills/Buffs/SlotlessBuffs/Protect_Shade",\
+    "/obj/Skills/Projectile/King_of_Braves/Broken_Magnum","/obj/Skills/Buffs/SlotlessBuffs/Copy_Blade",\
+    "/obj/Skills/Buffs/SlotlessBuffs/Projection","/obj/Skills/Buffs/NuStyle/SwordStyle/Sword_Savant",\
+    "/obj/Skills/Buffs/SlotlessBuffs/Magic/Reinforce_Self","/obj/Skills/Queue/JawStrike",\
+    "/obj/Skills/Queue/FallingBlade","/obj/Skills/Buffs/NuStyle/UnarmedStyle/Ansatsuken_Style",\
+    "/obj/Skills/Projectile/Ansatsuken/Hadoken","/obj/Skills/Queue/Shoryuken","/obj/Skills/AutoHit/Tatsumaki",\
+    "/obj/Skills/Buffs/ActiveBuffs/Eight_Gates","/obj/Skills/Queue/Front_Lotus","/obj/Skills/AutoHit/Sharingan_Genjutsu",\
+    "/obj/Skills/Buffs/SpecialBuffs/Sharingan","/obj/Skills/Buffs/NuStyle/UnarmedStyle/Move_Duplication",\
+    "/obj/Skills/Buffs/SlotlessBuffs/Spirit_Sword","/obj/Skills/Buffs/SlotlessBuffs/Spirit_Bow",\
+    "/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Hero_Soul","/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Hero_Heart",\
+    "/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Prismatic_Hero","/obj/Skills/Buffs/ActiveBuffs/Keyblade")
+
+        if(P.Saga == "Cosmo")
+            P.KiControlMastery-=1
+//Later add removing it based on path, lazy rn. Can just check for them all and remove them.
+        if(P.Saga == "Hiten Mitsurugi-Ryuu")
+            P.passive_handler.Decrease("SlayerMod", 0.625)
+            P.passive_handler.Decrease("Pursuer", 0.5)
+            P.passive_handler.Decrease("SuperDash", 0.25)
+            P.passive_handler.Decrease("Godspeed", 0.25)
+            P.passive_handler.Set("FavoredPrey", null)
+        if(P.Saga == "Ansatsuken")
+            P.passive_handler.Decrease("SlayerMod", 0.625)
+            P.passive_handler.Set("FavoredPrey", null)
+        for(var/x=1, x<=SagaSkills.len,x++)
+            var/obj/Skills/s = P.FindSkill(SagaSkills[x])
+            if(s)
+                P.contents -= s
+                P << "[s] removed."
+                del s
+
+        P.ClothBronze=null
+        P.SagaLevel=0
+        P.Saga=null
+        Log("Admin","[ExtractInfo(usr)] removed Saga from [P].")

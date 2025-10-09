@@ -11383,7 +11383,7 @@ mob
 					if(isRace(ANDROID))
 						src <<"You do not breathe."
 						return
-					if(src.IsEvil())
+					if(src.IsEvil()&&!src.isRace(MAKAIOSHIN))
 						if(!src.HasGodKi())
 							src.Death(null, "suicidal stupidity!", SuperDead=1)
 							return

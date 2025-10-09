@@ -30,6 +30,7 @@ scaling with potential as well
 		OffMult = 1.2 + p.Potential/200
 		PowerMult = 1 + (p.Potential/200)
 	Trigger(mob/User, Override=FALSE)
+		if(User.TotalInjury<10) return
 		adjust(User)
 		..()
 		// gain oozaru, but in base
@@ -53,6 +54,7 @@ scaling with potential as well
 		if(p.Potential>=100)
 			passives["Wrathful"] = 1
 	Trigger(mob/User, Override=FALSE)
+		if(User.TotalInjury<25) return
 		adjust(User)
 		..()
 
@@ -76,6 +78,7 @@ scaling with potential as well
 		if(p.Potential>=75)
 			passives["Wrathful"] = 1
 	Trigger(mob/User, Override=FALSE)
+		if(User.TotalInjury<35) return
 		adjust(User)
 		..()
 
@@ -98,6 +101,7 @@ scaling with potential as well
 		if(p.Potential>=50)
 			passives["Wrathful"] = 1
 	Trigger(mob/User, Override=FALSE)
+		if(User.TotalInjury<50) return
 		adjust(User)
 		..()
 

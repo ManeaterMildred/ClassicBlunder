@@ -23,8 +23,8 @@ ascension
 						if("Warrior")
 							//power = 1
 							passives = list("Duelist" = 0.5)
-							strength = 0.25
-							endurance = 0.25
+							strength = 0.35
+							endurance = 0.35
 					if(owner.Class=="Dragon")
 						for(var/obj/Skills/Utility/Send_Energy/se in owner.contents)
 							se.SagaSignature=1
@@ -54,8 +54,8 @@ ascension
 						//power = 1.5
 						passives = list("Duelist" = 1)
 						intimidation = 10
-						strength = 0.25
-						endurance = 0.25
+						strength = 0.35
+						endurance = 0.35
 						skills = list(/obj/Skills/Buffs/SpecialBuffs/Giant_Form)
 				..()
 		three
@@ -74,11 +74,11 @@ ascension
 						recovery = 0.25
 					if("Warrior")
 						//power = 2
-						offense = 0.5
+						offense = 0.65
 						passives = list ("Duelist" = 2, "Extend" = 1)
-						strength = 0.5
-						recovery = 0.5
-						endurance = 0.5
+						strength = 0.65
+						recovery = 0.65
+						endurance = 0.65
 				..()
 		four
 			unlock_potential =  ASCENSION_FOUR_POTENTIAL
@@ -91,8 +91,8 @@ ascension
 					if("Warrior")
 						//power = 3
 						passives = list("Duelist" = 2.5, "Extend" = 2)
-						strength = 0.75
-						endurance = 0.25
+						strength = 1
+						endurance = 0.35
 						recovery = 0.5
 						intimidation = 30
 					if("Dragon")

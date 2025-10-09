@@ -808,7 +808,7 @@ mob/Players/verb
 			usr.WoundIntent=0
 			src.OMessage(10, "<font color='grey'>[src] will no longer fight with intent to injure.</font>", "[src]([src.key]) turned injury intent off.")
 			if(src.HellspawnBerserk)
-				src.OMessage(10, "<font color='grey'>But that <b>thing</b> using their body will not stand down so easily.</font>", "[src]([src.key]) toggled lethal on.")
+				src.OMessage(10, "<font color='grey'>But that <b>thing</b> using their body will not stand down so easily.</font>", "[src]([src.key]) toggled wound intent on.")
 				src.WoundIntent=1
 				return
 		else
@@ -820,11 +820,11 @@ mob/Players/verb
 		if(!(world.time > usr.verb_delay)) return
 		usr.verb_delay=world.time+1
 		if(src.Lethal)
+			if(src.HellspawnBerserk)
+				src.OMessage(10, "<font color='grey'Try as they might, [src] cannot quell their killing intent.</font>", "[src]([src.key]) toggled lethal on.")
+				return
 			src.Lethal=0
 			src.OMessage(10, "<font color='grey'>[src] will no longer deal lethal damage!!</font>", "[src]([src.key]) toggled lethal off.")
-			if(src.HellspawnBerserk)
-				src.OMessage(10, "<font color='grey'>But that <b>thing</b> using their body will not stand down so easily.</font>", "[src]([src.key]) toggled lethal on.")
-				src.Lethal=20
 			return
 		if(!src.Lethal)
 			src.OMessage(10, "<font color='red'>[src] will now deal lethal damage!!</font>", "[src]([src.key]) toggled lethal on.")

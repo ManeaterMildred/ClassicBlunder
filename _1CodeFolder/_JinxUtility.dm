@@ -2133,7 +2133,8 @@ mob
 				else if(good)
 					good = 0
 					evil = 1
-
+			if(isRace(MAKAIOSHIN))
+				return TRUE
 			if(good)
 				return TRUE
 			if(evil)
@@ -2179,6 +2180,8 @@ mob
 				else if(evil)
 					good = 1
 					evil = 0
+			if(isRace(MAKAIOSHIN))
+				return TRUE
 			if(good)
 				return FALSE
 			if(evil)

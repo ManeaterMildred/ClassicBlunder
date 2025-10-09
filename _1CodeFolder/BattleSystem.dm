@@ -131,12 +131,12 @@ mob/proc/Unconscious(mob/P,var/text)
 		src.race.transformations[1].transform(src, TRUE)
 		src.OMessage(15,"<b>HOW INTERESTING THAT YOU CONTINUE TO MISUNDERSTAND WHAT'S AT STAKE HERE.</b>","<font color=red>[src]([src.key]) heralds the end..")
 		src.HellspawnBerserk=1
-		src.Lethal=1
+		src.Lethal=360
 		return
 	if(src.HellspawnBerserk)
 		src.HellspawnBerserk=0
 		src.TotalInjury=85
-		MortallyWounded+=1
+		src.Lethal=0
 	if(src.GatesActive==8 && src.Gate8Getups<2)
 		src.KO=0
 		src.OMessage(15,"...but [src]'s youth is burning too bright to be stopped!","<font color=red>[src]([src.key]) remains standing in their celebration of youth!")
@@ -149,6 +149,15 @@ mob/proc/Unconscious(mob/P,var/text)
 				src.ActiveBuff:Stop_Cultivation()//deactivate...
 				GatesActive=0
 		return
+	if(src.passive_handler.Get("Neverending Hope"))
+		if(src.HealthAnnounce10<=1&&FightingSeriously(P,src))
+			if(prob((5*glob.TENACITY_GETUP_CHANCE)+5))
+				src.KO=0
+				src.OMessage(15, "...but [src] refused.", "<font color=red>[src]([src.key]) remains standing despite impossible odds!")
+				src.Health=1
+				src.VaizardHealth+=30
+				src.HealthAnnounce10=2
+				return
 	if(src.passive_handler.Get("Tenacity"))
 		if(src.HealthAnnounce10<=1&&FightingSeriously(P,src))
 			if(prob((src.passive_handler.Get("Tenacity")*glob.TENACITY_GETUP_CHANCE)+5))
@@ -279,6 +288,10 @@ mob/proc/Conscious()
 			src.KOBrutal=0
 			src.Health=1
 			src.Energy=EnergyMax/100
+		if(src.passive_handler.Get("Neverending Hope"))
+			src.Health=30
+			src.Energy=EnergyMax/2
+			src.OMessage(15,"[src] is ready for another go.","<font color=blue>[src]([src.key]) regains consciousness.")
 		else
 			src.Health=15
 			src.Energy=EnergyMax/5

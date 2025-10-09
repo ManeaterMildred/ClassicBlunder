@@ -47,6 +47,7 @@ ascension
 			unlock_potential = ASCENSION_THREE_POTENTIAL
 			passives = list("HellPower" = 0.25, "AbyssMod" = 1, "HolyMod" = 2, "SpiritPower" = 0.25, "TechniqueMastery" = 1)
 			anger = 0.2
+			power = 3
 			intimidation = 100
 			strength = 0.25
 			force = 0.25

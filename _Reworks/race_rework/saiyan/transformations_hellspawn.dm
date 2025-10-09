@@ -9,15 +9,15 @@ transformation
 			form_glow_icon = 'Ripple Radiance.dmi'
 			form_glow_x = -32
 			form_glow_y = -32
-			unlock_potential = 40
-			passives = list("Instinct" = 1, "Flow" = 1, "Flicker" = 1, "Pursuer" = 2,  "BuffMastery" = 3, "PureDamage" = 1, "PureReduction" = 1)
+			unlock_potential = 55
+			passives = list("Instinct" = 1, "Flow" = 1, "Flicker" = 1, "Pursuer" = 3,  "BuffMastery" = 3, "PureDamage" = 1, "PureReduction" = 1)
 			angerPoint = 75
 
 			adjust_transformation_visuals(mob/user)
 				if(!form_hair_icon&&user.Hair_Base)
 					var/icon/x=new(user.Hair_Base)
 					if(x)
-						x.MapColors(0.2,0.2,0.2, 0.39,0.39,0.39, 0.07,0.07,0.07, 0.69,0.69,0)
+						x.MapColors(0.2,0.2,0.2, 0.39,0.39,0.39, 0.07,0.07,0.07, 0.69,0.99,0)
 					form_hair_icon = x
 					form_icon_2_icon = x
 				..()
@@ -68,6 +68,8 @@ transformation
 				animate(user, color = list(1,0,0, 0,1,0, 0,0,1, 1,0.9,0.2), time=5)
 				spawn(5)
 					animate(user, color = null, time=5)
+				if(user.TotalInjury<50)
+					user.TotalInjury=50
 				sleep(2)
 		hellspawn_super_saiyan_2 //it's super saiyan 4
 			tier = 6//full transparency this does functionally nothing for hellspawns, but it's a bandaid for our special regular saiyans hahaha

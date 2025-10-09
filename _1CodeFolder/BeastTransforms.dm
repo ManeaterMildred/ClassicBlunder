@@ -81,6 +81,7 @@
 				ForMult = 1.25
 				SpdMult = 0.75
 				OffMult = 1.4
+				TimerLimit = 720
 		if(p.Potential > OOZARU_POTENTIAL_TRANS)
 			passives["Transformation Power"] = p.AscensionsAcquired
 		if(length(p.race.transformations) >= 4 && p.race.transformations[4].type == /transformation/saiyan/super_saiyan_4 && p.transUnlocked >= 4||length(p.race.transformations) >= 2 && p.race.transformations[2].type == /transformation/saiyan/hellspawn_super_saiyan_2 && p.transUnlocked >= 2)
@@ -97,6 +98,8 @@
 			SpdMult = 0.5
 			OffMult = 1.5
 			TimerLimit = 1200
+			if(p.oozaru_type=="Demonic")
+				TimerLimit = 2400
 			VaizardHealth = 1 + (p.AscensionsAcquired/1.5)
 			VaizardShatter = 1
 			PowerMult = 1.5

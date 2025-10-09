@@ -460,6 +460,7 @@
 #include "_Reworks\race_rework\makyo\ascensions.dm"
 #include "_Reworks\race_rework\makyo\race.dm"
 #include "_Reworks\race_rework\Namekian\ascension.dm"
+#include "_Reworks\race_rework\Namekian\DragonBalls.dm"
 #include "_Reworks\race_rework\Namekian\namekRacials.dm"
 #include "_Reworks\race_rework\Namekian\race.dm"
 #include "_Reworks\race_rework\Popo\race.dm"
