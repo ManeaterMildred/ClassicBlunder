@@ -1105,11 +1105,13 @@ mob/Admin3/verb
 							M.race.transformations -= ssj
 							del ssj
 					M.AddSkill(new/obj/Skills/False_Moon)
+					M.AddSkill(new/obj/Skills/Utility/GodTransformationToggle)
 				else
 					for(var/transformation/saiyan/ssj in M.race.transformations)
 						if(istype(ssj, /transformation/saiyan/super_saiyan_4))
 							M.race.transformations -= ssj
 							del ssj
+					M.AddSkill(new/obj/Skills/Utility/GodTransformationToggle)
 			M.transUnlocked = blah
 			Log("Admin","[ExtractInfo(usr)] unlocked [ExtractInfo(M)] 's form([blah])")
 

@@ -4,6 +4,8 @@
 /globalTracker/var/DEBUFF_EFFECTIVENESS = 0.004
 
 /mob/var/AbsorbingDamage = 0
+/mob/var/transGod = 0
+/mob/var/tmp/list/tmp_removed_ssj_forms = list()
 
 mob
 	proc

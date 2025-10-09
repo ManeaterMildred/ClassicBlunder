@@ -1,6 +1,8 @@
 transformation
 	saiyan
+		var/tier = 0
 		super_saiyan
+			tier = 1
 			form_aura_icon = 'AurasBig.dmi'
 			form_aura_icon_state = "SSJ"
 			form_aura_x = -32
@@ -70,6 +72,7 @@ transformation
 				sleep(2)
 
 		super_saiyan_2
+			tier = 2
 			form_aura_icon = 'AurasBig.dmi'
 			form_aura_icon_state = "SSJ2"
 			form_aura_x = -32
@@ -121,6 +124,7 @@ transformation
 				sleep(2)
 
 		super_saiyan_3
+			tier = 3
 			form_aura_icon = 'AurasBig.dmi'
 			form_aura_icon_state = "SSJ2"
 			form_aura_x = -32
@@ -255,7 +259,9 @@ transformation
 					spawn(10)
 						animate(user, color = user.MobColor, time=30)
 					sleep(2)
+
 		super_saiyan_4
+			tier = 4
 			unlock_potential = 80
 			autoAnger = 1
 			speed = 1.5
@@ -334,7 +340,9 @@ transformation
 					ShockSize/=2
 				spawn(10)
 					animate(user, color = user.MobColor, time=20)
+
 		super_saiyan_god
+			tier = 4
 			passives = list("GodKi" = 0.5, "EnergyGeneration" = 1, "Godspeed" = 4, "Flow" = 4, "BackTrack" = 2, "StunningStrike" = 1, "Sunyata" = 1 )
 			unlock_potential = 80
 			form_aura_icon = 'SSBGlow.dmi'

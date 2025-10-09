@@ -491,6 +491,62 @@ obj/Skills/Utility
 				usr.HearThoughts=1
 				usr << "You toggle thought hearing <font color='green'>ON</FONT COLOR>."
 
+
+	GodTransformationToggle //This is a fix for how transformations are coded for saiyans.
+		desc="It's tough to be a god."
+		verb/GodTransformationToggle()
+			set name = "God Form Toggle"
+			set category = "Utility"
+			if (usr.transActive >= 1)
+				usr << "You can't wield this power while wielding another."
+				return
+		// Toggles God Form On
+			if (!usr.transGod)
+				usr.transGod = 1
+				var/foundSSJ4 = FALSE
+				for (var/transformation/saiyan/ssj in usr.race.transformations)
+					if (istype(ssj, /transformation/saiyan/super_saiyan_4))
+						foundSSJ4 = TRUE
+						break
+				if (foundSSJ4)
+					usr << "You tap into the primal power of the Oozaru." // "There are two wolves inside of you. One of them is drunk. The other is also drunk. There might be a third animal, but it's like an ape or something."
+				else
+					usr << "You tap into your divine power."
+		// Creates or clears the temp list of SSJ forms
+				if (!usr.tmp_removed_ssj_forms)
+					usr.tmp_removed_ssj_forms = list()
+				else
+					usr.tmp_removed_ssj_forms.Cut()
+		// Stores and removes the base SSJ forms
+				for (var/transformation/saiyan/ssj in usr.race.transformations)
+					if (istype(ssj, /transformation/saiyan/super_saiyan) || istype(ssj, /transformation/saiyan/super_saiyan_2) || istype(ssj, /transformation/saiyan/super_saiyan_3))
+						usr.tmp_removed_ssj_forms += ssj
+						usr.race.transformations -= ssj
+			// Ideally we don't delete SSJ here, but this may require further testing hahaha. it works right now at least.
+			else
+		// Toggles God Form Off
+				usr.transGod = 0
+				usr << "You can once again use your Super Saiyan forms."
+		// Restores old SSJ forms
+				if(usr.tmp_removed_ssj_forms && usr.tmp_removed_ssj_forms.len)
+					var/list/all = usr.race.transformations.Copy()
+					for(var/transformation/saiyan/T in usr.tmp_removed_ssj_forms)
+						if(!(T in all)) all += T
+		// checks for and removes duplicates safely!!!!!!!!
+					var/list/final = list()
+					for(var/transformation/saiyan/T in all)
+						if(!(T in final))
+							final += T
+		// SORTS THE TRANSFORMATION LIST SO THAT THE FIRST SUPER SAIYAN GOD/SSJ4 DOES NOT GO HELLSPAWN SUPER SAIYAN LMFAOOOOOOOOOOO
+					var/list/ordered = list()
+					for(var/i = 1, i <= 4, i++)
+						for(var/transformation/saiyan/T in final)
+							if(T.tier == i)
+								ordered += T
+					usr.race.transformations = ordered
+					usr.tmp_removed_ssj_forms.Cut()
+			usr.SkillX("GodTransToggle", usr)
+
 	Telepathy
 		Learn=list("energyreq"=1000)
 		icon_state="Telepathy"
@@ -2742,7 +2798,7 @@ obj/Skills/Utility
 					usr << "You don't have any viable targets!"
 					src.Using=0
 					return
-				
+
 			if(!M)
 				M=input(usr, "Who do you want to install cybernetics in?", "Cybernetic Augmentation") in Who
 			if(M=="Cancel")
