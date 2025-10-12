@@ -22,7 +22,6 @@ These will be considered Sagas for Angels but lack 6 tiers.
 		NeedsSword=0
 		StyleSpd=1.15
 		StyleDef=1.15
-		SignatureTechnique=1
 		NoSword=1
 		StyleActive="Selfless State"
 		verb/Selfless_State()
@@ -35,7 +34,6 @@ These will be considered Sagas for Angels but lack 6 tiers.
 		StyleSpd=1.25
 		StyleOff=1.15
 		StyleDef=1.25
-		SignatureTechnique=2
 		NoSword=1
 		StyleActive="Ultra Instinct (In-Training)"
 		verb/Incomplete_Ultra_Instinct()
@@ -48,7 +46,6 @@ These will be considered Sagas for Angels but lack 6 tiers.
 		StyleSpd=1.5
 		StyleOff=1.5
 		StyleDef=1.5
-		SignatureTechnique=3
 		NoSword=1
 		StyleActive="Ultra Instinct (Complete)"
 		verb/Ultra_Instinct()
@@ -61,7 +58,6 @@ These will be considered Sagas for Angels but lack 6 tiers.
 		StyleSpd=1.75
 		StyleOff=1.75
 		StyleDef=1.75
-		SignatureTechnique=4
 		NoSword=1
 		StyleActive="Perfected Ultra Instinct"
 		verb/Perfected_Ultra_Instinct()
