@@ -130,6 +130,7 @@ NEW VARIABLES
 	var/ManaGlowSize
 	var/ArmamentGlow
 	var/ArmamentGlowSize
+	var/AwakeningRequired
 
 	var/BleedHit //Makes you deal damage to yourself when you hit.
 	var/ManaLeak //Makes you spend mana when you hit

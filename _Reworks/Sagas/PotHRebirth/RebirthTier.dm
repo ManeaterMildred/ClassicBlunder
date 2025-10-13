@@ -69,6 +69,7 @@ sagaTierUpMessages/Rebirth
 							src<< "nyoro~n :3c"
 							src.AddSkill(new/obj/Skills/Utility/NeverTooEarly)
 							src.AddSkill(new/obj/Skills/Projectile/Beams/TasteTheRainbow)
+							src.AddSkill(new/obj/Skills/Utility/HoldingOutForAHero)
 					/*		src.RebirthHeroType="Yellow"
 							src<< "You are now the Yellow Hero of Connection, who can attack with Ice Magic.."
 							src.AddSkill(new/obj/Skills/Projectile/Rude_Buster)
@@ -89,9 +90,13 @@ sagaTierUpMessages/Rebirth
 					src.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Axe_of_Justice)
 				if(src.RebirthHeroType=="Blue")
 					src.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Shining_Star)
+					src.AddSkill(new/obj/Skills/Utility/TheBlueExperience)
 				if(src.RebirthHeroType=="Red")
 					src.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Unwavering_Soul)
-		//		if(src.RebirthHeroType=="Rainbow")
+					src.AddSkill(new/obj/Skills/Queue/FistOfTheRedStar)
+
+				if(src.RebirthHeroType=="Rainbow")
+					src.AddSkill(new/obj/Skills/AutoHit/PowerWordGenderDysphoria)
 			if(4)
 				src.SagaLevel=4
 				if(src.RebirthHeroType=="Purple")

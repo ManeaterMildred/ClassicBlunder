@@ -612,11 +612,39 @@ mob/proc/SkillX(var/Wut,var/obj/Skills/Z,var/bypass=0)
 						if(P.KO)
 							P.Conscious()
 						P.Sheared=0
-						P.HealWounds(1*src.Imagination)
-						P.HealHealth(1*src.Imagination)
+						P.HealWounds(0.5*src.Imagination)
+						P.HealHealth(0.5*src.Imagination)
 						P.TotalFatigue=0
 						if(P.BPPoison<1)
 							P.BPPoisonTimer=1
+						break
+			if("BetterHeal")
+				if(src.ManaAmount<75)
+					return
+				if(src.KO)
+					return
+				for(var/mob/Players/P in oview(7,usr))
+					if(P)
+						Z.Cooldown()
+						src.ManaAmount=0
+						view(src)<<"[src] does a much better job healing [P]."
+						if(P.KO)
+							P.Conscious()
+						P.Sheared=0
+						P.HealWounds(2*src.Imagination)
+						P.HealHealth(2*src.Imagination)
+						P.TotalFatigue=0
+						if(P.BPPoison<1)
+							P.BPPoisonTimer=1
+						if(P.MortallyWounded)
+							P.MortallyWounded=0
+							P.TsukiyomiTime=1
+							view(src)<<"[src] stabilizes [P]."
+						if(P.SenseRobbed)
+							if(P.SenseRobbed>=5)
+								animate(P.client, color=null, time=1)
+							P.SenseRobbed=0
+							view(src)<<"[src] restores [P]'s robbed senses!"
 						break
 			if("Regrowth")
 				if(Z.Using)

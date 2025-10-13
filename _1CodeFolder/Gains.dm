@@ -1006,6 +1006,10 @@ mob
 					if(src.VaizardHealth<=0)
 						src.ActiveBuff.Trigger(src,Override=1)
 						break
+				if(src.ActiveBuff.AwakeningRequired)
+					if(src.AwakeningSkillUsed<=0)
+						src.ActiveBuff.Trigger(src,Override=1)
+						break
 
 				if(src.ActiveBuff.TimerLimit)
 					if(!isnum(src.ActiveBuff.Timer))//If the timer isn't a number...

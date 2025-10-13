@@ -25,12 +25,32 @@ obj/Skills/Buffs/SlotlessBuffs/Autonomous/Prismatic_Hero
 	passives = list("FluidForm" = 1)
 //t2 path buffs. all one of them
 obj/Skills/Buffs/SlotlessBuffs/Autonomous/Dont_Stop_Me_Now //first act
+	PowerMult=1.15
 	StrMult=1.15
 	EndMult = 1.15
 	ForMult=1.15
 	SpdMult=1.15
 	Cooldown = 1
+	AwakeningRequired=1
 	passives = list("BuffMastery" = 1,"KiControlMaster" =1, "TechniqueMastery"=1)
+//HE'S GOTTA BE STRONG AND HE'S GOTTA BE FAST AND HE'S GOTTA BE FRESH FROM THE NIGHT
+obj/Skills/Buffs/SlotlessBuffs/Autonomous/Temporary_Hero_Heart
+	ActiveMessage="awakens a heroic heart!"
+	PowerMult=1.25
+	StrMult=1.15
+	EndMult = 1.75
+	Cooldown = 1
+	TimerLimit = 30
+	passives = list("Tenacity" = 1)
+obj/Skills/Buffs/SlotlessBuffs/Autonomous/Temporary_Hero_Soul
+	ActiveMessage="awakens a heroic soul!"
+	PowerMult=1.25
+	StrMult=1.5
+	SpdMult=1.5
+	RecovMult=1.25
+	Cooldown = 1
+	TimerLimit = 30
+	passives = list("Instinct" = 1)
 //t3 path buffs
 obj/Skills/Buffs/SlotlessBuffs/Autonomous/Shining_Star
 	AlwaysOn=1
@@ -54,18 +74,28 @@ obj/Skills/Buffs/SlotlessBuffs/Autonomous/Axe_of_Justice
 obj/Skills/Buffs/SlotlessBuffs/Autonomous/We_Are_The_Champions //second act
 	StrMult=1.1
 	EndMult = 1.1
-	ForMult=1.5
+	ForMult=1.1
 	SpdMult=1.15
 	Cooldown = 1
+	AwakeningRequired=1
 	passives = list("BuffMastery" = 1,"KiControlMaster" =1, "TechniqueMastery"=1)
 obj/Skills/Buffs/SlotlessBuffs/Autonomous/The_Blue_Experience //second act
-	StrMult=1.1
-	EndMult = 1.1
-	ForMult=1.5
-	SpdMult=1.15
+	ActiveMessage="burns brighter than they should."
+	SpdMult=1.5
 	Cooldown = 1
+	AwakeningRequired=1
+	HealthDrain = 0.05
 	passives = list("BuffMastery" = 1,"Pursuer" =2, "Godspeed"=2)
 //t4 path buffs
+//debuffs
+/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Rebirth/Dissociation
+	ActiveMessage="doesn't appear to be all there."
+	passives = list("BuffMastery" = -1, "Flow" = -2, "Instinct" = -2)
+	SlowAffected = 1
+	TimerLimit = 6000
+	Cooldown = 4
+	AlwaysOn = 1
+	IconLock = 'SweatDrop.dmi'
 obj/Skills/AutoHit
 	var/IsSnowgrave
 	var/HahaWhoops
@@ -101,6 +131,7 @@ obj/Skills/AutoHit
 		WindUp=0.5
 		WindupMessage="casts a spell they don't know.."
 		HahaWhoops=1
+		ActNumber=1
 	//	Area="Target"
 		verb/Never_See_It_Coming()
 			set category="Skills"
@@ -113,14 +144,24 @@ obj/Skills/AutoHit
 			usr.Activate(src)
 			usr.TriggerAwakeningSkill(ActNumber)
 	PowerWordGenderDysphoria
-		ActNumber=1
-		SpecialAttack=1
-		GuardBreak=1
-		DamageMult=0
-		Distance=15
-		WindUp=0.5
-		WindupMessage="foreshadows their imminent future, maybe."
 		Area="Target"
+		NeedsHealth=50
+		AdaptRate = 1
+		DamageMult = 5
+		Distance = 15
+		DelayTime = 0
+		HitSparkIcon = 'BLANK.dmi'
+		TurfDirt = 1
+		ShockIcon = 'Icons/NSE/spells/cast/KrysiaHitspark2.dmi'
+		Shockwave = 4
+		Shockwaves = 1
+		PostShockwave = 1
+		PreShockwave = 0
+		ActNumber=2
+		AwakeningSkill=1
+		WindupMessage="foreshadows their imminent future, maybe."
+		ActiveMessage = "gives the target a perspective on life that they didn't ask for."
+		BuffAffected = "/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Rebirth/Dissociation"
 		verb/GenderDysphoria()
 			set category="Skills"
 			set name="Power Word: Gender Dysphoria (Act 2)"
@@ -131,6 +172,7 @@ obj/Skills/AutoHit
 			DamageMult=RandomMult
 			usr.Activate(src)
 			usr.TriggerAwakeningSkill(ActNumber)
+			src.RebirthLastUse=world.realtime
 	Unleash
 		ManaCost=75
 		StrOffense=0
@@ -162,9 +204,11 @@ mob/proc/TriggerAwakeningSkill(ActNumber)
 	if(ActNumber>=1)
 		src<< "act 1 placeholder msg lol"
 		src.AwakeningSkillUsed=1
+		src.buffSelf(/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Dont_Stop_Me_Now)
 	if(ActNumber>=2)
 		src<< "act 2 placeholder msg lol"
 		src.AwakeningSkillUsed=2
+		src.buffSelf(/obj/Skills/Buffs/SlotlessBuffs/Autonomous/We_Are_The_Champions)
 obj/Skills
 	var/AwakeningSkill
 	var/ActNumber
@@ -198,6 +242,30 @@ obj/Skills/Queue
 			DamageMult=RandomMult/10
 			usr.SetQueue(src)
 			usr.TriggerAwakeningSkill(ActNumber)
+	FistOfTheRedStar
+		NeedsHealth=50
+		name="Fist Of The Red Star"
+		DamageMult=4
+		AccuracyMult = 1.75
+		Duration=5
+		Shattering=3
+		ActNumber=2
+		AwakeningSkill=1
+		KBAdd=15
+		HitMessage="asks for the strength to shatter fate..."
+		PushOutIcon='DarkKiai.dmi'
+		PushOutWaves=3
+		PushOut=1
+		HitSparkIcon='BLANK.dmi'
+		verb/FistOfTheRedStar()
+			set category="Skills"
+			set name="Fist Of The Red Star (Act 2)"
+			if(world.realtime < src.RebirthLastUse+(600*60*72))
+				usr << "You can only use this technique once every 72 hours."
+				return
+			usr.SetQueue(src)
+			usr.TriggerAwakeningSkill(ActNumber)
+
 obj/Skills/Utility
 	var/RandomMult
 	NeverTooEarly
@@ -234,7 +302,7 @@ obj/Skills/Utility
 		Copyable=0
 		ActNumber=2
 		icon_state="Heal"
-		desc="You ask for a little more time."
+		desc="Shine brightly. Your awakening skill strengthens, but you burn out quicker."
 		verb/TheBlueExperience()
 			set category="Utility"
 			set name="The Blue Experience (Act 2)"
@@ -245,6 +313,8 @@ obj/Skills/Utility
 				usr<<"Can't use yet!"
 				return
 			src.RebirthLastUse=world.realtime
+			usr.TriggerAwakeningSkill(ActNumber)
+			usr.buffSelf(/obj/Skills/Buffs/SlotlessBuffs/Autonomous/The_Blue_Experience)
 	SoulShift
 		Copyable=0
 		verb/SoulRed()
@@ -282,10 +352,23 @@ obj/Skills/Utility
 		ManaCost=75
 		Cooldown=-1
 		icon_state="Heal"
-		desc="A strong, costly heal."
+		desc="A decent, costly heal."
 		verb/Better_Heal()
 			set category="Utility"
-			usr.SkillX("UltimateHeal",src)
+			usr.SkillX("BetterHeal",src)
+	HoldingOutForAHero
+		ManaCost=100
+		Cooldown=-1
+		var/buffpicked
+		icon_state="Heal"
+		desc="Randomly cast Hero Heart or Hero Soul on yourself."
+		verb/HoldingOutForAHero()
+			set name="Holding Out For a Hero"
+			set category="Skill"
+			if(usr.ManaAmount<src.ManaCost)
+				usr<<"You need [src.ManaCost] ACT to use this."
+			src.buffpicked=pick(list(/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Temporary_Hero_Heart, /obj/Skills/Buffs/SlotlessBuffs/Autonomous/Temporary_Hero_Soul))
+			usr.buffSelf(src.buffpicked)
 obj/Skills/Projectile
 	var/PartyReq
 	var/PartyReqType
@@ -365,6 +448,32 @@ obj/Skills/Projectile
 		verb/Devilsbuster()
 			set category="Skills"
 			set name="Devilsbuster"
+			usr.UseProjectile(src)
+	Burning_Black
+		Distance=40
+		Charge=0.25
+		ManaCost=100
+		DamageMult=16
+		Shearing=1
+		AccMult=100
+		HyperHoming=1
+		Dodgeable=-1
+		Deflectable=-1
+		IconLock='RudeBuster.dmi'
+		Knockback=1
+		IconSize=3
+		Radius=3
+		Homing=1
+		ZoneAttack=1
+		ZoneAttackX=0
+		ZoneAttackY=0
+		FireFromSelf=1
+		FireFromEnemy=0
+		Striking=1
+		Cooldown=180
+		verb/Red_Buster()
+			set category="Skills"
+			set name="Red Buster"
 			usr.UseProjectile(src)
 	Beams
 		TasteTheRainbow //Nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan

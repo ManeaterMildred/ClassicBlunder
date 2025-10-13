@@ -212,6 +212,8 @@ obj
 
 				DefTax
 				OffTax
+
+				NeedsHealth
 			skillDescription()
 				..()
 				if(StrOffense)
@@ -4925,6 +4927,10 @@ mob
 							s.Trigger(Target, Override = 1)
 					OMsg(Target, "[Target]'s counterspell nullified [Z]")
 					Z.Cooldown()
+					return
+			if(Z.NeedsHealth)
+				if(src.Health>Z.NeedsHealth*(1-src.HealthCut))
+					src << "You can't use [Z] before you're below [Z.NeedsHealth*(1-src.HealthCut)]% health!"
 					return
 			if(Z.NeedsSword)
 				var/obj/Items/Sword/s=src.EquippedSword()
