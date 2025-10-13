@@ -33,7 +33,7 @@ race
 							var/obj/Skills/Buffs/NuStyle/s=new/obj/Skills/Buffs/NuStyle/UnarmedStyle/AngelStyles/Selfless_State
 							user.AddSkill(s)
 							user << "You have embarked upon the path of true martial arts mastery: Ultra Instinct."
-							user.Saga="Ultra Instinct"
-							user.SagaLevel=1
+							user.Secret="Ultra Instinct"
+							user.UILevel=1
 				user.AngelAscension = Choice
 				//t1 style/armor unlocked

@@ -70,6 +70,7 @@ mob/var
 	tmp/Party/party//party party party
 	tmp/StunImmune
 	tmp/GrabTime
+	tmp/CloudedHeartActive = FALSE
 	custom_scent
 	custom_powerup
 	customPUnameInclude = FALSE

@@ -43,30 +43,30 @@ obj/Skills/Utility/Mentor_System
 				src.Using = 0
 				return
 
-		if(Mentor.Saga != "Ultra Instinct")//prevent abuse of verbs falling into unintended hands(read:idiot insurance.)
+		if(Mentor.Secret != "Ultra Instinct")//prevent abuse of verbs falling into unintended hands(read:idiot insurance.)
 			Mentor << "You must first walk the path of the Angels before you can teach Ultra Instinct."
 			src.Using = 0
 			return
 
-		if(Choice.Saga != "Ultra Instinct")
-			Choice.Saga = "Ultra Instinct"
+		if(Choice.Secret != "Ultra Instinct")
+			Choice.Secret = "Ultra Instinct"
 
-		switch(Choice.SagaLevel)
+		switch(Choice.UILevel)
 			if(0)
 				src.Grant_Mortal_Instinct(Mentor, Choice)
-				Choice.SagaLevel = 1
+				Choice.UILevel = 1
 			if(1)
-				if(Mentor.SagaLevel >= 2)
+				if(Mentor.UILevel >= 2)
 					src.Grant_Imperfect_UI(Mentor, Choice)
-					Choice.SagaLevel = 2
+					Choice.UILevel = 2
 				else
 					Mentor << "You must deepen your understanding of Ultra Instinct first."
 					src.Using = 0
 					return
 			if(2)
-				if(Mentor.SagaLevel >= 3)
+				if(Mentor.UILevel >= 3)
 					src.Grant_Complete_UI(Mentor, Choice)
-					Choice.SagaLevel = 3
+					Choice.UILevel = 3
 				else
 					Mentor << "You must master Ultra Instinct before you can teach this level."
 					src.Using = 0
@@ -77,7 +77,7 @@ obj/Skills/Utility/Mentor_System
 				return
 
 
-		Log("Admin", "[ExtractInfo(Mentor)] mentored [ExtractInfo(Choice)] in Ultra Instinct (SagaLevel advanced to [Choice.SagaLevel]).")//prevents abuse of verbs in the late night hours
+		Log("Admin", "[ExtractInfo(Mentor)] mentored [ExtractInfo(Choice)] in Ultra Instinct (UILevel advanced to [Choice.UILevel]).")//prevents abuse of verbs in the late night hours
 
 		Mentor.LastMentorUse = world.realtime + Day(1) //Cooldown for mentoring
 
@@ -98,19 +98,26 @@ obj/Skills/Utility/Mentor_System
 
 		Log("Admin", "[ExtractInfo(Mentor)] applied Mortal Instinct adaptation debuff to [ExtractInfo(Student)] for 24 hours.")//Allows admins to track student's initial debuff.
 
+		var/clearmind = new /obj/Skills/Buffs/TemporaryDebuffs/Mortal_Instinct_Debuff/ClearMind(Student)
+		Student.contents += clearmind
+		Student << "<font color='#bfefff'><b>A calm clarity settles over your thoughts as your instincts sharpen.</b></font>"
+		OMsg(Mentor, "[Student]'s mind clears as instinct takes hold.")
+
+		Log("Admin", "[ExtractInfo(Mentor)] also applied the Clear Mind debuff to [ExtractInfo(Student)] for TWO WEEKS!!!")
+
 
 	proc/Grant_Imperfect_UI(mob/Mentor, mob/Student)
 		Student.AddSkill(new /obj/Skills/Buffs/NuStyle/MortalUI/Incomplete_Ultra_Instinct_Style)
 		OMsg(Mentor, "[Student] progresses further into the realm of instinct.")
-		Log("Admin", "[ExtractInfo(Mentor)] advanced [ExtractInfo(Student)] to Incomplete Ultra Instinct (SagaLevel 2).")//Allows admins to track student's overall progression.
+		Log("Admin", "[ExtractInfo(Mentor)] advanced [ExtractInfo(Student)] to Incomplete Ultra Instinct (UILevel 2).")//Allows admins to track student's overall progression.
 
 	proc/Grant_Complete_UI(mob/Mentor, mob/Student)
 		Student.AddSkill(new /obj/Skills/Buffs/NuStyle/MortalUI/Ultra_Instinct_Style)
 		OMsg(Mentor, "[Student] achieves a complete understanding of divine instinct.")
 		Student << "<font color='#d4aaff'><b>To advance further you must conquer your ego and achieve perfection...</b></font>"
-		Log("Admin", "[ExtractInfo(Mentor)] advanced [ExtractInfo(Student)] to Complete Ultra Instinct (SagaLevel 3).")//Allows admins to track student's overall progression.
+		Log("Admin", "[ExtractInfo(Mentor)] advanced [ExtractInfo(Student)] to Complete Ultra Instinct (UILevel 3).")//Allows admins to track student's overall progression.
 
-		if(Mentor.SagaLevel >= 3)//End of the road Compadre.
+		if(Mentor.UILevel >= 3)//End of the road Compadre.
 			Mentor.verbs -= /obj/Skills/Utility/Mentor_System/verb/Teach_UI//This is an optional keep, but IMHO should be mandatory. If the student dies give it back I GUESS.
 			Mentor << "<font color='#a0ffff'><b>Your role as a mentor is complete - you have passed on the secrets of Ultra Instinct.</b></font>"
 			Log("Admin", "[ExtractInfo(Mentor)]'s Teach_UI verb has been removed after passing on Complete Ultra Instinct.")//We need to keep track of this stuff because automated systems can always be buggy.

@@ -33,6 +33,7 @@
 		OMsg(User, "[User] [OffMessage]")
 		Log("Admin", "[ExtractInfo(User)]'s Mortal Instinct adaptation debuff has expired (72h complete).")
 		del(src)
+
 /obj/Skills/Buffs/TemporaryDebuffs/Mortal_Instinct_Debuff/ClearMind
 	BuffName = "Clear Mind"
 	desc = "Your mind is freed and your heart is pure, preventing you from angering."
@@ -64,3 +65,53 @@
 		OMsg(User, "[User] [OffMessage]")
 		Log("Admin", "[ExtractInfo(User)]'s Mortal Instinct adaptation debuff has expired (72h complete).")
 		del(src)
+
+	proc/GetRemainingTime()
+		var/time_left = max((TimerLimit * 10) - (Timer * 10), 0)
+		return time_left
+
+	verb/CloudedHeart()
+		set name = "Clouded Heart"
+		set desc = "Suppress your divine state for one hour, allowing mortal emotion to surface."
+		set category = "Skills"
+		var/mob/User = usr
+		if(!User) return
+		if(User.CloudedHeartActive)
+			User << "<font color='#ffb3c6'><b>Your heart is already clouded. Wait until your emotions settle.</b></font>"
+			return
+		User.CloudedHeartActive = TRUE
+		var/hadClearMind = FALSE
+		var/hadDivineStrain = FALSE
+		var/clearMindTimeLeft = 0
+		for(var/obj/Skills/Buffs/TemporaryDebuffs/Mortal_Instinct_Debuff/DivineStrain/D in User.contents)
+			del(D)
+			hadDivineStrain = TRUE
+		for(var/obj/Skills/Buffs/TemporaryDebuffs/Mortal_Instinct_Debuff/ClearMind/C in User.contents)
+			clearMindTimeLeft = C.GetRemainingTime()
+			del(C)
+			hadClearMind = TRUE
+		if(hadClearMind || hadDivineStrain)
+			User << "<font color='#c87aff'><b>Your divine calm fades, and mortal emotion clouds your heart...</b></font>"
+			OMsg(User, "[User]'s divine aura dims beneath mortal doubt.")
+			Log("Admin", "[ExtractInfo(User)] activated Clouded Heart: divine effects suppressed for 1 hour.")
+		else
+			User << "<font color='#d4aaff'><b>The divine strain stirs as your heart clouds over.</b></font>"
+			OMsg(User, "[User]'s divine essence shifts under emotional weight.")
+			Log("Admin", "[ExtractInfo(User)] used Clouded Heart without active buffs - DivineStrain will reapply later.")
+		spawn(36000)// ONE HOUR OF FREEDOM GOOD LUCK SMOOTH BRAIN LMFAOOOOOOOOOOOO
+			if(User)
+				var/newstrain = new /obj/Skills/Buffs/TemporaryDebuffs/Mortal_Instinct_Debuff/DivineStrain(User)
+				User.contents += newstrain
+				User << "<font color='#d4aaff'><b>The divine flow returns as your heart clears once more.</b></font>"//Yeah, you're going to carry that weight.
+				OMsg(User, "[User]'s divine strain reawakens after the heart clears.")//Yeah, you're going to carry that weight.
+				Log("Admin", "[ExtractInfo(User)]'s Clouded Heart expired. DivineStrain restored!")//			Yeah, you're going to carry that weight.
+				if(hadClearMind)//																				Yeah, you're going to carry that weight.
+					var/newmind = new /obj/Skills/Buffs/TemporaryDebuffs/Mortal_Instinct_Debuff/ClearMind(User)//Yeah, you're going to carry that weight.
+					User.contents += newmind//																	Yeah, you're going to carry that weight.
+					if(clearMindTimeLeft > 0)//																	Yeah, you're going to carry that weight.
+						spawn(clearMindTimeLeft)//																Yeah, you're going to carry that weight.
+							if(User && newmind in User.contents)//												Yeah, you're going to carry that weight.
+								call(newmind, "AutoRemove")(User)//														Yeah, you're going to carry that weight.
+					User << "<font color='#bfefff'><b>Your thoughts settle back into divine clarity.</b></font>"//Yeah, you're going to carry that weight.
+					Log("Admin", "[ExtractInfo(User)]'s ClearMind restored with previous timer intact.")//Yeah, you're going to carry that weight.
+				User.CloudedHeartActive = FALSE

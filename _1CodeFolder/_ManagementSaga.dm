@@ -2,6 +2,7 @@ mob/var
 	SagaLevel=0//Level for all tier s.
 	SagaEXP=0//holds rpp investment
 	SagaAdminPermission //allows override of rpp requirements and is required for tier 7/8
+	UILevel=0//Seems to be the best place to put this. Sorry!
 
 	list/SagaAscension=list("Str"=0, "End"=0, "Spd"=0, "For"=0)
 

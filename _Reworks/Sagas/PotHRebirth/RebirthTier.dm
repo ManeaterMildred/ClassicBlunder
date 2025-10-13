@@ -79,7 +79,7 @@ sagaTierUpMessages/Rebirth
 					src.AddSkill(new/obj/Skills/Buffs/Rebirth/BlackShard)
 					src.AddSkill(new/obj/Skills/AutoHit/Unleash)
 				if(src.RebirthHeroType=="Purple")
-					src<< "Your story has finally come into its own. You have become the Axe of Justice, with hope crossed on your heart.
+					src<< "Your story has finally come into its own. You have become the Axe of Justice, with hope crossed on your heart."
 					src.AddSkill(new/obj/Skills/Buffs/Rebirth/JusticeAxe)
 					src.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Axe_of_Justice)
 				if(src.RebirthHeroType=="Blue")
@@ -90,6 +90,7 @@ sagaTierUpMessages/Rebirth
 			if(4)
 				src.SagaLevel=4
 				if(src.RebirthHeroType=="Purple")
+					src<<"Darkness? You just use that lame stuff to fight! You're a god$%@* hero!" //sorry this is probably cringe, just needed a placeholder for you my dear.
 				if(src.RebirthHeroType=="Rainbow")
 					src<<"Surprise! You're a woman now. RP accordingly."
 					if(src.Gender=="Female")
