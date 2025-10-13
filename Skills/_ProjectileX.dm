@@ -4614,6 +4614,15 @@ mob
 					Z.Cooldown()
 				else
 					Z.Cooldown()
+			if(Z.PartyReq) //I'll throw this into a PartyReqCheck() proc when I have more things use this
+				var/HeroPresent = 0
+				if(src.RebirthHeroType=="Purple")
+					for(var/mob/player in party)
+						if(player.RebirthHeroType==Z.PartyReqType) //it might be possible to pass on abilities to the other hero type in the future, so I think this is the most graceful way to handle it
+							HeroPresent=1
+					if(!HeroPresent)
+						src<<"You lack the required party member to use this."
+						return
 			if(Z.MagicNeeded&&!src.HasLimitlessMagic())
 				// find people in a zone, if the person in the zone has counterspell up and is not in the party, then return and go on cooldown
 				for(var/mob/x in orange(5, src))

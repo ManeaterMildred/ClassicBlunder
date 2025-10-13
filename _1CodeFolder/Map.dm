@@ -4044,6 +4044,7 @@ obj/Special
 		var/SkyTransport //into sky
 		var/LandTransport //fast, across land
 		var/warperTimeLock = 0
+		var/HellTeleport
 		Underground_Teleport
 			icon='SparkleIndigo.dmi'
 			UndergroundTransport=1
@@ -4067,6 +4068,13 @@ obj/Special
 			GoBelow
 			GoDeep
 			GoHigh
+		TavernTeleporter
+			gotoX=404
+			gotoY=338
+			gotoZ=12
+		Depths
+			icon='DeathBallStrong.dmi'
+			HellTeleport=1
 
 	PermaBarrier
 		Grabbable=0

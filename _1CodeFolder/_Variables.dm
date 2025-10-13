@@ -627,6 +627,7 @@ mob/var
 	moneyGrindedDaily = 0
 
 	HellspawnBerserk
+	HellspawnTimer
 
 /proc/reduceGodKi(mob/player, num)
 	player.GodKi -= num

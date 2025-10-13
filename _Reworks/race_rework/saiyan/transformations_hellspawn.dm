@@ -10,7 +10,7 @@ transformation
 			form_glow_x = -32
 			form_glow_y = -32
 			unlock_potential = 55
-			passives = list("Instinct" = 1, "Flow" = 1, "Flicker" = 1, "Pursuer" = 3,  "BuffMastery" = 3, "PureDamage" = 1, "PureReduction" = 1)
+			passives = list("Instinct" = 1, "Flow" = 1, "Flicker" = 1, "Pursuer" = 3,  "BuffMastery" = 3, "PureDamage" = 2)
 			angerPoint = 75
 
 			adjust_transformation_visuals(mob/user)

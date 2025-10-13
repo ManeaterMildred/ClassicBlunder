@@ -1,3 +1,4 @@
+//these are just here so i can easily open old maps.
 area
 	mouse_opacity=0
 	var/WeatherOn=0
@@ -160,6 +161,15 @@ area
 				TemperatureType="Heat"
 				//WeatherOdds=50
 				//WeatherOn=1
+			Danger
+				Void
+					icon='Void.dmi'
+					layer=6
+				BloodRain
+					icon='BloodRain.dmi'
+					icon_state="storm"
+					layer=6
+
 			AlienRuin
 				ARUnderground
 //					icon_state="Dark"
@@ -251,3 +261,284 @@ obj/Items/Tech
 			var/image/A=image(icon='Lab.dmi',icon_state="TubeTop",layer=5,pixel_y=32)
 			overlays-=A
 			overlays+=A
+	SpaceTravel
+obj/PodConsole
+	var/Launching
+	Health=9999999999999999999
+	LogPEndurance=999999999999
+	var/SpeakerToggle=0
+	var/PodID
+	Grabbable=0
+	icon='Tech.dmi'
+	icon_state="ShipConsole"
+	verb/ShipSpeakerToggle()
+		set src in oview(1)
+		if(SpeakerToggle==0)
+			SpeakerToggle=1
+			usr<<"Ship speakers activated."
+		else
+			SpeakerToggle=0
+			usr<<"Ship speakers deactivated."
+obj/ShipConsole
+	var/Launching
+	var/SpeakerToggle=0
+	Health=1.#INF
+	Grabbable=0
+	icon='Tech.dmi'
+	icon_state="ShipConsole"
+	verb/Muffin_Button()
+		set src in oview(1)
+		usr<< "The muffin button is all that remains of this once proud feature."
+		sleep(10)
+		usr<<"And yet... it does not exist."
+		return
+/*	verb/Use()
+
+	verb/Leave()
+
+	verb/View()
+
+	verb/Launch()*/
+
+
+/*						if(Q.z==14||Q.z==18||Q.z==6)
+							var/turf/B=Q.loc
+							if(istype(B.loc,/area/Outside/Planet/AlienRuin))
+								for(var/obj/Planets/AlienRuin/x in world)
+									Q.loc=x.loc
+									return
+//							else if(istype(B.loc,/area/Outside/Planet/AlienGrassland))
+//								for(var/obj/Planets/AlienGrassland/x in world)
+//									Q.loc=x.loc
+//									return
+							else if(istype(B.loc,/area/Outside/Planet/AlienOcean))
+								for(var/obj/Planets/AlienOcean/x in world)
+									Q.loc=x.loc
+									return
+//							else if(istype(B.loc,/area/Outside/Planet/AlienArctic))
+//								for(var/obj/Planets/AlienArctic/x in world)
+//									Q.loc=x.loc
+//									return
+							else if(istype(B.loc,/area/Outside/Planet/AlienDesolate))
+								for(var/obj/Planets/AlienDesolate/x in world)
+									Q.loc=x.loc
+									return
+							else if(istype(B.loc,/area/Outside/Planet/Sanctuary))
+								for(var/obj/Planets/Sanctuary/x in world)
+									Q.loc=x.loc
+									return
+//							else if(Q.z==6)
+//								for(var/obj/Planets/PirateColony/x in world)
+//									Q.loc=x.loc
+//									return
+*/
+
+//						else
+obj/ShipAirlock
+	icon='Special.dmi'
+	icon_state="Special7"
+	Health=1.#INF
+	Grabbable=0
+
+obj/Items/ShipAccessories
+	Alarm
+		icon='shipalarm.dmi'
+		icon_state="booting"
+		var/active=1
+
+
+	PodLauncher
+		density=1
+		icon='Tech.dmi'
+		icon_state="PodLauncher"
+obj/
+	HBTCDoor
+		icon='Doors.dmi'
+		icon_state="Closed1"
+		Health=1.#INF
+		Grabbable=0
+turf/Special
+	DiveSword
+		var/typee
+		var/antispam
+		density=1
+		icon='Doors.dmi'
+		icon_state="Closed1"
+/*		New()
+			Open()
+			src.antispam=null
+			..()*/
+		Click()
+			usr<<"How do you see this?"
+			return
+			/*
+			..()
+			if(usr.DiveLock)
+				usr<<"Finish picking or giving up before clicking another one."
+				return
+			if(!usr.DiveWeapon)
+				if(usr in oview(1,src))
+					usr.DiveLock=1
+					if(usr.Alert("Are you sure you want to pick the sword?"))
+						usr.DiveWeapon="Sword"
+						usr.ComboPlus=1
+						usr << "Your path is set."
+						usr << "Now...what will you give up in exchange?"
+						usr.StrengthMod*=1.25
+						usr.Strength*=1.25
+						usr.ForceMod*=1.25
+						usr.Force*=1.25
+						usr.OffenseMod*=1.25
+						usr.Offense*=1.25
+						usr.DiveLock=0
+						return
+					usr.DiveLock=0
+			else if(usr.DiveWeapon)
+				if(usr.DiveWeapon=="Sword")
+					usr << "Can't let you give up what you've got, Riku."
+					return
+				if(usr.Alert("Are you sure you want to give up the sword?"))
+					usr.DiveAbandon="Sword"
+					usr << "Your journey begins in the dead of night."
+					usr << "Your road won't be easy, but a rising sun awaits you at the end."
+					usr.StrengthMod/=1.25
+					usr.Strength/=1.25
+					usr.ForceMod/=1.25
+					usr.Force/=1.25
+					usr.OffenseMod/=1.25
+					usr.Offense/=1.25
+					usr.loc = locate(usr.PrevX, usr.PrevY, usr.PrevZ)
+					usr.contents+=new/obj/Skills/Keyblade/CallKeyblade
+					usr.contents+=new/obj/Skills/Keyblade/BestowKeyblade*/
+	DiveShield
+		var/typee
+		var/antispam
+		density=1
+		icon='Doors.dmi'
+		icon_state="Closed1"
+/*		New()
+			Open()
+			src.antispam=null
+			..()*/
+		Click()
+			usr<<"How do you see this?"
+			return
+			/*
+			..()
+			if(usr.DiveLock)
+				usr<<"Finish picking or giving up before clicking another one."
+				return
+			if(!usr.DiveWeapon)
+				if(usr in oview(1,src))
+					usr.DiveLock=1
+					if(usr.Alert("Are you sure you want to pick the shield?"))
+						usr.DiveWeapon="Shield"
+						usr.SecondChance=1
+						usr << "Your path is set."
+						usr << "Now...what will you give up in exchange?"
+						usr.EnduranceMod*=1.15
+						usr.Endurance*=1.15
+						usr.ResistanceMod*=1.15
+						usr.Resistance*=1.15
+						usr.DefenseMod*=1.15
+						usr.Defense*=1.15
+						usr.DiveLock=0
+						return
+					usr.DiveLock=0
+			else if(usr.DiveWeapon)
+				if(usr.DiveWeapon=="Shield")
+					usr << "Can't let you give up what you've got, Kairi."
+					return
+				if(usr.Alert("Are you sure you want to give up the shield?"))
+					usr.DiveAbandon="Shield"
+					usr << "Your journey begins at dawn."
+					usr << "As long as the sun is shining, your journey should be a pleasant one."
+					usr.EnduranceMod/=1.15
+					usr.Endurance/=1.15
+					usr.ResistanceMod/=1.15
+					usr.Resistance/=1.15
+					usr.DefenseMod/=1.15
+					usr.Defense/=1.15
+					usr.loc = locate(usr.PrevX, usr.PrevY, usr.PrevZ)
+					usr.contents+=new/obj/Skills/Keyblade/CallKeyblade
+					usr.contents+=new/obj/Skills/Keyblade/BestowKeyblade*/
+	DiveStaff
+		var/typee
+		var/antispam
+		density=1
+		icon='Doors.dmi'
+		icon_state="Closed1"
+/*		New()
+			Open()
+			src.antispam=null
+			..()*/
+		Click()
+			usr<<"How do you see this?"
+			return
+/*			..()
+			if(usr.DiveLock)
+				usr<<"Finish picking or giving up before clicking another one."
+				return
+			if(!usr.DiveWeapon)
+				if(usr in oview(1,src))
+					usr.DiveLock=1
+					if(usr.Alert("Are you sure you wish to choose the staff?"))
+						usr.DiveWeapon="Staff"
+						usr.MPRage=1
+						usr << "Your path is set."
+						usr << "Now...what will you give up in exchange?"
+						usr.Recovery*=1.25
+						usr.EnergyMod*=1.5
+						usr.EnergyMax*=1.5
+						usr.Energy*=1.5
+						usr.DiveLock=0
+						return
+					usr.DiveLock=0
+			else if(usr.DiveWeapon)
+				if(usr.DiveWeapon=="Staff")
+					usr << "Can't let you give up what you've got, Sora."
+					return
+				if(usr.Alert("Are you sure you want to give up the staff?"))
+					usr.DiveAbandon="Staff"
+					if(usr.Alert("Are you sure you wish to abandon the staff?"))
+						usr.DiveAbandon="Staff"
+						usr << "Your journey begins at midday."
+						usr << "Keep a steady pace, and you'll come through fine."
+						usr.Recovery/=1.25
+						usr.EnergyMod/=1.5
+						usr.EnergyMax/=1.5
+						usr.Energy/=1.5
+						usr.loc = locate(usr.PrevX, usr.PrevY, usr.PrevZ)
+						usr.contents+=new/obj/Skills/Keyblade/CallKeyblade
+						usr.contents+=new/obj/Skills/Keyblade/BestowKeyblade*/
+obj/Effects
+	FusionCamera
+obj/Spirit
+	icon='NewObjects.dmi'
+	icon_state="35"
+	Health=1.#INF
+	Grabbable=0
+	var/list/who=new
+/*	verb/Use()
+		set src in oview(1)
+		if(who.Find(usr.key))
+			if(who[usr.key]<=Year)
+				usr<<"You cannot use this untl next month."
+				return
+			else
+				if(prob(20))
+					who.Remove(usr.key)
+					usr<<"...Get out of here."
+					usr.loc=locate(236,260,8)
+
+				else
+					usr<<"...You're out of luck..try again next month."
+					who[usr.key]=Year
+		else
+			usr<<"..Welcome to The Final Realms! You may train, conversate with others...and enjoy the rest of eternity haha! You may talk to me once every month starting next month to see if I qualify you to get out of this dump!"
+			who.Add("[usr.key]"=Year)*/
+
+	verb/Use(var/mob/A in world)
+		set src in oview(1)
+		set category="Other"
+		usr<<"This does nothing right now."

@@ -245,8 +245,12 @@ var/game_loop/mainLoop = new(0, "newGainLoop")
 	if(Lethal-- <= 0 && Lethal)
 		Lethal = 0
 		OMsg(src, "<font color='grey'>[src] will no longer deal lethal damage.</font color>")
+	if(HellspawnTimer-- <= 0 && HellspawnTimer)
+		HellspawnTimer = 0
+		OMsg(src, "<font color='grey'>[src] is no longer posessed by that thing.</font color>")
 		if(HellspawnBerserk)
 			HellspawnBerserk=0
+			Energy=0
 			Health=-1
 	// Move this to a different loop, most likely
 

@@ -230,6 +230,7 @@ transformation
 		revert(mob/user)
 			if(!is_active || !user.CanRevert()) return
 			user.HellspawnBerserk=0
+			user.HellspawnTimer=0
 			user.transActive--
 			if(!isnull(revertToTrans))
 				user.transActive = revertToTrans

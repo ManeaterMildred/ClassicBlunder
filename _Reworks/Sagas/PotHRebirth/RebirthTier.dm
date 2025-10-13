@@ -40,6 +40,7 @@ sagaTierUpMessages/Rebirth
 							src<< "You unlock the Red SOUL color, boosting your crit rate as you gain ACT!"
 						if(src.RebirthHeroType=="Rainbow")
 							src.AddSkill(new/obj/Skills/AutoHit/NeverSeeItComing)
+							src.AddSkill(new/obj/Skills/Projectile/Beams/TasteTheRainbow)
 							src<< "nyoro~n :3c"
 						src.AddSkill(new/obj/Skills/Utility/NeverTooEarly)
 					if("Prophesized Hero")
@@ -55,15 +56,19 @@ sagaTierUpMessages/Rebirth
 						if(src.RebirthHeroType=="Red")
 							src.RebirthHeroType="Purple"
 							src<< "You are now the Purple Hero of Hope, who attacks with dark energy."
+							src<< "You gain the Rude Buster ability, a homing blast that requires 50% ACT and cannot miss. You also gain Red Buster, a stronger version of Rude Buster that can only be used if you have a Cyan Hero of Soul in your party."
 							src.AddSkill(new/obj/Skills/Projectile/Rude_Buster)
+							src.AddSkill(new/obj/Skills/Projectile/Red_Buster)
 							src.AddSkill(new/obj/Skills/Buffs/Rebirth/Devilsknife)
 							src.AddSkill(new/obj/Skills/Utility/UltimateHeal)
+							src<<"You can also attempt to heal people, but the keyword is attempt."
 						if(src.RebirthHeroType=="Rainbow")
 							src.RebirthHeroPath="Unsung"
 							src<<"Sorry, there is no way in hell that fate could ever account for you. Nice try, though."
 							src.AddSkill(new/obj/Skills/AutoHit/NeverSeeItComing)
 							src<< "nyoro~n :3c"
 							src.AddSkill(new/obj/Skills/Utility/NeverTooEarly)
+							src.AddSkill(new/obj/Skills/Projectile/Beams/TasteTheRainbow)
 					/*		src.RebirthHeroType="Yellow"
 							src<< "You are now the Yellow Hero of Connection, who can attack with Ice Magic.."
 							src.AddSkill(new/obj/Skills/Projectile/Rude_Buster)

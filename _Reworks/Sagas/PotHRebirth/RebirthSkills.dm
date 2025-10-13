@@ -287,6 +287,8 @@ obj/Skills/Utility
 			set category="Utility"
 			usr.SkillX("UltimateHeal",src)
 obj/Skills/Projectile
+	var/PartyReq
+	var/PartyReqType
 	Rude_Buster
 		Distance=40
 		Charge=0.25
@@ -311,6 +313,33 @@ obj/Skills/Projectile
 		verb/Rude_Buster()
 			set category="Skills"
 			set name="Rude Buster"
+			usr.UseProjectile(src)
+	Red_Buster
+		Distance=40
+		Charge=0.25
+		ManaCost=50
+		DamageMult=8
+		PartyReq=1
+		PartyReqType="Cyan"
+		Shearing=1
+		AccMult=100
+		HyperHoming=1
+		Dodgeable=-1
+		Deflectable=-1
+		IconLock='RudeBuster.dmi'
+		Knockback=1
+		IconSize=3
+		Radius=3
+		Homing=1
+		ZoneAttack=1
+		ZoneAttackX=0
+		ZoneAttackY=0
+		FireFromSelf=1
+		FireFromEnemy=0
+		Striking=1
+		verb/Red_Buster()
+			set category="Skills"
+			set name="Red Buster"
 			usr.UseProjectile(src)
 	Devilsbuster
 		Distance=40
@@ -339,13 +368,12 @@ obj/Skills/Projectile
 			usr.UseProjectile(src)
 	Beams
 		TasteTheRainbow //Nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan
-			SignatureTechnique=1
 			AdaptRate=1
-			DamageMult=16
+			DamageMult=12
 			Immediate=1
 			Dodgeable=0
 			IconLock='carefully.dmi'
-			Cooldown=150
+			Cooldown=120
 			EnergyCost=5
 			Instinct=1
 			verb/Taste_The_Rainbow()
