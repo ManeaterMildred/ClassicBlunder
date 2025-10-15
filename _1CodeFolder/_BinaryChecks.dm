@@ -988,7 +988,10 @@ mob
 			Return += passive_handler.Get("PureReduction")
 			Return += passive_handler.Get("Mythical") * glob.MYTHICALPUREREDMULT
 			if(passive_handler["Determination(Green)"])
-				Return+=(ManaAmount/10)
+				if(SagaLevel<4)
+					Return+=(ManaAmount/25)
+				else if(SagaLevel>=4)
+					Return+=(ManaAmount/10)
 			if(src.isRace(MAJIN))
 				Return += AscensionsAcquired * getMajinRates("Reduction")
 			if(passive_handler["Rage"] && Health <= 50)

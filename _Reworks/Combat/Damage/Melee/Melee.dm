@@ -976,7 +976,13 @@
 			flick("Attack",src)
 			NextAttack=world.time
 			if(src.passive_handler["Determination(Yellow)"])
-				GetAndUseSkill(/obj/Skills/Projectile/SmallLemonThing, Projectiles, TRUE)
+				if(SagaLevel<4)
+					GetAndUseSkill(/obj/Skills/Projectile/SmallLemonThing, Projectiles, TRUE)
+				if(SagaLevel>=4)
+					if(prob(10))
+						GetAndUseSkill(/obj/Skills/Projectile/BIG_SHOT, Projectiles, TRUE)
+					else
+						GetAndUseSkill(/obj/Skills/Projectile/SmallLemonThing, Projectiles, TRUE)
 			if(src.CheckSpecial("Ray Gear"))
 				if(src.AttackQueue)
 					if(src.AttackQueue.Warp)

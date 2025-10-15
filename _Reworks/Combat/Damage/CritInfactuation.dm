@@ -43,8 +43,21 @@
 				s.adjust(src)
 				Activate(s)
 		if(passive_handler["Determination(Red)"] && ManaAmount>=75)
-			critDMG+= ManaAmount/100
-			ManaAmount=0
+			if(SagaLevel<4||RebirthHeroType=="Red")
+				critDMG+= ManaAmount/100
+				if(SagaLevel==3)
+					var/obj/Skills/s = findOrAddSkill(/obj/Skills/AutoHit/Unleash)
+					Activate(s)
+			if(SagaLevel>=4&&RebirthHeroType!="Red")
+				if(ManaAmount<100)
+					critDMG+= ManaAmount/150
+				if(ManaAmount==100)
+					critDMG+= ManaAmount/33
+					var/obj/Skills/s = findOrAddSkill(/obj/Skills/AutoHit/Unleash)
+					Activate(s)
+					ManaAmount=0
+			if(SagaLevel<4||RebirthHeroType=="Red")
+				ManaAmount=0
 		damage *= 1+critDMG
 	if(prob(blockChance))
 		damage /= 1+critBlock

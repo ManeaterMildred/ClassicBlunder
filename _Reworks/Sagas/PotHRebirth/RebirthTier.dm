@@ -97,14 +97,28 @@ sagaTierUpMessages/Rebirth
 
 				if(src.RebirthHeroType=="Rainbow")
 					src.AddSkill(new/obj/Skills/AutoHit/PowerWordGenderDysphoria)
+					src.AddSkill(new/obj/Skills/Grapple/CHAOS_DUNK)
 			if(4)
 				src.SagaLevel=4
+				if(src.RebirthHeroType=="Cyan")
+					src<<"The special power you wield grows stronger, heightening the strength of your SOUL colors."
+					src<<"You have gained the BlackShard, a small yet incredibly powerful weapon that renders it difficult to hit in exchange for being among the ultimate weapons against darkness."
+					src<<"You have gained Banish."
+					src.AddSkill(new/obj/Skills/Buffs/Rebirth/BlackShard)
 				if(src.RebirthHeroType=="Purple")
-					src<<"Darkness? You just use that lame stuff to fight! You're a god$%@* hero!" //sorry this is probably cringe, just needed a placeholder for you my dear.
+					src<<"<font color='#9BFD4D'><b>I see a story hidden in your eyes.</font></b>" //i literally extracted the mod files for gerson's rude buster to make sure this color was as accurate as possible. praise me.
+					src<<"<font color='#9BFD4D'><b>Burnin' bright...</font></b>"
+					src.passive_handler.Increase("HolyMod" = 3)
+					src.AddSkill(new/obj/Skills/Projectile/Burning_Black)
+					src<<"<font color='#9BFD4D'><b>Burnin' black...</font></b>"
+					src.AddSkill(new/obj/Skills/AutoHit/Burning_Up_Everything)
+					src<<"<font color='#9BFD4D'><b>Burnin' up everything.</font></b>"
 				if(src.RebirthHeroType=="Rainbow")
 					src<<"Surprise! You're a woman now. RP accordingly."
 					if(src.Gender=="Female")
-						src<<"Oh, wait, you were before? Uh. Okay."
+						src<<"Oh, wait, you were before? Well, surprise! You're transfem now and have been all along. Good job on the voice training."
+					if(src.Gender=="Neuter")
+						src<<"Oh, you didn't have a gender before now? Well, congrats! Now you do! Now go burn down a forest over it."
 					src.Gender="Female"
 			if(5)
 			if(6)

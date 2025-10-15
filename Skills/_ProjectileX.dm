@@ -1495,12 +1495,32 @@ obj
 				Knockback=0
 			//	Explode=2
 				EnergyCost=0.1
-				Cooldown=120
+				Cooldown=0
 				IconLock='Blast12.dmi'
 				LockX=0
 				LockY=0
 				Variation=0
 				verb/SmallLemonThing()
+					set category="Skills"
+					usr.UseProjectile(src)
+			BIG_SHOT //It pulls the strings and makes them ring
+				Buster=0//rate that blast charges
+				DamageMult=5
+				BusterDamage=0//max damage when fully charged
+				MultiHit=3
+				BusterRadius=1//max radius from charging
+				AccMult=2.5
+				BusterAccuracy=10
+				BusterSize=2//purely aesthetic
+				Knockback=0
+				Explode=2
+				EnergyCost=0.1
+				Cooldown=0
+				IconLock='Blast12.dmi'
+				LockX=0
+				LockY=0
+				Variation=0
+				verb/BIG_SHOT()
 					set category="Skills"
 					usr.UseProjectile(src)
 			Power_Buster

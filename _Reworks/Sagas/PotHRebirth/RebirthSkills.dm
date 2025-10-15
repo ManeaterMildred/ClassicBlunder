@@ -129,7 +129,7 @@ obj/Skills/AutoHit
 		TurfShift='IceGround.dmi'
 		Distance=15
 		WindUp=0.5
-		WindupMessage="casts a spell they don't know.."
+		WindupMessage="casts a spell that nobody can see coming."
 		HahaWhoops=1
 		ActNumber=1
 	//	Area="Target"
@@ -200,6 +200,65 @@ obj/Skills/AutoHit
 		verb/Unleah()
 			set category="Skills"
 			usr.Activate(src)
+	Banish
+		ManaCost=100
+		StrOffense=0
+		ForOffense=1
+		HolyMod=100
+		DamageMult=2
+		Area="Circle"
+		Distance=5
+		TurfErupt=2
+		TurfEruptOffset=3
+//		Slow=1
+//		WindUp=1
+		WindupIcon='Ripple Radiance.dmi'
+		WindupIconUnder=1
+		WindupIconX=-32
+		WindupIconY=-32
+		WindupIconSize=1.3
+		Divide=1
+		PullIn=25
+		WindupMessage="glows with a certain power..."
+		ActiveMessage="banishes all darkness!"
+		HitSparkIcon='BLANK.dmi'
+		HitSparkX=0
+		HitSparkY=0
+		verb/Unleash()
+			set category="Skills"
+			usr.Activate(src)
+	Burning_Up_Everything
+		SignatureTechnique=1
+		StrOffense=0
+		ForOffense=1
+		DamageMult=14
+		HealthCost=15
+		Area="Circle"
+		Distance=8
+		TurfErupt=2
+		TurfEruptOffset=3
+		Scorching = 30
+		Slow=1
+		WindUp=1
+		WindupIcon='Ripple Radiance.dmi'
+		WindupIconUnder=1
+		WindupIconX=-32
+		WindupIconY=-32
+		WindupIconSize=1.3
+		Divide=1
+		PullIn=25
+		WindupMessage="sets their heart ablaze..."
+		ActiveMessage="burns up everything around them!"
+		HitSparkIcon='BLANK.dmi'
+		HitSparkX=0
+		HitSparkY=0
+		Cooldown=3600
+
+		Earthshaking=15
+		PreQuake=1
+		verb/Burning_Up_Everything()
+			set category="Skills"
+			usr.Activate(src)
 mob/proc/TriggerAwakeningSkill(ActNumber)
 	if(ActNumber>=1)
 		src<< "act 1 placeholder msg lol"
@@ -245,7 +304,7 @@ obj/Skills/Queue
 	FistOfTheRedStar
 		NeedsHealth=50
 		name="Fist Of The Red Star"
-		DamageMult=4
+		DamageMult=7
 		AccuracyMult = 1.75
 		Duration=5
 		Shattering=3
@@ -509,12 +568,15 @@ obj/Skills/Buffs
 		BlackShard
 			MakesSword=1
 			SwordName="Black Shard"
-			SwordIcon='PlaceholderBlackScythe.dmi'
+			SwordIcon='BlackShard.dmi'
 			SwordX=-32
 			SwordY=-32
 			SwordClass="Small"
 			PowerMult=2
 			Cooldown = 1
+			SwordAscension=3
+			OffMult=0.66
+			passives = list("HolyMod" = 3)
 			ActiveMessage="pulls out a small shard of glass that seems barely usable as a weapon."
 			OffMessage="puts the black shard away."
 			verb/BlackShard()
@@ -547,6 +609,7 @@ obj/Skills/Buffs
 			SwordY=-32
 			SwordClass="Heavy"
 			PowerMult=1.5
+			SwordAscension=3
 			Cooldown = 1
 			ActiveMessage="faces fate with the Axe of Justice."
 			OffMessage="puts the Axe of Justice away."
@@ -587,3 +650,17 @@ obj/Skills/Buffs
 				adjust(usr)
 				src.Trigger(usr)
 		//	JusticeAxe
+obj/Skills/Grapple
+	CHAOS_DUNK
+		DamageMult=10
+		StrRate=1
+		TriggerMessage="comes on and slams"
+		Effect="Lotus"
+		EffectMult=4
+		OneAndDone=1
+		ThrowMult=0
+		ThrowAdd=0
+		Cooldown=120
+		verb/CHAOS_DUNK()
+			set category="Skills"
+			src.Activate(usr)
