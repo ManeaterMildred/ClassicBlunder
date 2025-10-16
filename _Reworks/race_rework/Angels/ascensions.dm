@@ -13,6 +13,7 @@ ascension
 				..()
 				if(owner.AngelAscension == "Guardian")
 					owner.GrantGuardianItem(/obj/Items/Wearables/Guardian/Belt_of_Truth)
+					owner << "(Please re-equip your Heavenly Armaments to receive their boons.)"
 				owner.Class = "Principality"
 		two
 			unlock_potential = ASCENSION_TWO_POTENTIAL
@@ -34,6 +35,7 @@ ascension
 				if(owner.AngelAscension == "Guardian")
 					owner.GrantGuardianItem(/obj/Items/Armor/Guardian/Breastplate_of_Righteousness)
 					owner.GrantGuardianItem(/obj/Items/Wearables/Guardian/Sandals_of_Peace)
+					owner << "(Please re-equip your Heavenly Armaments to receive their boons.)"
 				..()
 				owner.Class = "Power"
 		three
@@ -55,6 +57,7 @@ ascension
 				if(owner.AngelAscension == "Guardian")
 					owner.GrantGuardianItem(/obj/Items/Wearables/Guardian/Helmet_of_Salvation)
 					owner.GrantGuardianItem(/obj/Items/Wearables/Guardian/Shield_of_Faith)
+					owner << "(Please re-equip your Heavenly Armaments to receive their boons.)"
 				..()
 				owner.Class = "Virtue"
 		four
@@ -78,6 +81,7 @@ ascension
 						owner.UILevel=4
 				if(owner.AngelAscension == "Guardian")
 					owner.GrantGuardianItem(/obj/Items/Sword/Guardian/Sword_of_the_Spirit)
+					owner << "(Please re-equip your Heavenly Armaments to receive their boons.)"
 				..()
 				owner.Class = "Dominion"
 		five

@@ -1861,6 +1861,19 @@ NEW VARIABLES
 			OffMessage="stops absorbing light..."
 			verb/Aphotic_Shield()
 				set category="Skills"
+				var/mob/M = usr
+				if(!M) return
+				var/hasFaithShield = FALSE
+				for(var/obj/Items/Wearables/Guardian/Shield_of_Faith/S in M.contents)
+					if(findtext(S.suffix, "*Equipped*"))
+						hasFaithShield = TRUE
+						S.PermEquip = 1  // temporarily lock it
+						break
+				if(hasFaithShield)
+					src.ActiveMessage = "raises their Shield of Faith, shining with divine protection!"
+					src.OffMessage = "lowers their Shield of Faith as the divine radiance fades."
+					IconLock='Android Shield Gold.dmi'
+					src.TopOverlayLock = 'AngelicGlow.dmi'
 				if(!altered)
 					passives = list("Siphon" = 5, "FluidForm" = 1, "PureReduction" = 1, "SpaceWalk" = 1, "StaticWalk" = 1, "Void" = 1)
 				src.Trigger(usr)
@@ -11945,6 +11958,9 @@ mob
 			if(src.SpecialBuff.BuffName=="Vaizard Mask")
 				src.SpecialBuff.Cooldown = max(20, round(60 * (1/max(1,min(20,max(1,VaizardHealth)))), 1))
 				ForceCancelBeam()
+			if(src.SpecialBuff && src.SpecialBuff.BuffName == "Aphotic Shield")
+				for(var/obj/Items/Wearables/Guardian/Shield_of_Faith/S in src.contents)
+					S.PermEquip = FALSE
 
 			var/list/Gold=list("Aries Cloth", /* "Taurus Cloth" */, "Gemini Cloth", "Cancer Cloth", "Leo Cloth", "Virgo Cloth", "Libra Cloth", "Scorpio Cloth", /* "Sagittarius Cloth" */, "Capricorn Cloth", "Aquarius Cloth", "Pisces Cloth")
 			if(src.SpecialBuff.BuffName in Gold)

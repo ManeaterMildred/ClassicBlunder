@@ -29,33 +29,41 @@ mob/proc/GrantGuardianItem(path)
 //ascension 1
 /obj/Items/Wearables/Guardian/Belt_of_Truth
 	Augmented = 1
-	Bound = 1
+	Stealable = 0
 	Destructable = 0
 	name = "Belt of Truth"
 	desc = "A radiant girdle that binds the wearer's soul to truth."
 	icon = 'MachoBrace.dmi'
 //ascension 2
 /obj/Items/Armor/Guardian/Breastplate_of_Righteousness
-	Techniques = list(new/obj/Skills/Buffs/SlotlessBuffs/Augmented_Gear, new/obj/Skills/Buffs/SlotlessBuffs/Posture)
+	passives = list("Juggernaut" = 0.25, "Steady" = 0.5)
+	Ascended = 2
+	Class = "Medium"
+	SubType = "Armor"
+	DamageEffectiveness=0.75
+	AccuracyEffectiveness=0.95
+	SpeedEffectiveness=0.85
+	ShatterCounter=800
+	ShatterMax=800
 	Augmented = 1
-	Bound = 1
+	Stealable = 0
 	Destructable = 0
 	name = "Breastplate of Righteousness"
 	desc = "A shining cuirass that shields the heart with virtue."
 	icon = 'ArmorLight-White.dmi'
 /obj/Items/Wearables/Guardian/Sandals_of_Peace
-	Techniques = list(new/obj/Skills/Buffs/SlotlessBuffs/Augmented_Gear, new/obj/Skills/Buffs/SlotlessBuffs/Posture)
+	passives = list("MovemementMastery" = 2, "Purity" = 1)
 	Augmented = 1
-	Bound = 1
+	Stealable = 0
 	Destructable = 0
 	name = "Sandals of the Gospel of Peace"
 	desc = "Winged sandals that carry serenity wherever you tread."
 	icon = 'shoes_mono.dmi'
 //ascension 3
 /obj/Items/Wearables/Guardian/Helmet_of_Salvation
-	Techniques = list(new/obj/Skills/Buffs/SlotlessBuffs/Augmented_Gear, new/obj/Skills/Buffs/SlotlessBuffs/Posture)
+	passives = list("DebuffResistance" = 0.5, "VenomResistance" = 0.5, "Anaerobic" = 0.25)
 	Augmented = 1
-	Bound = 1
+	Stealable = 0
 	Destructable = 0
 	name = "Helmet of Salvation"
 	desc = "A helm of light that guards the mind with divine insight."
@@ -63,16 +71,25 @@ mob/proc/GrantGuardianItem(path)
 /obj/Items/Wearables/Guardian/Shield_of_Faith
 	Techniques = list(new/obj/Skills/Buffs/SpecialBuffs/Aphotic_Shield)
 	Augmented = 1
-	Bound = 1
+	Stealable = 0
 	Destructable = 0
 	name = "Shield of Faith"
 	desc = "A radiant shield forged from unwavering belief."
-	icon = 'Android Shield Gold.dmi'
+	icon = 'Shield of Faith.dmi'
 //ascension 4
 /obj/Items/Sword/Guardian/Sword_of_the_Spirit
-	Techniques = list(new/obj/Skills/Buffs/SlotlessBuffs/Augmented_Gear, new/obj/Skills/Buffs/SlotlessBuffs/Posture)
+	Techniques = list(new/obj/Skills/Buffs/SpecialBuffs/The_Ten_Commandments, new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/The_Word_Of_God)
+	passives = list()
+	Class = "Medium"
+	SubType = "Weapons"
+	DamageEffectiveness=1.1
+	AccuracyEffectiveness=0.95
+	SpeedEffectiveness=1.25
+	ShatterCounter=800
+	ShatterMax=800
+	Ascended = 3
 	Augmented = 1
-	Bound = 1
+	Stealable = 0
 	Destructable = 0
 	name = "Sword of the Spirit (The Word of God)"
 	desc = "The Word made blade - the Spirit’s edge that severs falsehood."
