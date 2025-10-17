@@ -14,6 +14,10 @@ NEW VARIABLES
 	var/HitScanHitSpark = null
 	var/HitScanHitSparkX = 0
 	var/HitScanHitSparkY = 0
+	//very likely these might be somewhat redundant, but the readability is easier for me when it comes to setting cds for long lasting debuff-y things I make. Apologies.
+	var/start_time = 0
+	var/expire_time = 0
+	//very likely these might be somewhat redundant, but the readability is easier for me when it comes to setting cds for long lasting debuff-y things I make. Apologies.
 
 //Stats
 	var/strAdd = 0

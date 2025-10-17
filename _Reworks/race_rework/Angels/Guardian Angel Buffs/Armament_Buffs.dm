@@ -15,16 +15,19 @@
 		TextColor=rgb(247,218,27)
 		NeedsHealth = 35
 		TooMuchHealth = 60
+		HealthThreshold = 0.001
 		passives = list("Deflection" = 1, "Instinct" = 2, "Pursuer" = 2, "Flicker" = 2, "BeyondPurity" = 1, "Godspeed" = 1)
 		StrMult = 1.2
 		ForMult = 1.2
 		SpdMult = 1.2
 		RecovMult= 1.2
-		IconUnder=1
+		Cooldown = 300
+		CooldownStatic = 1
+		IconUnder = 1
 		TopOverlayLock = 'AngelicGlow.dmi'
-		TopOverlayX=-32
-		TopOverlayY=-32
-		OverlaySize=1.3
+		TopOverlayX = -32
+		TopOverlayY = -32
+		OverlaySize = 1.3
 		var/tmp/animating = FALSE
 		var/tmp/ActiveState = FALSE
 		verb/The_Ten_Commandments()
@@ -36,9 +39,7 @@
 			var/activating = !src.ActiveState
 
 			if(activating)//if I did this right, this should stop it from doing dumb things!
-				if(M.Health >= TooMuchHealth)
-					return
-				if(M.Health > NeedsHealth)
+				if(cooldown_remaining > 0)
 					return
 
 			VaizardHealth = 7.5 * max(M.AscensionsAcquired, 1)

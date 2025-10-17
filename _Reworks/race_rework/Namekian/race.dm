@@ -26,7 +26,11 @@ race
 			..()
 			user.EnhancedHearing = 1
 			if(user.Class=="Dragon")
-				src<< "look who forgot to program in the dragon balls lmfao"
+				if(!locate(/obj/Skills/Utility/Inner_Dragon_Wish) in user.contents)
+					var/obj/Skills/Utility/Inner_Dragon_Wish/W = new /obj/Skills/Utility/Inner_Dragon_Wish(src)
+					user.contents += W
+					W.cooldown_start = world.realtime // starts on cooldown immediately
+					src << "<font color=#77ff77><b>Your inner dragon slumbers, its power not yet ready to awaken.</b></font>"
 			for(var/obj/Skills/Buffs/SlotlessBuffs/Regeneration/r in user)
 				r.RegenerateLimbs=1
 

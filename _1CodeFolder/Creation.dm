@@ -683,9 +683,9 @@ mob/Players/verb
 			winset(usr, "Finalize_Screen.className", "text=\"[race.classes[race.current_class]]\"")
 			if(usr.isRace(NAMEKIAN))
 				if(usr.Class=="Warrior")
-					usr.Class="Dragon"
-				else if(usr.Class=="Dragon")
 					usr.Class="Warrior"
+				else if(usr.Class=="Dragon")
+					usr.Class="Dragon"
 
 		if(blah=="Sex")
 			var/list/options = usr.race.gender_options
