@@ -104,6 +104,8 @@ ascension
 		five
 			unlock_potential = ASCENSION_FIVE_POTENTIAL
 			onAscension(mob/owner)
+				if(!owner.transUnlocked == 1)
+					owner.transUnlocked = 1
 				switch(owner.Class) ///orange namek should be unlocked here
 					if("Demon")
 						//power = 3
