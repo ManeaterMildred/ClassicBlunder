@@ -65,9 +65,18 @@
         set category = "Skills"
   //      if(!usr.isRace(DEMON) && glob.DEVILARMDEMONONLY) return
         if(!usr.BuffOn(src) && checkEvolve(usr) )
-            evolve(usr)
-            usr << "Activate again after."
-            return
+            if(usr.isRace(DEMON))
+                evolve(usr)
+                usr << "Activate again after."
+                return
+            if(usr.isRace(MAKAIOSHIN))
+                makaievolve(usr)
+                usr << "Activate again after."
+                return
+            if(usr.isRace(CELESTIAL))
+                celestevolve(usr)
+                usr << "Activate again after."
+                return
         if(!selection)
             pickSelection(usr)
         if(!usr.BuffOn(src))
@@ -153,5 +162,48 @@
                 if(r.sub_devil_arm_upgrades)
                     pickPassive(p, secondChoices, secondaryData, TRUE)
                     totalEvolvesSecondary++
-
+    proc/makaievolve(mob/p)
+        if(!selection)
+            pickSelection(p, FALSE)
+        if(!p.BuffOn(src))
+            var/race/makaioshin/r = p.race
+            if(totalEvolvesMain < r.devil_arm_upgrades)
+                var/list/data = getJSONInfo(getPassiveTier(p), "GENERIC_PASSIVES")
+                data.Add(getJSONInfo(getPassiveTier(p), "[uppertext(selection)]_PASSIVES"))
+                var/choices = list()
+                for(var/a in data)
+                    choices += "[a]"
+                pickPassive(p, choices, data, FALSE)
+                totalEvolvesMain++
+            if(totalEvolvesSecondary < r.sub_devil_arm_upgrades)
+                var/list/secondaryData
+                secondaryData = getJSONInfo(getPassiveTier(p), "[uppertext(secondDevilArmPick)]_PASSIVES")
+                var/secondChoices = list()
+                for(var/a in secondaryData)
+                    secondChoices += "[a]"
+                if(r.sub_devil_arm_upgrades)
+                    pickPassive(p, secondChoices, secondaryData, TRUE)
+                    totalEvolvesSecondary++
+    proc/celestevolve(mob/p)
+        if(!selection)
+            pickSelection(p, FALSE)
+        if(!p.BuffOn(src))
+            var/race/celestial/r = p.race
+            if(totalEvolvesMain < r.devil_arm_upgrades)
+                var/list/data = getJSONInfo(getPassiveTier(p), "GENERIC_PASSIVES")
+                data.Add(getJSONInfo(getPassiveTier(p), "[uppertext(selection)]_PASSIVES"))
+                var/choices = list()
+                for(var/a in data)
+                    choices += "[a]"
+                pickPassive(p, choices, data, FALSE)
+                totalEvolvesMain++
+            if(totalEvolvesSecondary < r.sub_devil_arm_upgrades)
+                var/list/secondaryData
+                secondaryData = getJSONInfo(getPassiveTier(p), "[uppertext(secondDevilArmPick)]_PASSIVES")
+                var/secondChoices = list()
+                for(var/a in secondaryData)
+                    secondChoices += "[a]"
+                if(r.sub_devil_arm_upgrades)
+                    pickPassive(p, secondChoices, secondaryData, TRUE)
+                    totalEvolvesSecondary++
 

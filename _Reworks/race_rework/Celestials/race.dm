@@ -16,6 +16,22 @@ race
 		learning = 1.25
 		intellect = 2
 		imagination = 1.5
+		var/devil_arm_upgrades = 1
+		var/sub_devil_arm_upgrades = 0
+		proc/checkReward(mob/p)
+			var/max = round(p.Potential / 5) + 1
+			if(p.Potential % 5 == 0 || devil_arm_upgrades < max)
+				var/obj/Skills/Buffs/SlotlessBuffs/Devil_Arm2/da = p.FindSkill(/obj/Skills/Buffs/SlotlessBuffs/Devil_Arm2)
+				if(devil_arm_upgrades + 1 > max) // not even possible
+					return
+				devil_arm_upgrades = max
+				p << "Your devil arm evolves, toggle it on and off to use it"
+				if(da.secondDevilArmPick)
+					if(sub_devil_arm_upgrades < round((p.Potential - ASCENSION_TWO_POTENTIAL) / 10) + 1)
+						if(p.Potential - ASCENSION_TWO_POTENTIAL % 10 == 0)
+							sub_devil_arm_upgrades = round((p.Potential - ASCENSION_TWO_POTENTIAL) / 10) + 1
+							p << "Your secondary devil arm evolves, toggle it on and off to use it"
+
 		onFinalization(mob/user)
 			var/Choice
 			var/Confirm

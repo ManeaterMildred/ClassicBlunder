@@ -1,7 +1,7 @@
 // NOTE: HALF SAIYANS INHERIT SAIYAN TRANSFORMATIONS
 race
 	half_saiyan
-		name = "Half Saiyan"
+		name = "Half_Saiyan"
 		desc = "Half-breed Saiyans. While lacking their overwhelming pride and reliance on personal, innate power, they nevertheless have great hidden potential."
 		visual = 'Halfie.png'
 

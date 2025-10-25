@@ -1,4 +1,4 @@
-/globalTracker/var/MOTD_MESSAGE = "welcome to dimitri dbr."
+/globalTracker/var/MOTD_MESSAGE = "<b>THE TIME HAS COME AND SO HAVE I. I'LL LAUGH LAST BECAUSE YOU CAME TO DIE.</b>"
 #define CODER_MESSAGE "<img src='https://i.ibb.co/1tg5Tbn0/Screenshot-2025-03-27-005046.png'>"
 /globalTracker/var/MOTD_HTML = {"<!DOCTYPE html>
 <html lang="en">
