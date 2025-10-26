@@ -1128,7 +1128,7 @@ mob/proc
 			if(key in VuffaKeys)
 				giveVuffaMoment()
 
-var/list/VuffaKeys = list("Vuffa", "PacifistSnowball")
+var/list/VuffaKeys = list("N/A", "N/A")
 mob
 	proc
 		GetPassedEras(var/Age)
