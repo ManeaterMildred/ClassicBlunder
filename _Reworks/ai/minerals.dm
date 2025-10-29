@@ -1,4 +1,4 @@
-/obj/Items/mineral
+obj/Items/mineral
 	var/value = 1
 	Destructable = FALSE
 	name = "Mana Bits"
@@ -56,18 +56,18 @@
 
 #define PLAYER_EXCHANGE_RATE 6
 
-/globalTracker/var/NPC_EXCHANGE_RATE  = 0.75
+globalTracker/var/NPC_EXCHANGE_RATE  = 0.75
 
 // we need an npc that when clicked will exchange these
 // we also need an exchange for the player that can do it
-/mob/Admin4/verb/GiveExchangeVerb()
+mob/Admin4/verb/GiveExchangeVerb()
 	var/mob/p = input(src, "Pick a player", "Player") in players
 	if(p.isRace(GAJALAKA) && !(key in glob.COOL_GAJA_PLAYERS))
 		src << "do not give random gajas exchange"
 		return
 	p.verbs += /mob/proc/ExchangeMinerals
 
-/mob/Admin4/verb/makeExchanger()
+mob/Admin4/verb/makeExchanger()
 	var/obj/Exchange/npc/exchanger = new()
 	exchanger.loc = get_step(src, src.dir)
 	exchanger << "You have created an exchanger."
@@ -88,23 +88,23 @@
 	exchangeMineral(found, usr, FALSE)
 
 
-/mob/proc/HasFragments(cost)
+mob/proc/HasFragments(cost)
 	for(var/obj/Items/mineral/m in usr)
 		if(m.type == /obj/Items/mineral)
 			if(m.value >= cost)
 				return TRUE
 	return FALSE
 
-/mob/proc/TakeFragments(cost)
+mob/proc/TakeFragments(cost)
 	for(var/obj/Items/mineral/m in usr)
 		if(m.type == /obj/Items/mineral)
 			if(m.value >= cost)
 				m.Reduce(cost)
 
-/mob/var/playerExchangeRate = 0.5
+mob/var/playerExchangeRate = 0.5
 globalTracker/var/NORMAL_EXCHANGE_RATE = 0.5
 
-/proc/exchangeMineral(obj/Items/mineral/mineral, mob/p, obj/Exchange/npc/npc)
+proc/exchangeMineral(obj/Items/mineral/mineral, mob/p, obj/Exchange/npc/npc)
 	p.gajaConversionRateUpdate()
 	p << "Your rate of conversion is [p.playerExchangeRate]"
 	var/howMany = input(p, "How many would you like to exchange?") as num
@@ -125,7 +125,7 @@ globalTracker/var/NORMAL_EXCHANGE_RATE = 0.5
 		p << "You exchange [howMany] Mana Bits for [howMany * exchangeRate] Dollars."
 	mineral.Reduce(howMany)
 
-/obj/Exchange/npc
+obj/Exchange/npc
 	Attackable = FALSE
 	Grabbable = FALSE
 	var/bank = 100000

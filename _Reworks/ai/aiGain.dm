@@ -1,6 +1,6 @@
 
 
-/mob/Player/AI/proc/aiGain()
+mob/Player/AI/proc/aiGain()
     set waitfor = 0
     var/mob/owner = ai_owner
 
@@ -119,7 +119,7 @@
                     Swim=0
 
 
-/mob/Player/AI/proc/scrollSlotless()
+mob/Player/AI/proc/scrollSlotless()
     for(var/obj/Skills/Buffs/SlotlessBuffs/Autonomous/A in src)
         if(!A.SlotlessOn)
             if(A.NeedsHealth && !A.Using && !KO)
@@ -138,7 +138,7 @@
 
 
 
-/mob/Player/AI/proc/DecrementTicker()
+mob/Player/AI/proc/DecrementTicker()
     if(KOTimer)
         if(KOTimer--<=0)
             Conscious()

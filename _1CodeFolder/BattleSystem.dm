@@ -549,6 +549,8 @@ mob/proc/Death(mob/P,var/text,var/SuperDead=0, var/NoRemains=0, var/Zombie, extr
 				ai.EndLife(animatedeath=0)
 			else
 				src.loc=locate(0, 0, 0)
+		if(src.isRace(DEMON)||src.isRace(ELDRITCH))
+			src.loc=locate(198, 238, 8)
 		else
 			src.loc=locate(glob.DEATH_LOCATION[1], glob.DEATH_LOCATION[2], glob.DEATH_LOCATION[3])
 

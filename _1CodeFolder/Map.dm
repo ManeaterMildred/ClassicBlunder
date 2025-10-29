@@ -4047,6 +4047,7 @@ obj/Special
 		var/LandTransport //fast, across land
 		var/warperTimeLock = 0
 		var/HellTeleport
+		var/AfterlifePortal
 		Underground_Teleport
 			icon='SparkleIndigo.dmi'
 			UndergroundTransport=1

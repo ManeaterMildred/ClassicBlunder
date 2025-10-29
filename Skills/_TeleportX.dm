@@ -27,6 +27,7 @@ obj/Skills
 			NoSignature=0/*if 1, you dont need to know their energy signature*/
 
 			UnderworldWarp=0//if 1, traverse underworld is option
+			DepthsWarp=0 //Travel to the Depths
 			FallThrough=0//go to this z plane around your coordinates if you arent on it
 
 			UseableDead=0//if 1, allows use in dead/neardead zones
@@ -212,6 +213,21 @@ obj/Skills
 			verb/Traverse_Underworld()
 				set category="Utility"
 				src.Activate(usr)
+		Traverse_Depths
+			desc="Warp to the Depths and back."
+			UseableDead=1
+			DepthsWarp=1
+			NoCoordinates=1
+			NoReturn=0
+			WindUp=2
+			WindUpIcon='Icons/Effects/BlackHoleEnter.dmi'
+			WindDown=0.7
+			WindDownIcon='Icons/Effects/BlackHoleExit.dmi'
+			TeleportMessage="rips open a portal to a realm of screaming terror."
+			ArriveMessage="arrives through a portal."
+			verb/Traverse_Depths()
+				set category="Utility"
+				src.Activate(usr)
 
 		New()//this proc is called when the object is created
 			..()
@@ -322,7 +338,9 @@ obj/Skills
 						Modes.Add("Focal")
 				if(src.UnderworldWarp)
 					Modes.Add("Traverse Underworld")
-
+				if(src.DepthsWarp)
+					Modes.Add("Traverse Depths")
+					Modes.Add("Traverse Underworld")
 
 				if(Modes.len==2)
 					Modes.Remove("Cancel")
@@ -431,6 +449,11 @@ obj/Skills
 							src.ReturnY=User.y
 							src.ReturnZ=User.z
 							Destination=locate(glob.VOID_LOCATION[1], glob.VOID_LOCATION[2], glob.VOID_LOCATION[3])
+					if("Traverse Depths")
+						src.ReturnX=User.x
+						src.ReturnY=User.y
+						src.ReturnZ=User.z
+						Destination=locate(198, 238, 8)
 
 				if(src.WindUpIcon)
 					spawn()

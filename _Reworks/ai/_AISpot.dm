@@ -1,5 +1,5 @@
 
-/mob/Admin3/verb/ForceAISpawn(obj/AI_Spot/AI in world)
+mob/Admin3/verb/ForceAISpawn(obj/AI_Spot/AI in world)
 	set name = "Force AI Spawns"
 	var/difference = AI.ai_limit-AI.ai_active.len
 	var/i
@@ -7,7 +7,7 @@
 		AI.countdown_current = 0
 		AI.generate_ai()
 
-/mob/Admin3/verb/MakeAISpawner()
+mob/Admin3/verb/MakeAISpawner()
 	set name = "AI Spawner"
 	var/n = input(src, "What name") as text
 	var/list/monsters = typesof(/monster_info)

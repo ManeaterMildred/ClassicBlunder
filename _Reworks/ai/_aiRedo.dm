@@ -1,20 +1,20 @@
 #define AI_MOVE_SPEED 1 + ( 0.5 * sqrt(max(1,passive_handler.Get("Godspeed"))))
 #define AI_SPEED_TOTAL SpdMod + SpdAscension + SpdChaos * SpdMultTotal
 
-/mob/Player/AI/var/tmp/last_activity = 0
-/mob/Player/AI/var/tmp/reaction_time = 2
-/mob/Player/AI/var/tmp/intelligence = 1
-/mob/Player/AI/var/tmp/fleeing = FALSE
-/mob/Player/AI/var/tmp/obj/Skills/zanzo = null
-/mob/Player/AI/var/tmp/obj/Skills/dd = null
-/mob/Player/AI/var/tmp/mob/targetted = null
-/mob/Player/AI/var/tmp/inloop = FALSE
-/mob/Player/AI/proc/findZanzo()
+mob/Player/AI/var/tmp/last_activity = 0
+mob/Player/AI/var/tmp/reaction_time = 2
+mob/Player/AI/var/tmp/intelligence = 1
+mob/Player/AI/var/tmp/fleeing = FALSE
+mob/Player/AI/var/tmp/obj/Skills/zanzo = null
+mob/Player/AI/var/tmp/obj/Skills/dd = null
+mob/Player/AI/var/tmp/mob/targetted = null
+mob/Player/AI/var/tmp/inloop = FALSE
+mob/Player/AI/proc/findZanzo()
 	for(var/obj/Skills/Zanzoken/z in src)
 		return z
 	AddSkill(new/obj/Skills/Zanzoken)
 	zanzo = locate(/obj/Skills/Zanzoken) in src
-/mob/Player/AI/proc/AiBehavior()
+mob/Player/AI/proc/AiBehavior()
 	var/ignoreActivity = FALSE
 	if(ai_hostility>=2)
 		ignoreActivity = TRUE
@@ -49,7 +49,7 @@
 
 	//end flow chart
 
-/mob/Player/AI/proc/Idle()
+mob/Player/AI/proc/Idle()
 	ai_state = "Idle"
 	icon_state = ""
 	fleeing = FALSE
@@ -87,7 +87,7 @@
 			else if(ai_hostility >= 2)
 				Wander()
 
-/mob/Player/AI/proc/Wander()
+mob/Player/AI/proc/Wander()
 	ai_state = "Wander"
 	if(world.time >= next_move)
 		step(src, pick(NORTH,SOUTH,EAST,WEST,NORTHWEST,SOUTHWEST,NORTHEAST,SOUTHEAST))
@@ -97,7 +97,7 @@
 		if(src.Target)
 			Chase()
 
-/mob/Player/AI/proc/FindTarget1()
+mob/Player/AI/proc/FindTarget1()
 	/*look for a target if there isnt one. do nothing if one is not found
 	if there is a target and there is not another around, return same target
 	if there is a target and there is another around, return the closest one*/
@@ -112,7 +112,7 @@
 		else
 			SetTarget(enemy)
 
-/mob/Player/AI/proc/Chase()
+mob/Player/AI/proc/Chase()
 	if(isCrowdControlled())
 		return
 	ai_state = "Chase"
@@ -155,7 +155,7 @@
 			Attack("ranged")
 			last_activity = world.time
 
-/proc/skimOppdir(step)
+proc/skimOppdir(step)
 	switch(step)
 		if(NORTH)
 			step = pick(NORTH, NORTHEAST, NORTHWEST)
@@ -176,7 +176,7 @@
 	return step
 
 
-/proc/skimAround(step)
+proc/skimAround(step)
 	switch(step)
 		if(SOUTH)
 			step = pick(NORTHEAST, NORTHWEST, WEST, EAST)
@@ -197,7 +197,7 @@
 	return step
 
 
-/mob/Player/AI/proc/GoAfterTarget()
+mob/Player/AI/proc/GoAfterTarget()
 	if(Move_Requirements() && next_move < world.time)
 		switch(ai_movement_type)
 			if("ranged")
@@ -213,7 +213,7 @@
 		next_move = world.time + 1
 
 
-/mob/Player/AI/proc/Attack(t)
+mob/Player/AI/proc/Attack(t)
 	switch(t)
 		if("melee")
 			var/obj/Skills/use = FALSE
@@ -318,7 +318,7 @@
 
 
 
-/mob/Player/AI/proc/Rest()
+mob/Player/AI/proc/Rest()
 	ai_state = "Rest"
 	if(Health >= 75*(1-src.HealthCut))
 		ai_state = "Idle"
@@ -327,7 +327,7 @@
 		icon_state = "Meditate"
 		Health += (rand(0,2)/10) * RecovMod
 
-/mob/Player/AI/proc/Flee()
+mob/Player/AI/proc/Flee()
 	ai_state = "Flee"
 	if(!Target)
 		Idle()
@@ -345,7 +345,7 @@
 		fleeing = FALSE
 		Chase()
 
-/mob/Player/proc/isCrowdControlled()
+mob/Player/proc/isCrowdControlled()
 	if(Launched || Stunned || icon_state == "KB")
 		return TRUE
 	return FALSE
