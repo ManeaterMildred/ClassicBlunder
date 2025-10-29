@@ -39,45 +39,53 @@
 				var/list/namekian_targets = list()
 				for(var/mob/P in view(10, M))
 					if(P != M && P.race == "Namekian")
-						namekian_targets += P
+						namekian_targets["[P.name]"] = P
 
 				if(!namekian_targets.len)
 					M << "<font color=#aaaaaa><b>There are no Namekians nearby to bless...</b></font>"
 					return
 
-				var/mob/target = input(M, "Whose ascension will you awaken?", "Choose Namekian") as mob in namekian_targets
-				if(!target) return
+				var/asc_choice = input(M, "Whose ascension will you awaken?", "Choose Namekian") as anything in namekian_targets
+				if(!asc_choice) return
+				var/mob/target = namekian_targets[asc_choice]
 
 				if(target.Class != "Warrior")
 					M << "<font color=#ff7777><b>The dragon’s power rejects the unworthy. Only Warrior caste Namekians may be blessed.</b></font>"
 					return
-				if(target.AscensionsUnlocked >= 2)
+				if(target.AscensionsAcquired >= 3)
 					M << "<font color=#ff7777><b>The dragon senses that [target]'s spirit cannot ascend further through this wish.</b></font>"
 					return
 
-				target.AscensionsUnlocked++
-				M << "<font color=#77ffff><b>The dragon’s light flows into [target], awakening their next ascension!</b></font>"
-				target << "<font color=#77ffff><b>Your soul resonates with the dragon’s call! Ascension [target.AscensionsUnlocked] unlocked!</b></font>"
-				Log("Admin", "[ExtractInfo(M)] granted [target]'s Ascension [target.AscensionsUnlocked] via Inner Dragon Wish.")
+				var/ascension/next
+				switch(target.AscensionsAcquired + 1)
+					if(1) next = new /ascension/namekian/one
+					if(2) next = new /ascension/namekian/two
+					if(3) next = new /ascension/namekian/three
+				if(next)
+					next.onAscension(target)
+					M << "<font color=#77ffff><b>The dragon’s light flows into [target], awakening their next ascension!</b></font>"
+					target << "<font color=#77ffff><b>Your soul resonates with the dragon’s call! Ascension [target.AscensionsAcquired] unlocked!</b></font>"
+					Log("Admin", "[ExtractInfo(M)] granted [target]'s Ascension [target.AscensionsAcquired] via Inner Dragon Wish.")
 
 			if("Unlock Orange Namekian (Warrior only)")
 				var/list/namekian_targets = list()
 				for(var/mob/P in view(10, M))
 					if(P != M && P.race == "Namekian")
-						namekian_targets += P
+						namekian_targets["[P.name]"] = P
 
 				if(!namekian_targets.len)
 					M << "<font color=#aaaaaa><b>There are no Namekians nearby to bless...</b></font>"
 					return
 
-				var/mob/target = input(M, "Who will you grant hidden power to?", "Choose Namekian") as mob in namekian_targets
-				if(!target) return
+				var/trans_choice = input(M, "Who will you grant hidden power to?", "Choose Namekian") as anything in namekian_targets
+				if(!trans_choice) return
+				var/mob/target = namekian_targets[trans_choice]
 
 				if(target.transUnlocked >= 1)
 					M << "<font color=#ff7777><b>The dragon’s power cannot unlock any further power for them...</b></font>"
 					return
 
-				target.transUnlocked++
+				target.transUnlocked = 1
 				M << "<font color=#77ffff><b>The dragon’s light flows into [target], awakening their Orange Namekian power!</b></font>"
 				target << "<font color=#77ffff><b>Your soul resonates with the dragon’s call! Your Orange Namekian power has been unlocked!</b></font>"
 				Log("Admin", "[ExtractInfo(M)] granted [target]'s Orange Namekian via Inner Dragon Wish.")
