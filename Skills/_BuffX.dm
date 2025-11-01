@@ -555,6 +555,7 @@ NEW VARIABLES
 	var/TensionLock=0//TODO: rename to tension lock
 	var/TooMuchInjury=0
 	var/InjuryThreshold=0 //min injuries
+	var/TooLittleInjury=0//just for deactivating something
 	var/NeedsInjury=0
 // New things
 	var/ExhaustedMessage = FALSE
@@ -11270,7 +11271,7 @@ mob
 								src << "You don't have enough health to use [B]."
 							return
 					if(B.InjuryThreshold)
-						if(src.TotalInjury<B.InjuryThreshold)
+						if(src.TotalInjury>B.InjuryThreshold)
 							if(!B.Autonomous)
 								src << "Your injures are too high to use [B]."
 							return
@@ -11348,7 +11349,7 @@ mob
 						src << "You can't use this while using a sword because it makes one!"
 						return
 					if(T)
-						if(!src.ArcaneBladework&&!isRace(DEMON))
+						if(!src.ArcaneBladework&&!isRace(DEMON)&&!isRace(MAKAIOSHIN)&&!isRace(CELESTIAL))
 							src <<"You cannot create a blade while holding a staff!"
 							return
 					if(src.HasNoSword())
@@ -11359,7 +11360,7 @@ mob
 					var/obj/Items/Sword/sord=src.EquippedSword()
 					var/obj/Items/Enchantment/Staff/staf=src.EquippedStaff()
 					if(sord)
-						if(!src.ArcaneBladework&&!isRace(DEMON))
+						if(!src.ArcaneBladework&&!isRace(DEMON)&&!isRace(MAKAIOSHIN)&&!isRace(CELESTIAL))
 							src << "You can't use [B] to make a staff while wielding a sword!"
 							return
 					if(staf)
@@ -11369,7 +11370,7 @@ mob
 						if(!src.ArcaneBladework && (!src.StyleBuff||src.StyleBuff.type!=/obj/Skills/Buffs/NuStyle/SwordStyle/Battle_Mage_Style&&!src.HasMovingCharge()))
 							src << "You can't use [B] to make a staff while using a stance!"
 							return
-				if(B.NoSword)
+				if(B.NoSword&&!src.isRace(MAKAIOSHIN))
 					var/obj/Items/Sword/S=src.EquippedSword()
 					if(S)
 						// if(!HasBladeFisting())
@@ -11378,7 +11379,7 @@ mob
 							return
 						src << "You can't use [B] while using a sword."
 						return
-				if(B.NoStaff)
+				if(B.NoStaff&&!src.isRace(MAKAIOSHIN))
 					var/obj/Items/Enchantment/Staff/St=src.EquippedStaff()
 					if(St)
 						if(src.NotUsingBattleMage())

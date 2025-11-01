@@ -5,7 +5,6 @@ race
 		desc = "Half-breed Saiyans. While lacking their overwhelming pride and reliance on personal, innate power, they nevertheless have great hidden potential."
 		visual = 'Halfie.png'
 
-		locked = TRUE
 		power = 2
 		strength = 1.25
 		endurance = 1.25

@@ -15,7 +15,7 @@ proc/generateVersionDatum()
 		glob.currentUpdate = updateversion
 
 globalTracker
-	var/UPDATE_VERSION = 19
+	var/UPDATE_VERSION = 20
 	var/tmp/update/currentUpdate
 
 	proc/updatePlayer(mob/p)
@@ -355,21 +355,17 @@ update
 		version = 20
 		updateMob(mob/o)
 			. = ..()
-			if(o.isRace(BEASTMAN))
-				o.AngerMax=1.65
-				if(o.Class=="Undying Rage")
-					o.AngerMax=2.05
-			if(o.isRace(NAMEKIAN))
-				o.stat_redo()
-			o.passive_handler.Decrease("KiControlMastery",1)
-	version21
-		version = 21
-		updateMob(mob/o)
-			. = ..()
-			if(o.isRace(BEASTMAN))
-				o.AngerMax=1.65
-				if(o.Class=="Undying Rage")
-					o.AngerMax=2.05
+			var/DefaultPassives
+//			var/DefaultSkills
+			if(o.isRace(ANGEL))
+				DefaultPassives = list("HolyMod" = 0.5, "StaticWalk" = 1, "SpaceWalk" = 1, "SpiritPower" = 1, "MartialMagic" = 1)
+				o.passive_handler.increaseList(DefaultPassives)
+			if(o.isRace(CELESTIAL))
+				DefaultPassives = list("Tenacity" = 1, "Adrenaline" = 1)
+				o.passive_handler.increaseList(DefaultPassives)
+			if(o.isRace(MAKAIOSHIN))
+				DefaultPassives = list("HolyMod" = 0.5, "AbyssMod" = 0.5, "HellPower" = 1, "FakePeace"=1, "StaticWalk" = 1, "SpaceWalk" = 1, "SpiritPower" = 1, "MartialMagic" = 1, "BladeFisting" = 1)
+				o.passive_handler.increaseList(DefaultPassives)
 /globalTracker/var/COOL_GAJA_PLAYERS = list("Thorgigamax", "Gemenilove" )
 /globalTracker/var/GAJA_PER_ASC_CONVERSION = 0.25
 /globalTracker/var/GAJA_MAX_EXCHANGE = 1

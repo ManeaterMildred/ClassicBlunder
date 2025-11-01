@@ -1,11 +1,11 @@
 globalTracker/var/TRACKING_BURNING = FALSE
 globalTracker/var/TRACKING_POISON = FALSE
 mob/var/currentBurn = 0
-mob/var/currentPoi = 0 
+mob/var/currentPoi = 0
 
-/mob/Admin4/verb/fillTension()
+/*/mob/Admin4/verb/fillTension()
 	set category = "Debug"
-	Tension = 100
+	Tension = 100*/
 /mob/Admin3/verb/Admin_Screen_Size()
 	set category="Other"
 	set hidden=1
@@ -18,7 +18,7 @@ mob/var/currentPoi = 0
 	client.view="[screenx]x[screeny]"
 	src.ScreenSize = "[screenx]x[screeny]"
 
-
+/*
 /mob/Admin3/verb/trackburning()
 	set category = "Debug"
 	glob.TRACKING_BURNING = !glob.TRACKING_BURNING
@@ -29,4 +29,4 @@ mob/var/currentPoi = 0
 	set category = "Debug"
 	glob.TRACKING_POISON = !glob.TRACKING_POISON
 	if(!glob.TRACKING_POISON)
-		currentPoi = 0
+		currentPoi = 0*/

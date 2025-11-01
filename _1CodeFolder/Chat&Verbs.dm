@@ -810,11 +810,16 @@ mob/Players/verb
 			usr<<browse("[View]","window=Logzk;size=150x400")
 
 
+
 	Character_Description()
 		set category="Roleplay"
 		if(!(world.time > usr.verb_delay)) return
 		usr.verb_delay=world.time+1
-		usr.Profile=input(src, "Please input a description for your character.", "Character Description", usr.Profile) as message
+		var/CharProfile=input(src, "Please input a description for your character.", "Character Description", usr.Profile) as message
+		while(sanitizeDesc(CharProfile))
+			src<<"Your profile contains illegal tags. Please try again."
+			return
+		usr.Profile=CharProfile
 	Countdown()
 		set category="Roleplay"
 		if(!(world.time > usr.verb_delay)) return
@@ -1062,3 +1067,9 @@ proc/OOC_Check(T)
 
 		return 0
 	return 1
+proc/sanitizeDesc(n)
+	var/list/nonos = list("<script>", "<Script>")
+	for(var/x in nonos)
+		if(findtext(n, x))
+			return 1
+	return 0

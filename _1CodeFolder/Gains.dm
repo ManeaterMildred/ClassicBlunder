@@ -1437,6 +1437,16 @@ mob
 							if(A.SlotlessOn)
 								A.Trigger(src,Override=1)
 								continue
+					if(A.TooMuchInjury)
+						if(src.TotalInjury>=A.TooMuchInjury)
+							if(A.SlotlessOn)
+								A.Trigger(src,Override=1)
+								continue
+					if(A.TooLittleInjury)
+						if(src.TotalInjury<=A.TooLittleInjury)
+							if(A.SlotlessOn)
+								A.Trigger(src,Override=1)
+								continue
 					if(A.TooLittleMana)
 						if(src.ManaAmount<=A.TooLittleMana)
 							if(A.SlotlessOn)

@@ -67,7 +67,7 @@
 		return statDamage
 	var/endExtra = passive_handler.Get("CallousedHands")
 	if(endExtra>0)
-		statDamage += GetEnd(endExtra/5)
+		statDamage += endExtra
 	// there should only b one use case for this
 	var/full_effeciency = passive_handler.Get("FullyEffecient")
 	if(full_effeciency)

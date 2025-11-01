@@ -27,7 +27,7 @@ race
 				switch(Choice)
 					if("Guardian")
 						Confirm=alert(user, "Do you wish to guard the gates to the world beyond?", "Angel Ascension", "Yes", "No")
-						skills = list(/obj/Skills/Utility/Recall_Armaments)
+						user.AddSkill(/obj/Skills/Utility/Recall_Armaments)
 						user.GrantGuardianItem(/obj/Items/Sword/Guardian/Sword_of_the_Saint)
 					if("Mentor")
 						Confirm=alert(user, "Do you wish to mentor humanity and ensure the spiritual arts remain unforgotten?", "Angel  Ascension", "Yes", "No")
@@ -39,3 +39,6 @@ race
 							user.UILevel=1
 				user.AngelAscension = Choice
 				//t1 style/armor unlocked
+			user.passive_handler.increaseList(passives)
+			for(var/s in skills)
+				user.AddSkill(new s)

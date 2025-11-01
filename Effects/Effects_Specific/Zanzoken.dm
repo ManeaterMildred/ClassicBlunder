@@ -350,8 +350,8 @@ proc
 				animate(A,alpha=0,time=2, flags=ANIMATION_END_NOW )
 				animate(Target,alpha=0,time=2, flags=ANIMATION_END_NOW )
 				sleep(1)
-				VanishImage(A)
-				VanishImage(Target)
+//				VanishImage(A)
+//				VanishImage(Target)
 				sleep(1)
 				while(Zanzes)
 					Zanzes--

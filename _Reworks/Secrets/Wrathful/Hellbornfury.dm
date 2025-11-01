@@ -14,9 +14,10 @@ scaling with potential as well
 	OffMessage = "listlessly gazes forward, eyes starting to glaze over. Perhaps they are starting to understand, too."
 	BuffName = "Hellborn Fury"
 	//injury
-	TooMuchInjury=4
+	TooMuchInjury=15
 	NeedsInjury=5
-	InjuryThreshold=15
+	InjuryThreshold=14
+	TooLittleInjury=4
 	EndMult = 1
 	StrMult = 1
 	AutoAnger = 1
@@ -24,12 +25,10 @@ scaling with potential as well
 		if(altered) return
 		passives = list("AutoAnger" = 1, "Instinct" = 1, "Flow" = 1, \
 						"LikeWater" = 1 + round(p.Potential/25,1), "Meaty Paws" = round(p.Potential/20,1), "AbyssMod" = round(p.Potential/40,1))
-		StrMult += (p.Potential/150)
-		ForMult += (p.Potential/150)
-		DefMult = clamp(0.75 + (p.Potential/200),0.75,1)
-		SpdMult = clamp(0.75 + (p.Potential/200),0.75,1)
+		StrMult = 1.1 + (p.Potential/150)
+		ForMult = 1.1 + (p.Potential/150)
 		OffMult = 1.2 + p.Potential/200
-		PowerMult = 1 + (p.Potential/200)
+		PowerMult = 1.05 + (p.Potential/200)
 	Trigger(mob/User, Override=FALSE)
 		adjust(User)
 		..()
@@ -39,9 +38,10 @@ scaling with potential as well
 	ActiveMessage = "slowly loses sight of themselves, as their blood starts to glow. There is no need to hide anymore, when so much is on the line."
 	OffMessage = "is ever-silent, their blood starting to stick to the ground. Their self-image falters, but they know what they're doing. And they know why. <b>Do you?</b>"
 	//injury
-	TooMuchInjury=14
+	TooMuchInjury=25
 	NeedsInjury=15
-	InjuryThreshold=25
+	InjuryThreshold=24
+	TooLittleInjury=14
 	AutoAnger = 1
 	BuffName = "Hellspawn"
 	adjust(mob/p)
@@ -49,9 +49,9 @@ scaling with potential as well
 		passives = list("AutoAnger" = 1, \
 						"LikeWater" = 2 + round(p.Potential/25,1), "Flicker" = 1, "Pursuer" = 1,  "BuffMastery" = 1.5, "PureDamage" = 1, \
 						"Meaty Paws" = round(p.Potential/20,1), "Instinct" = 2, "Flow" = 2 , "AbyssMod" = round(p.Potential/30,1))
-		StrMult += (p.Potential/100)
-		ForMult += (p.Potential/100)
-		PowerMult = 1 + (p.Potential/200)
+		StrMult = 1.2 + (p.Potential/100)
+		ForMult = 1.2 + (p.Potential/100)
+		PowerMult = 1.075 + (p.Potential/200)
 		if(p.Potential>=100)
 			passives["Wrathful"] = 1
 	Trigger(mob/User, Override=FALSE)
@@ -62,18 +62,19 @@ scaling with potential as well
 	ActiveMessage = "'s movements speed up, their eyes glowing red, their blood taking the consistency of a thick tar."
 	OffMessage = "finally started acting like who they really are."
 	//injury
-	TooMuchInjury=24
+	TooMuchInjury=40
 	NeedsInjury=25
-	WoundThreshold=40
+	TooLittleInjury=24
+	InjuryThreshold=39
 	AutoAnger = 1
 	BuffName = "True Hellspawn"
 	adjust(mob/p)
 		if(altered) return
 		passives = list("AutoAnger" = 1, "AngerAdaptiveForce" = round(p.Potential/100), \
 						"Powerhouse" = 1 + (p.Potential/75), "Instinct" = 3, "Flow" = 3, "Flicker" = 2, "Pursuer" = 2, "BuffMastery" = 2, "PureDamage" = 2, "AbyssMod" = round(p.Potential/20,1))
-		StrMult = 1 + (p.Potential/50)
-		ForMult = 1 + (p.Potential/50)
-		PowerMult = 1 + (p.Potential/150)
+		StrMult = 1.3 + (p.Potential/50)
+		ForMult = 1.3 + (p.Potential/50)
+		PowerMult = 1.1 + (p.Potential/150)
 		EnergyHeal = 0.005 * p.Potential
 		VaizardHealth = (10 * (p.Potential/100))
 		if(p.Potential>=75)
@@ -86,17 +87,17 @@ scaling with potential as well
 	ActiveMessage = "is no longer who you knew them as. Were they ever that person to begin with?"
 	OffMessage = "returns to who they once were, as if nothing happened. But you'll never see them the same way again, will you?"
 	//injury
-	TooMuchInjury=39
-	NeedsInjury=40
+	NeedsInjury=41
+	TooLittleInjury=40
 	AutoAnger = 1
 	BuffName = "Herald of the Depths"
 	adjust(mob/p)
 		if(altered) return
 		passives = list("AutoAnger" = 1, "AngerAdaptiveForce" = round(p.Potential/100), \
 						"Powerhouse" = 2 + (p.Potential/25), "Instinct" = 4, "Flow" = 4, "Flicker" = 3, "Pursuer" = 3, "BuffMastery" = 3, "PureDamage" = 2.5, "AbyssMod" = round(p.Potential/15,1))
-		StrMult = 1 + (p.Potential/30)
-		ForMult = 1 + (p.Potential/30)
-		PowerMult = 1 + (p.Potential/75)
+		StrMult = 1.4 + (p.Potential/30)
+		ForMult = 1.4 + (p.Potential/30)
+		PowerMult = 1.2 + (p.Potential/75)
 		EnergyHeal = 0.01 * p.Potential
 		VaizardHealth = (10 * (p.Potential/100))
 		if(p.Potential>=50)

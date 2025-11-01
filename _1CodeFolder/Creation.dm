@@ -598,10 +598,10 @@ mob/Creation/verb
 		client.screen += usr
 		spawn()
 			Namez//label
-			src.name=html_encode(copytext(input(src,"Name? (25 letter limit)"),1,25))
+			src.name=html_encode(copytext(input(src,"Name your vessel. (25 letter limit)"),1,25))
 			while(sanatizeName(name))
 				src<<"Your name contains illegal characters. Please try again."
-				src.name=html_encode(copytext(input(src,"Name? (25 letter limit)"),1,25))
+				src.name=html_encode(copytext(input(src,"Name your vessel. (25 letter limit)"),1,25))
 			if(!src.name)
 				goto Namez
 				return
@@ -642,10 +642,10 @@ mob/Creation/proc
 		usrr.client.screen += usr
 		spawn()
 			Namez//label
-			usrr.name=html_encode(copytext(input(usrr,"Name? (25 letter limit)"),1,25))
+			usrr.name=html_encode(copytext(input(usrr,"Name your vessel. (25 letter limit)"),1,25))
 			while(sanatizeName(usrr.name))
 				usrr<<"Your name contains illegal characters. Please try again."
-				usrr.name=html_encode(copytext(input(usrr,"Name? (25 letter limit)"),1,25))
+				usrr.name=html_encode(copytext(input(usrr,"Name your vessel. (25 letter limit)"),1,25))
 			if(!usrr.name)
 				goto Namez
 				return
@@ -665,7 +665,7 @@ mob/Players/verb
 		verb_delay=world.time+1
 		if(blah=="Name")
 			Namez
-			src.name=html_encode(copytext(input(src,"Name? (25 letter limit)"),1,25))
+			src.name=html_encode(copytext(input(src,"Name your vessel. (25 letter limit)"),1,25))
 			if(!src.name)
 				goto Namez
 				return
@@ -728,7 +728,7 @@ mob/Creation/verb
 		verb_delay=world.time+1
 		if(blah=="Name")
 			Namez
-			src.name=html_encode(copytext(input(src,"Name? (25 letter limit)"),1,25))
+			src.name=html_encode(copytext(input(src,"Name your vessel. (25 letter limit)"),1,25))
 			if(!src.name)
 				goto Namez
 				return
@@ -774,7 +774,7 @@ mob/Creation/verb
 			return
 		verb_delay=world.time+1
 		if(blah=="Name")
-			alert("This will be what other people see you as, it's your character's In Character (IC) name.")
+			alert("The name of your vessel, that others will address you by. Treat it with respect.")
 		if(blah=="Class")
 			if(race.current_class > length(race.class_info))
 				alert("There is no information on this class...")
@@ -891,7 +891,7 @@ obj/Login
 				var/cc
 				f["name"] >> cc
 				del f
-				switch(alert("WARNING: You already have a character save on this key ([cc])! If you make a new character, it is likely your current one will be lost!","Oh snaps!","Yes","No"))
+				switch(alert("WARNING: You already have a character save on this key ([cc]). Do you wish to forsake them to start anew?","Oh snaps!","Yes","No"))
 					if("Yes")
 						winshow(usr,"Race_Screen",1)
 						spawn()usr.UpdateRaceScreen()

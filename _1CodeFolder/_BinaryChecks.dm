@@ -1,7 +1,7 @@
 #define Swordsmanship list("Hiten Mitsurugi-Ryuu","Unlimited Blade Works", "Weapon Soul")
 #define SECRETS list("Spirits of The World","Jagan", "Hamon of the Sun", "Werewolf", "Vampire", "Sage Arts", "Haki", "Eldritch", "Heavenly Restriction")
-#define SAGAS list("Ansatsuken","Eight Gates","Cosmo","Spiral","Hero","Hiten Mitsurugi-Ryuu","Kamui","Keyblade","King of Braves","Sharingan","Weapon Soul", "Unlimited Blade Works","Force")
-#define RACES list("Android", "Human", "Beastman", "Changeling", "Demon", "Dragon", "Eldritch","Chakardi","Half_Saiyan", "High_Faoroan","Majin","Makyo","Namekian","Saiyan","Shinjin","Yokai")
+#define SAGAS list("Ansatsuken","Eight Gates","Cosmo","Spiral","Hero","Hiten Mitsurugi-Ryuu","Kamui","Keyblade","King of Braves","Sharingan","Weapon Soul", "Unlimited Blade Works")
+#define RACES list("Android", "Human", "Beastman", "Changeling", "Demon", "Dragon", "Eldritch","Chakardi","Half_Saiyan", "High_Faoroan","Majin","Makyo","Namekian","Saiyan","Shinjin","Yokai","Celestial","Makaioshin")
 
 mob
 	proc
@@ -895,7 +895,7 @@ mob
 				return 1
 			if(isRace(SHINJIN)&&src.Potential>=25)
 				return 1
-			if(src.race in list(DEMON, DRAGON))
+			if(src.race in list(DEMON, DRAGON, MAKAIOSHIN))
 				return 1
 			if(src.race in list(HUMAN, MAKYO)&&src.AscensionsAcquired)
 				return 1
@@ -916,7 +916,7 @@ mob
 				Total+=src.AscensionsAcquired
 			if(isRace(SHINJIN))
 				Total+=round(src.Potential/25)
-			if(isRace(DRAGON)||isRace(DEMON))
+			if(isRace(DRAGON)||isRace(DEMON)||isRace(MAKAIOSHIN))
 				Total+=1
 			if(isRace(HUMAN)&&src.AscensionsAcquired)
 				Total+=(0.5*src.AscensionsAcquired)
@@ -1496,6 +1496,8 @@ mob
 		DemonicPower() //Fake Demon.
 			if(src.Saga=="Ansatsuken"&&src.SagaLevel>=6&&src.AnsatsukenAscension)
 				return 1
+			if(src.oozaru_type=="Demonic")
+				return 1
 			if(src.isRace(DEMON))
 				return 1
 			if(src.CheckSlotless("Majin"))
@@ -1511,7 +1513,7 @@ mob
 			if(CheckSlotless("Satsui no Hado") && SagaLevel>=6)
 				return 1
 			if(passive_handler.Get("HellPower"))
-				if(isRace(DEMON))
+				if(isRace(DEMON)||oozaru_type=="Demonic")
 					return 2
 				return 1
 			return 0
@@ -1571,7 +1573,7 @@ mob
 			var/Effective=src.Intimidation
 			if(src.ShinjinAscension=="Makai")
 				Effective+=1
-			if(src.isRace(DEMON)||src.isRace(MAJIN))
+			if(src.isRace(DEMON)||src.isRace(MAJIN)||src.isRace(MAKAIOSHIN)||src.oozaru_type=="Demonic")
 				Effective+=1
 			Effective *= 1 + passive_handler.Get("Mythical")
 			if(src.CheckActive("Mobile Suit")||src.CheckSlotless("Battosai")||src.CheckSlotless("Susanoo"))
@@ -2401,7 +2403,7 @@ mob
 				return 0
 			return 1
 		SteadyRace()
-			if(src.race.type in list(HUMAN, MAJIN, MAKYO, NAMEKIAN, BEASTMAN, YOKAI, ELDRITCH, ELF, DEMON, DRAGON))
+			if(src.race.type in list(HUMAN, MAJIN, MAKYO, NAMEKIAN, BEASTMAN, YOKAI, ELDRITCH, ELF, DEMON, DRAGON, MAKAIOSHIN))
 				return 1
 			return 0
 		TransRace()
@@ -2577,7 +2579,7 @@ mob
 		HasBladeFisting()
 			if(passive_handler.Get("BladeFisting"))
 				return 1
-			if(isRace(DEMON)|| (CheckSlotless("Satsui no Hado") && SagaLevel>=6))
+			if(isRace(DEMON)|| (CheckSlotless("Satsui no Hado") && SagaLevel>=6)||isRace(MAKAIOSHIN)||isRace(CELESTIAL))
 				return 1
 			if(ClothBronze == "Andromeda" && Saga == "Cosmo")
 				return 1

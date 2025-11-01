@@ -2,7 +2,7 @@ race
 	android
 		name = "Android"
 		desc = "They are programmed with the directive to protect human-kind. \nMost of them look like toasters, and most of them are mere service models that act like a certain golden android from a popular franchise. While there are rumors of more humanoid Androids, they are typically spread by nutjobs who fear being replaced."
-		visual = 'Demon.png'
+		visual = 'Android.png'
 
 		locked = TRUE
 		strength = 1

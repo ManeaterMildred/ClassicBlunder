@@ -6,6 +6,7 @@ ascension
 			passives = list("SpiritPower" = 0.25)
 			anger = 0.25
 			strength = 0.25
+			force = 0.25
 			endurance = 0.25
 			speed = 0.25
 			recovery = 0.25

@@ -35,3 +35,6 @@ race
 						user << "<font color=#77ff77><b>Your inner dragon slumbers, its power not yet ready to awaken.</b></font>"
 			for(var/obj/Skills/Buffs/SlotlessBuffs/Regeneration/r in user)
 				r.RegenerateLimbs=1
+			user.passive_handler.increaseList(passives)
+			for(var/s in skills)
+				user.AddSkill(new s)
