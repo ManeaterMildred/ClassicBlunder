@@ -23,7 +23,7 @@ mob/proc/GrantGuardianItem(path)
 		I = new path
 		I.Move(src)
 		I.AlignEquip(src)
-		I.Owner = src
+		I.Owner = src.key
 		src << "<font color='#bfefff'><b>[I.name]</b> manifests in radiant light!</font>"
 	else
 		I.AlignEquip(src)
@@ -34,7 +34,7 @@ mob/proc/ReclaimGuardianItem(path)
 		return
 	var/obj/Items/I
 	for(var/obj/Items/G in world)
-		if(istype(G, path) && G.Owner == src)
+		if(istype(G, path) && G.Owner == src.key)
 			I = G
 			break
 	if(I)
@@ -42,7 +42,7 @@ mob/proc/ReclaimGuardianItem(path)
 		src << "<font color='#bfefff'><b>[I.name]</b></font> returns to your side in a flash of light!"
 		return
 	I = new path(src)
-	I.Owner = src
+	I.Owner = src.key
 	I.AlignEquip(src)
 	src << "<font color='#bfefff'><b>[I.name]</b></font> rematerializes from the heavens!"
 obj/Skills/Utility/Recall_Armaments
