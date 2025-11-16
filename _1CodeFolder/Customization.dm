@@ -293,7 +293,7 @@ mob/proc/Hairz(var/Z)
 		else
 			src.overlays += Hair
 
-		if(src.SpecialBuff&&(src.SpecialBuff.BuffName=="Broken Brave"||src.SpecialBuff.BuffName=="Protect Brave"||src.SpecialBuff.BuffName=="Genesic Brave"))
+		if(src.SpecialBuff&&(src.SpecialBuff.BuffName=="King of Braves"||src.SlotlessBuffs["Genesic Brave"]))
 			src.overlays +=KingofBravesHair
 
 

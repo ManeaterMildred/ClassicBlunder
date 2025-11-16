@@ -1,7 +1,7 @@
 obj/Skills/Queue/DrillKnee
 	ActiveMessage="forms a drill around their knee!"
 	HitMessage="drives the drill into their opponent!"
-	SBuffNeeded="Broken Brave"
+	SBuffNeeded="King of Braves"
 	DamageMult=12
 	AccuracyMult = 1.175
 	Instinct=1
@@ -16,11 +16,6 @@ obj/Skills/Queue/DrillKnee
 	PushOutIcon='KenShockwaveLegend.dmi'
 	verb/Drill_Knee()
 		set category="Skills"
-		if(usr.SpecialBuff)
-			if(usr.SpecialBuff.BuffName!="Genesic Brave"&&src.SBuffNeeded!="Broken Brave")
-				src.SBuffNeeded="Broken Brave"
-			else if(usr.SpecialBuff.BuffName=="Genesic Brave")
-				src.SBuffNeeded="Genesic Brave"
 		usr.SetQueue(src)
 
 /obj/Skills/AutoHit/Plasma_Hold

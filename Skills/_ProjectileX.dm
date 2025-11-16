@@ -2960,14 +2960,9 @@ obj
 					IconSize=0.75
 					Variation=0
 					Cooldown=150
-					SBuffNeeded="Broken Brave"
+					SBuffNeeded="King of Braves"
 					verb/Broken_Magnum()
 						set category="Skills"
-						if(usr.SpecialBuff)
-							if(usr.SpecialBuff.BuffName!="Genesic Brave"&&src.SBuffNeeded!="Broken Brave")
-								src.SBuffNeeded="Broken Brave"
-							else if(usr.SpecialBuff.BuffName=="Genesic Brave")
-								src.SBuffNeeded="Genesic Brave"
 						usr.UseProjectile(src)
 				Broken_Phantom
 					Distance=25
@@ -2986,14 +2981,9 @@ obj
 					IconSize=0.75
 					Variation=0
 					Cooldown=180
-					SBuffNeeded="Broken Brave"
+					SBuffNeeded="King of Braves"
 					verb/Broken_Phantom()
 						set category="Skills"
-						if(usr.SpecialBuff)
-							if(usr.SpecialBuff.BuffName!="Genesic Brave"&&src.SBuffNeeded!="Broken Brave")
-								src.SBuffNeeded="Broken Brave"
-							else if(usr.SpecialBuff.BuffName=="Genesic Brave")
-								src.SBuffNeeded="Genesic Brave"
 						usr.UseProjectile(src)
 				Brave_Tornado
 					FlickBlast=0

@@ -1611,9 +1611,9 @@ mob
 			if(src.CheckActive("Mobile Suit")||src.CheckSlotless("Battosai")||src.CheckSlotless("Susanoo"))
 				Effective+=1
 			if(src.Health<(1-src.HealthCut)&&src.HealthAnnounce10&&src.Saga=="King of Braves"&&src.SpecialBuff)
-				if(src.SpecialBuff.BuffName=="Broken Brave")
+				if(src.SpecialBuff.BuffName=="King of Braves")
 					Effective*=3
-				else if(src.SpecialBuff.BuffName=="Genesic Brave")
+				else if(src.SlotlessBuffs["Genesic Brave"])
 					Effective*=2
 			if(src.HasHellPower() == 2)
 				Effective+=1
@@ -2640,6 +2640,8 @@ mob
 			if(isRace(DEMON)|| (CheckSlotless("Satsui no Hado") && SagaLevel>=6)||isRace(MAKAIOSHIN)||isRace(CELESTIAL))
 				return 1
 			if(ClothBronze == "Andromeda" && Saga == "Cosmo")
+				return 1
+			if(Saga == "Kamui")
 				return 1
 			if(src.CheckSpecial("Libra Cloth"))
 				return 0

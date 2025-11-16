@@ -1294,7 +1294,7 @@ mob
 			if(src.Momentum)
 				Mod *= 1 + (src.Momentum * (glob.MOMENTUM_BASE_BOON * clamp(src.passive_handler.Get("Momentum"), 0.1, glob.MOMENTUM_MAX_BOON)))
 			if(glob.KOB_GETS_STATS_LOW_LIFE)
-				if(src.SpecialBuff&&(src.SpecialBuff.BuffName=="Genesic Brave"||src.SpecialBuff.BuffName=="Broken Brave"))
+				if(src.SpecialBuff&&(src.SlotlessBuffs["Genesic Brave"]||src.SpecialBuff.BuffName=="King of Braves"))
 					if(src.Health<=25*(1-src.HealthCut))
 						Mod+=min(10/src.Health,1)
 			if(src.StrEroded)
@@ -1425,7 +1425,7 @@ mob
 						Mod+=0.25*src.passive_handler.Get("BurningShot")
 
 			if(glob.KOB_GETS_STATS_LOW_LIFE)
-				if(src.SpecialBuff&&(src.SpecialBuff.BuffName=="Genesic Brave"||src.SpecialBuff.BuffName=="Broken Brave"))
+				if(src.SpecialBuff&&(src.SlotlessBuffs["Genesic Brave"]||src.SpecialBuff.BuffName=="King of Braves"))
 					if(src.Health<=25*(1-src.HealthCut))
 						Mod+=min(10/src.Health,1)
 			if(passive_handler["Rebel Heart"])
@@ -1544,7 +1544,7 @@ mob
 					Mod*=(1+(BM*glob.BUFF_MASTERY_HIGHMULT))
 
 			if(glob.KOB_GETS_STATS_LOW_LIFE)
-				if(src.SpecialBuff&&(src.SpecialBuff.BuffName=="Genesic Brave"||src.SpecialBuff.BuffName=="Protect Brave"))
+				if(src.SpecialBuff&&(src.SlotlessBuffs["Genesic Brave"]||src.SpecialBuff.BuffName=="King of Braves"))
 					if(src.Health<=25*(1-src.HealthCut))
 						Mod+=min(10/src.Health,1)
 			if(passive_handler["Rebel Heart"])
@@ -1904,7 +1904,7 @@ mob
 				else if(Mod>=glob.BUFF_MASTER_HIGHTHRESHOLD)
 					Mod*=(1+(BM*glob.BUFF_MASTERY_HIGHMULT))
 			if(glob.KOB_GETS_STATS_LOW_LIFE)
-				if(src.SpecialBuff&&(src.SpecialBuff.BuffName=="Genesic Brave"||src.SpecialBuff.BuffName=="Protect Brave"))
+				if(src.SpecialBuff&&(src.SlotlessBuffs["Genesic Brave"]||src.SpecialBuff.BuffName=="King of Braves"))
 					if(src.Health<=25*(1-src.HealthCut))
 						var/thisVar = 10/Health < 0 ? 0.1 : 10/Health
 						Mod+=thisVar

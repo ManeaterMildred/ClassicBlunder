@@ -3658,12 +3658,6 @@ NEW VARIABLES
 					StrMult = 1.15 + (0.05 * usr.SagaLevel)
 					EndMult = 1.15 + (0.05 * usr.SagaLevel)
 					ForMult= 1.05 + (0.025 * usr.SagaLevel)
-					if(BuffName == "Genesic Brave")
-						StrMult=1.1 + (0.1 * usr.SagaLevel) // gives 1.4 @ t3 which is .1 more than above
-						EndMult=1.1 + (0.1 * usr.SagaLevel)
-						ForMult=1.1 + (0.1 * usr.SagaLevel)
-						passives["PureReduction"] = usr.SagaLevel-2
-						passives["PureDamage"] = usr.SagaLevel/3
 			verb/Bravery()
 				set category="Skills"
 				setupVars(usr)
@@ -3674,10 +3668,10 @@ NEW VARIABLES
 
 			// verb/Broken_Brave()
 			// 	set category="Skills"
-			// 	if(istype(usr.SpecialBuff, type) && usr.SpecialBuff.BuffName!="Broken Brave")
+			// 	if(istype(usr.SpecialBuff, type) && usr.SpecialBuff.BuffName!="King of Braves")
 			// 		Trigger(usr, TRUE)
-			// 		usr<<"You swap to Broken Brave!"
-			// 		BuffName="Broken Brave"
+			// 		usr<<"You swap to King of Braves!"
+			// 		BuffName="King of Braves"
 			// 		setupVars(usr)
 			// 		TimerLimit = 0
 			// 		StrMult=1.15 + (0.05 * usr.SagaLevel)
@@ -3691,10 +3685,10 @@ NEW VARIABLES
 			// 		Trigger(usr)
 			// verb/Protect_Brave()
 			// 	set category="Skills"
-			// 	if(istype(usr.SpecialBuff, type) && usr.SpecialBuff.BuffName!="Protect Brave")
+			// 	if(istype(usr.SpecialBuff, type) && usr.SpecialBuff.BuffName!="King of Braves")
 			// 		Trigger(usr, TRUE)
-			// 		usr<<"You swap to Protect Brave!"
-			// 		BuffName="Protect Brave"
+			// 		usr<<"You swap to King of Braves!"
+			// 		BuffName="King of Braves"
 			// 		setupVars(usr)
 			// 		StrMult=1 + (0.025 * usr.SagaLevel)
 			// 		EndMult=1.15 + (0.05 * usr.SagaLevel)
@@ -3706,22 +3700,7 @@ NEW VARIABLES
 			// 	else
 			// 		setupVars(usr)
 			// 		Trigger(usr)
-			verb/Genesic_Brave()
-				set category="Skills"
-				if(usr.SagaLevel<3 && usr.Health>25)
-					return
-				if(usr.SagaLevel<6 && usr.Health>50)
-					return
-				if(usr.SpecialBuff&&usr.SpecialBuff.BuffName!="Genesic Brave")
-					Trigger(usr, TRUE)
-					BuffName="Genesic Brave"
-					setupVars(usr)
-					ExhaustedMessage = " begins fighting with the power of a god!"
-					DesperateMessage = " calls upon the power of Creation for one final push!"
-					Trigger(usr, TRUE)
-				else
-					setupVars(usr)
-					Trigger(usr)
+
 
 		OverSoul
 			Cooldown=-1
@@ -8339,6 +8318,28 @@ NEW VARIABLES
 				WoundCost = usr.getAriaCount() / 3
 				src.Trigger(usr)
 
+		Genesic_Brave
+			SBuffNeeded="King of Braves"
+			StrMult = 1.1
+			ForMult = 1.1
+			EndMult = 1.1
+			passives = list("Pure Reduction" = 1, "Pure Damage" = 1)
+			ActiveMessage="goes beyond, embracing the full power of Protection and Destruction in a desperate last stand!"
+			OffMessage="lets the power of creation and destruction ebb away..."
+			verb/Genesic_Brave()
+				set category="Skills"
+				if(!usr.BuffOn(src))
+					StrMult= 1.05 + (0.05 * usr.SagaLevel)
+					ForMult= 1.05 + (0.05 * usr.SagaLevel)
+					EndMult= 1.05 + (0.05 * usr.SagaLevel)
+					passives= list("Pure Reduction" = usr.SagaLevel/2, "Pure Damage" = usr.SagaLevel/2)
+				if(usr.SagaLevel<3 && usr.Health>25)
+					usr << "You aren't pressed enough to fuse the powers of Protection and Destruction!"
+					return
+				if(usr.SagaLevel<6 && usr.Health>50)
+					usr << "You aren't pressed enough to fuse the powers of Protection and Destruction!"
+					return
+				src.Trigger(usr)
 		Will_Knife
 			MakesSword=1
 			SwordName="Will Knife"
@@ -8381,7 +8382,7 @@ NEW VARIABLES
 			ActiveMessage="projects an unbreakable barrier!"
 			OffMessage="collapses their barrier..."
 			Cooldown=180
-			SBuffNeeded="Protect Brave"
+			SBuffNeeded="King of Braves"
 			verb/Protect_Shade()
 				set category="Skills"
 				if(!usr.BuffOn(src))
@@ -8401,18 +8402,13 @@ NEW VARIABLES
 			ActiveMessage="projects an absolutely unbreakable barrier!"
 			OffMessage="collapses their barrier..."
 			Cooldown=600
-			SBuffNeeded="Protect Brave"
+			SBuffNeeded="King of Braves"
 			verb/Protect_Wall()
 				set category="Skills"
 				if(!usr.BuffOn(src))
 					VaizardHealth = (1.5 * usr.SagaLevel)
 					TimerLimit = 5 * usr.SagaLevel
 					Cooldown = 300
-				if(usr.SpecialBuff)
-					if(usr.SpecialBuff.BuffName!="Genesic Brave"&&src.SBuffNeeded!="Protect Brave")
-						src.SBuffNeeded="Protect Brave"
-					else if(usr.SpecialBuff.BuffName=="Genesic Brave")
-						src.SBuffNeeded="Genesic Brave"
 				src.Trigger(usr)
 		Plasma_Hold
 			TimerLimit=2
@@ -8426,14 +8422,9 @@ NEW VARIABLES
 			ActiveMessage="shoots crackling plasma at their target!"
 			OffMessage="releases their hold..."
 			Cooldown=30
-			SBuffNeeded="Protect Brave"
+			SBuffNeeded="King of Braves"
 			verb/Plasma_Hold()
 				set category="Skills"
-				if(usr.SpecialBuff)
-					if(usr.SpecialBuff.BuffName!="Genesic Brave"&&src.SBuffNeeded!="Protect Brave")
-						src.SBuffNeeded="Protect Brave"
-					else if(usr.SpecialBuff.BuffName=="Genesic Brave")
-						src.SBuffNeeded="Genesic Brave"
 				src.Trigger(usr)
 		Domain_Expansion
 			var/tmp/effected = list()
