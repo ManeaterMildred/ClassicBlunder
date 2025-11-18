@@ -16,7 +16,7 @@ obj
 				Grapple=1
 				GrabTrigger="/obj/Skills/Grapple/Sword/Blade_Drive"
 				EnergyCost=1
-				Cooldown=90
+				Cooldown=60
 				SpeedStrike = 2
 				verb/Run_Through()
 					set category="Skills"

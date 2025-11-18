@@ -40,8 +40,8 @@ ascension
 					if(!locate(/obj/Skills/Buffs/NuStyle/MortalUI/Incomplete_Ultra_Instinct_Style, owner))
 						var/obj/Skills/Buffs/NuStyle/s=new/obj/Skills/Buffs/NuStyle/MortalUI/Incomplete_Ultra_Instinct_Style
 						owner.AddSkill(s)
-						passives["TechniqueMastery"]=0.5
-						passives["StyleMastery"]=1
+						owner.passive_handler.Increase("StyleMastery",1)
+						owner.passive_handler.Increase("TechniqueMastery",0.5)
 						spawn(5)
 							if(!owner || !owner.client)
 								return

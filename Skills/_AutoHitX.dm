@@ -1207,7 +1207,7 @@ obj
 				UnarmedOnly=1
 				Area="Arc"
 				StrOffense=1
-				DamageMult=3.5
+				DamageMult=2.75
 				Rush=5
 				ControlledRush=1
 				Rounds=3
@@ -1215,7 +1215,7 @@ obj
 				RoundMovement=0
 				NoAttackLock=1
 				NoLock=1
-				Cooldown=75
+				Cooldown=60
 				Icon='Nest Slash.dmi'
 				IconX=-16
 				IconY=-16
@@ -1726,7 +1726,7 @@ obj
 				ComboMaster = 1
 				WindupMessage="focuses their power into a palm..."
 				ActiveMessage="unleashes an obliterating wave of power from their hand!"
-				Cooldown=60
+				Cooldown=75
 				verb/Breaker_Wave()
 					set category="Skills"
 					usr.Activate(src)
@@ -1736,7 +1736,7 @@ obj
 				StrOffense=0
 				ForOffense=1
 				Rounds=10
-				DamageMult=1.1
+				DamageMult=0.9
 				Area="Around Target"
 				FlickAttack=1
 				Distance=15
@@ -1754,7 +1754,7 @@ obj
 				HitSparkIcon='BLANK.dmi'
 				HitSparkX=0
 				HitSparkY=0
-				Cooldown=60
+				Cooldown=75
 				EnergyCost=10
 				Earthshaking=15
 				verb/Blazing_Storm()
@@ -1785,7 +1785,7 @@ obj
 				SpecialAttack=1
 				Earthshaking=5
 				ActiveMessage="blinks forward before unleashing a wave of power at point-blank range!"
-				Cooldown=60
+				Cooldown=75
 				verb/Ghost_Wave()
 					set category="Skills"
 					usr.Activate(src)
@@ -1814,7 +1814,7 @@ obj
 				WindUp=0.5
 				WindupMessage="grows still..."
 				ActiveMessage="crushes those nearby with their spiritual aura!!"
-				Cooldown=60
+				Cooldown=75
 				verb/Power_Pillar()
 					set category="Skills"
 					usr.Activate(src)
@@ -3133,7 +3133,7 @@ obj
 				Area="Target"
 				GuardBreak=1
 				StrOffense=1
-				DamageMult=12
+				DamageMult=10
 				Distance=10
 				PassThrough=1
 				PreShockwave=1
@@ -3141,7 +3141,7 @@ obj
 				Shockwave=2
 				Shockwaves=2
 				ActiveMessage="flickers behind their opponent for an instantaneous slash!"
-				Cooldown=60
+				Cooldown=75
 				EnergyCost=10
 				verb/Disable_Innovate()
 					set category = "Other"
@@ -3212,7 +3212,7 @@ obj
 				PostShockwave=0
 				Shockwave=2
 				Shockwaves=2
-				DamageMult=14
+				DamageMult=12
 				WindUp=0.5
 				WindupMessage="sheathes their blade..."
 				ActiveMessage="blasts through all opposition in a blink of an eye!"
@@ -3225,7 +3225,7 @@ obj
 				TurfStrike=1
 				TurfShift='Dirt1.dmi'
 				TurfShiftDuration=3
-				Cooldown=60
+				Cooldown=75
 				Instinct=1
 				verb/Crowd_Cutter()
 					set category="Skills"
@@ -3255,7 +3255,7 @@ obj
 				HitSparkIcon='BLANK.dmi'
 				HitSparkX=0
 				HitSparkY=0
-				Cooldown=60
+				Cooldown=75
 				Instinct=1
 				verb/Holy_Justice()
 					set category="Skills"
@@ -3285,7 +3285,7 @@ obj
 				HitSparkIcon='BLANK.dmi'
 				HitSparkX=0
 				HitSparkY=0
-				Cooldown=60
+				Cooldown=75
 				Instinct=1
 				verb/Doom_of_Damocles()
 					set category="Skills"

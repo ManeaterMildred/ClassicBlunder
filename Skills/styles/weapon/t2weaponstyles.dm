@@ -28,7 +28,7 @@
 		passives = list("HybridStyle" = "UnarmedStyle", "Fury" = 2, "BlurringStrikes" = 1.5, "SweepingStrike" = 1, "BladeFisting" = 1, \
 				"Iaijutsu" = 2.5, "Musoken" = 1, "CriticalChance" = 10, "CriticalDamage"= 0.05, "Extend" = 1)
 		Finisher="/obj/Skills/Queue/Finisher/Gatotsu_Rokujin"
-		verb/Santoryu()
+		verb/Gatotsu()
 			set hidden=1
 			src.Trigger(usr)
 	Berserk

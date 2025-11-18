@@ -222,7 +222,8 @@ var/list/SkillTree=list(
 			"/obj/Skills/Grapple/Sword/Eviscerate"=120,
 			"/obj/Skills/Queue/Run_Through"=120,
 			"/obj/Skills/Grapple/Sword/Hacksaw"=120,
-			"/obj/Skills/Grapple/Sword/Form_Ataru"=120
+			"/obj/Skills/Grapple/Sword/Form_Ataru"=120,
+			"/obj/Skills/AutoHit/Crowd_Cutter"=120,
 ),
 
 "SwordT4"=list(
@@ -231,7 +232,6 @@ var/list/SkillTree=list(
 			"/obj/Skills/Projectile/Sword/Air_Carve"=160,
 			"/obj/Skills/Projectile/Sword/Phantom_Howl"=160,
 
-			"/obj/Skills/AutoHit/Crowd_Cutter"=160,
 			"/obj/Skills/AutoHit/Jet_Slice"=160,
 			"/obj/Skills/AutoHit/Holy_Justice"=160,
 			"/obj/Skills/AutoHit/Doom_of_Damocles"=160

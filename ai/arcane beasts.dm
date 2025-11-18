@@ -364,7 +364,7 @@ obj/Skills/Buffs/SlotlessBuffs/
 			set category="Skills"
 			if(usr.is_arcane_beast)
 				Mastery = usr.is_arcane_beast.Mastery
-				passives["SwordAscension"] = min(2, (usr.AscensionsUnlocked * 0.5))
+				passives["SwordAscension"] = min(2, (usr.AscensionsAcquired * 0.5))
 			else
 				return
 			src.Trigger(usr)

@@ -91,6 +91,7 @@
         SpdMult=1.5
         IconLock='SweatDrop.dmi'
         IconApart=1
+
     Shinsengumi_Hitokiri
         passives = list("AfterImages" = 4, "Speed Force" = 2, "Iaijutsu" = 2, "Relentlessness" = 1, \
                         "Fury" = 4, "Momentum" = 1.5, \
@@ -182,3 +183,25 @@
         passives = list("Don't Move" = 1)
         TimerLimit = 10
 
+    Dark_Aura_Style
+        passives = list("AfterImages" = 4, "Speed Force" = 2, "Iaijutsu" = 1, "Relentlessness" = 1, \
+                        "Fury" = 4, "Momentum" = 1.5,  "Godspeed" = 2,\
+                        "TensionLock" = 1)
+        StrMult=1.1
+        SpdMult=1.5
+        ManaGlow=rgb(153, 102, 51)
+        ManaGlowSize=4
+    Dark_Firaga_Style
+        passives = list("KillerInstinct" = 0.1, "Godspeed" = 2, "DebuffResistance" = 0.25, \
+                        "Steady" = 2, "Scorching" = 15, "Toxic" = 10, "CursedWounds" = 1, "TensionLock" = 1)
+        StrMult = 1.1
+        ForMult = 1.5
+        ManaGlow=rgb(153, 102, 51)
+        ManaGlowSize=4
+    Dark_Wave_Style
+        passives= list("Mortal Will" = 1, "MortalStacks" = 1, "BlockChance" = 33, "CriticalBlock" = 0.3, "StunningStrike" = 3, "ComboMaster" = 1, "Deflection" = 1, "Reversal" = 0.25 )
+        EndMult = 1.4
+        ForMult = 1.1
+        StrMult = 1.1
+        ManaGlow=rgb(153, 102, 51)
+        ManaGlowSize=4

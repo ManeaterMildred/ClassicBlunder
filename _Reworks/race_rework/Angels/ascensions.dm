@@ -21,7 +21,7 @@ ascension
 				owner.Class = "Principality"
 		two
 			unlock_potential = ASCENSION_TWO_POTENTIAL
-			passives = list("HolyMod" = 0.75, "SpiritPower" = 0.25)
+			passives = list("HolyMod" = 0.75, "SpiritPower" = 0.25,"SpiritFlow"=0.5,"CallousedHands"=0.3,"SpiritSword"=0.5,"SpiritHands"=0.3)
 			strength = 0.35
 			force = 0.35
 			defense = 0.35
@@ -32,7 +32,7 @@ ascension
 			postAscension(mob/owner)
 				//t2 style
 				if(owner.AngelAscension=="Mentor")
-					passives["StyleMastery"]=1
+					owner.passive_handler.Increase("StyleMastery",1)
 					if(!locate(/obj/Skills/Buffs/NuStyle/UnarmedStyle/AngelStyles/Incomplete_Ultra_Instinct, owner))
 						var/obj/Skills/Buffs/NuStyle/s=new/obj/Skills/Buffs/NuStyle/UnarmedStyle/AngelStyles/Incomplete_Ultra_Instinct
 						owner.AddSkill(s)
@@ -42,6 +42,7 @@ ascension
 					owner.GrantGuardianItem(/obj/Items/Armor/Guardian/Breastplate_of_Righteousness)
 					owner.GrantGuardianItem(/obj/Items/Wearables/Guardian/Sandals_of_Peace)
 					owner << "(Please re-equip your Heavenly Armaments to receive their boons.)"
+					owner.passive_handler.Increase("SwordAscension",1)
 				..()
 				owner.Class = "Power"
 		three

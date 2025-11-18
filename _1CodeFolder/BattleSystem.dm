@@ -1319,7 +1319,7 @@ proc/Accuracy_Formula(mob/Offender,mob/Defender,AccMult=1,BaseChance=glob.WorldD
 			if(Defender.CheckSlotless("Great Ape")|| Defender.passive_handler.Get("Vulnerable Behind"))
 				var/tail_resistance_max = Defender.AscensionsAcquired + (round(Defender.AscensionsAcquired/2))
 				var/tail_resistance = Defender.tail_mastery / 20
-				tail_resistance += Defender.AscensionsUnlocked * 5
+				tail_resistance += Defender.AscensionsAcquired * 5
 				tail_resistance = clamp(tail_resistance, 0, tail_resistance_max * 5)
 				if(prob(50 - tail_resistance))
 					Stun(Defender, 2 - (tail_resistance * 0.1))
