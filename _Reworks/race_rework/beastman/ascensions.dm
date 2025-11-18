@@ -13,6 +13,7 @@ ascension
 							strength = 0.5
 						if("Monkey King")
 							owner.passive_handler.Increase("Nimbus", 1)
+							owner.passive_handler.Increase("HybridStrike", 1)
 							endurance = 0.15
 							strength = 0.15
 							offense = 0.15
@@ -62,7 +63,7 @@ ascension
 							defense = 0.1
 							speed = 0.1
 							force = 0.1
-						
+
 						if("Fox Fire")
 							owner.passive_handler.Increase("SoftStyle", 1)
 							owner.passive_handler.Increase("Soulfire", 1)
@@ -87,6 +88,8 @@ ascension
 							speed = 0.25
 						if("Monkey King")
 							owner.passive_handler.Increase("Nimbus", 1)
+							owner.passive_handler.Increase("Hardening", 1)
+							owner.passive_handler.Increase("HybridStrike", 1)
 							endurance = 0.15
 							strength = 0.15
 							offense = 0.15
@@ -128,7 +131,7 @@ ascension
 							endurance = 0.25
 						if("Shapeshifter")
 							owner << "currently not working"
-						
+
 						if("Trickster")
 							ecoAdd = 1
 							imaginationAdd = 0.5
@@ -138,7 +141,7 @@ ascension
 							defense = 0.1
 							speed = 0.1
 							force = 0.1
-						
+
 						if("Fox Fire")
 							owner.passive_handler.Increase("SoftStyle", 1)
 							owner.passive_handler.Increase("Soulfire", 1)
@@ -158,6 +161,7 @@ ascension
 							speed = 0.25
 						if("Monkey King")
 							owner.passive_handler.Increase("Nimbus", 1)
+							owner.passive_handler.Increase("HybridStrike", 1)
 							endurance = 0.15
 							strength = 0.15
 							offense = 0.15
@@ -199,7 +203,7 @@ ascension
 							endurance = 0.25
 						if("Shapeshifter")
 							owner << "currently not working"
-						
+
 						if("Trickster")
 							ecoAdd = 1
 							imaginationAdd = 0.5
@@ -209,7 +213,7 @@ ascension
 							defense = 0.1
 							speed = 0.1
 							force = 0.1
-						
+
 						if("Fox Fire")
 							owner.passive_handler.Increase("SoftStyle", 1)
 							owner.passive_handler.Increase("Soulfire", 1)

@@ -15,7 +15,7 @@ proc/generateVersionDatum()
 		glob.currentUpdate = updateversion
 
 globalTracker
-	var/UPDATE_VERSION = 23
+	var/UPDATE_VERSION = 24
 	var/tmp/update/currentUpdate
 
 	proc/updatePlayer(mob/p)
@@ -434,6 +434,16 @@ update
 						o.secretDatum.secretVariable["ConquerorsHaki"] = 1
 						o.AddSkill(new/obj/Skills/AutoHit/Haki/Conquerors_Haki)
 						o.AddSkill(new/obj/Skills/Queue/Haki/Kings_Infusion)
+		version24
+		version = 24
+		updateMob(mob/o)
+			. = ..()
+			if(o.isRace(BEASTMAN))
+				if(o.Class=="Monkey King" && o.AscensionsAcquired == 2)
+					o.passive_handler.Set("Hardening", 2)
+					o.passive_handler.Set("HybridStrike", 2)
+				else if(o.Class=="Monkey King" && o.AscensionsAcquired == 1)
+					o.passive_handler.Set("HybridStrike", 1)
 
 /globalTracker/var/COOL_GAJA_PLAYERS = list("Thorgigamax", "Gemenilove" )
 /globalTracker/var/GAJA_PER_ASC_CONVERSION = 0.25
