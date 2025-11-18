@@ -88,6 +88,7 @@
         HitMessage="rips through their opponent with countless slashes!"
         BuffSelf=0
         HitSparkIcon = 'Slash_Multi.dmi'
+
     Gatotsu_Rokujin
         SpeedStrike=5
         DamageMult=1
@@ -218,3 +219,4 @@
         BuffSelf = "/obj/Skills/Buffs/SlotlessBuffs/Autonomous/QueueBuff/Finisher/Heated_Up"
         DamageMult = 1.1
         AdaptRate = 1
+    //Soul Eater

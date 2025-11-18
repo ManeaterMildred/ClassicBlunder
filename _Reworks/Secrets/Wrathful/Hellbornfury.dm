@@ -16,7 +16,6 @@ scaling with potential as well
 	//injury
 	TooMuchInjury=15
 	NeedsInjury=5
-	InjuryThreshold=14
 	TooLittleInjury=4
 	EndMult = 1
 	StrMult = 1
@@ -41,7 +40,6 @@ scaling with potential as well
 	//injury
 	TooMuchInjury=25
 	NeedsInjury=15
-	InjuryThreshold=24
 	TooLittleInjury=14
 	BuffName = "Hellspawn"
 	adjust(mob/p)
@@ -49,13 +47,11 @@ scaling with potential as well
 		passives = list("CalmAnger" = 1, \
 						"LikeWater" = 2 + round(p.Potential/25,1), "Flicker" = 1, "Pursuer" = 1, "PureDamage" = 2, \
 						"Instinct" = 3, "AbyssMod" = round(p.Potential/30,1), "BleedHit"=0.5, "FavoredPrey" = "Depths","SlayerMod"= 0.25*(p.AscensionsAcquired+1))
-		StrMult = 1.25 + (p.Potential/100)
-		ForMult = 1.25 + (p.Potential/100)
-		OffMult = 1.25 + (p.Potential/200)
+		StrMult = 1.2 + (p.Potential/100)
+		ForMult = 1.2 + (p.Potential/100)
+		OffMult = 1.2 + (p.Potential/200)
 		PowerMult = 1.075 + (p.Potential/200)
 		AutoAnger=0
-		if(p.Potential>=100)
-			passives["Wrathful"] = 1
 	Trigger(mob/User, Override=FALSE)
 		adjust(User)
 		..()
@@ -67,21 +63,18 @@ scaling with potential as well
 	TooMuchInjury=40
 	NeedsInjury=25
 	TooLittleInjury=24
-	InjuryThreshold=39
 	BuffName = "True Hellspawn"
 	adjust(mob/p)
 		if(altered) return
 		passives = list("CalmAnger" = 1, "BleedHit"=0.25, \
 						"LikeWater" = 2 + round(p.Potential/20,1),"SlayerMod"= 0.5*(p.AscensionsAcquired+1), \
 						"Powerhouse" = 1 + (p.Potential/75), "Instinct" = 4, "Flicker" = 2, "Pursuer" = 2, "PureDamage" = 2.5, "AbyssMod" = round(p.Potential/20,1), "FavoredPrey" = "Depths")
-		StrMult = 1.35 + (p.Potential/50)
-		ForMult = 1.35 + (p.Potential/50)
-		OffMult = 1.35 + (p.Potential/50)
+		StrMult = 1.25 + (p.Potential/75)
+		ForMult = 1.25 + (p.Potential/75)
+		OffMult = 1.25 + (p.Potential/75)
 		PowerMult = 1.1 + (p.Potential/150)
 		EnergyHeal = 0.005 * p.Potential
 		AutoAnger=0
-		if(p.Potential>=75)
-			passives["Wrathful"] = 1
 	Trigger(mob/User, Override=FALSE)
 		adjust(User)
 		..()
@@ -97,14 +90,12 @@ scaling with potential as well
 		if(altered) return
 		passives = list("CalmAnger" = 1, "LikeWater" = 2 + round(p.Potential/15,1),"SlayerMod"= 0.5*(p.AscensionsAcquired+1),\
 						"Powerhouse" = 2 + (p.Potential/25), "Instinct" = 5, "Flicker" = 3, "Pursuer" = 3, "PureDamage" = 3, "AbyssMod" = round(p.Potential/15,1), "FavoredPrey" = "Beyond")
-		StrMult = 1.45 + (p.Potential/30)
-		ForMult = 1.45 + (p.Potential/30)
-		OffMult = 1.45 + (p.Potential/30)
-		PowerMult = 1.2 + (p.Potential/75)
+		StrMult = 1.25 + (p.Potential/50)
+		ForMult = 1.25 + (p.Potential/50)
+		OffMult = 1.25 + (p.Potential/50)
+		PowerMult = 1.15 + (p.Potential/75)
 		EnergyHeal = 0.01 * p.Potential
 		AutoAnger=0
-		if(p.Potential>=50)
-			passives["Wrathful"] = 1
 	Trigger(mob/User, Override=FALSE)
 		adjust(User)
 		..()
@@ -117,7 +108,7 @@ scaling with potential as well
 	p.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/HellbornFury/Stage_Two)
 	p.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/HellbornFury/Stage_Three)
 	p.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/HellbornFury/Stage_Four)
-	p.passive_handler.Increase("HellPower", 1)
+	p.passive_handler.Increase("HellPower", 0.1)
 	p.passive_handler.Increase("Persistence", 2)
 	p.passive_handler.Increase("MaimMastery", 1)
 	p.AddSkill(new/obj/Skills/False_Moon)

@@ -26,7 +26,7 @@
 	var/lightSword = UsingLightElementSword()
 	switch(option)
 		if("Offense")
-			var/hasDarkOff = (direFist || darkSword || ElementalOffense == "Dark" || demon)
+			var/hasDarkOff = (direFist || darkSword || ElementalOffense == "Dark" || demon|| ElementalOffense == "Heartless" )
 			if(hasDarkOff)
 				var/effective = getEleEffective(darkSword, atomicFist, demon)
 				if(effective > 0 && Anger)
@@ -37,7 +37,7 @@
 			var/hasLightOff = (tranqFist || lightSword || ElementalOffense == "Light")
 			if(!demon && hasLightOff)
 				var/effective = getEleEffective(lightSword, atomicFist, demon)
-				if(effective > 0 && (d&&d.Anger || d&&d.AngerCD))
+				if(effective > 0 && (d&&d.Anger || d&&d.AngerCD)|| ElementalOffense == "Heartless")
 					. += effective
 		if("Defense")
 			var/hasDarkDef = (direFist || darkSword || ElementalDefense == "Dark" || demon)

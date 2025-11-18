@@ -16,7 +16,7 @@ obj
 				Duration=5
 				ActiveMessage="lets their presence try to overtake their opponents!"
 				adjust(mob/p)
-					var/ascLevel = 1 + p.AscensionsUnlocked
+					var/ascLevel = 1 + p.AscensionsAcquired
 					var/boon = 3 * ascLevel
 					src.Scorching=8 + boon
 					src.Freezing=8 + boon

@@ -10,7 +10,7 @@ transformation
 			form_glow_x = -32
 			form_glow_y = -32
 			unlock_potential = 55
-			passives = list("Instinct" = 3, "Flicker" = 4, "Pursuer" = 5,  "BuffMastery" = 4, "PureDamage" = 3, "BleedHit"=0.75, "PureReduction"=-1)
+			passives = list("Instinct" = 3, "Flicker" = 4, "Pursuer" = 5,  "BuffMastery" = 4, "PureDamage" = 3, "BleedHit"=0.75, "PureReduction"=-2)
 			PUSpeedModifier = 1.5
 			mastery_boons(mob/user)
 				if(mastery>=75)

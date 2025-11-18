@@ -94,7 +94,7 @@
 				M.Class = "Warrior"
 				M << "<font color=#77ff77><b>Your body surges with power, transforming you into a Namekian of the Warrior caste!</b></font>"
 
-				switch(M.AscensionsUnlocked)
+				switch(M.AscensionsAcquired)
 					if(1)
 						M.StrAscension += 0.35
 						M.EndAscension += 0.35
@@ -121,7 +121,7 @@
 						M.OffAscension += 0.65
 						M.RecovAscension += 1.15
 
-				if(M.AscensionsUnlocked >= 4)
+				if(M.AscensionsAcquired >= 4)
 					M.transUnlocked = 1
 					M << "<font color=#ff9933><b>The fire of the Orange Namekian ignites within you!</b></font>"
 

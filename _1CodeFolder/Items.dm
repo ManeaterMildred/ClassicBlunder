@@ -940,34 +940,45 @@ obj/Items/Sword
 				name="Soul Eater"
 				pixel_x=-16
 				pixel_y=-16
-				Techniques=list("/obj/Skills/Queue/Darkness_Blast","/obj/Skills/Queue/Heart_Slayer","/obj/Skills/Queue/Riku_Soul_Render")
+				Techniques=list("/obj/Skills/Queue/Heart_Slayer","/obj/Skills/Queue/Soul_Render","/obj/Skills/Buffs/NuStyle/SwordStyle/Seeker_of_Darkness")
+				Destructable = 0
+				NoSaga=1
+				MagicSword=1
+				Class="Light"
+				var/SEType="Sword"
 				verb/ChooseForm()
 					set category="Other"
+					if(usr.StyleActive)
+						usr<<"You cannot use this with a style active!"
+						return
 					var/check = 0
-					var/S = input(usr,"Choose the form of your Soul Eater", "Form") in list("Shield","Sword","Staff")
+					var/S = input(usr,"Choose the form of your Soul Eater", "Form") in list("Sword","Staff","Shield")
 					switch(S)
 						if("Sword")
-							if(check!=0)
-								passives = list("SpiritSword" = 0, "SpiritStrike" = 0,"CallousedHands" = 0)
-							view(10,src) << "[src]'s weapon transforms in to a Sword!"
-							passives = list("SpiritSword" = 0.5)
+
+							view(10,src) << "[src]'s weapon transforms into a Sword!"
+							src.SEType="Sword"
+							src.DamageEffectiveness=1.025
+							src.AccuracyEffectiveness=0.9
+							src.SpeedEffectiveness=1.25
 							check += 1
 
 						if("Shield")
-							if(check!=0)
-								passives = list("SpiritSword" = 0, "SpiritStrike" = 0,"CallousedHands" = 0)
-							view(10,src) << "[src]'s weapon transforms in to a shield!"
-							passives = list("CallousedHands" = 0.5)
+							view(10,src) << "[src]'s weapon transforms into a shield!"
 							check += 1
-
+							src.SEType="Shield"
+							DamageEffectiveness=1.1
+							AccuracyEffectiveness=0.8
+							SpeedEffectiveness=0.8
 
 
 						if("Staff")
-							if(check!=0)
-								passives = list("SpiritSword" = 0, "SpiritStrike" = 0,"CallousedHands" = 0)
-							view(10,src) << "[src]'s weapon transforms in to a Staff!"
-							passives = list("SpiritStrike" = 1)
+							view(10,src) << "[src]'s weapon transforms into a Staff!"
 							check += 1
+							src.SEType="Staff"
+							DamageEffectiveness=1.05
+							AccuracyEffectiveness=0.875
+							SpeedEffectiveness=1
 
 			WeaponSoul
 				Destructable = 0

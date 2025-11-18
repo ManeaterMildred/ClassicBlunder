@@ -45,7 +45,6 @@
         "Juggernaut": [0.25, 4],
         "DebuffResistance": [0.25, 2],
         "Hardening": [0.5, 5],
-        "CallousedHands": [0.15, 1]
     },
     "ARMOR_PASSIVES_II": {
         "GiantForm": [1, 1],
@@ -65,7 +64,6 @@
         "VoidField": [1, 10]
     },
     "ARMOR_PASSIVES_IV": {
-        "Unstoppable": [1, 1],
         "VenomImmune": [1, 1],
         "InjuryImmune": [1, 1],
         "FatigueImmune": [1, 1]

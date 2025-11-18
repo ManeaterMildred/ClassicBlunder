@@ -25,7 +25,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 		var/tmp/obj/Items/Sword/EquippedSword
 		adjust(mob/p)
 			if(altered) return
-			if(p.AscensionsUnlocked==2)
+			if(p.AscensionsAcquired==2)
 				if(p.isRace(ANGEL))
 					passives = list("Instinct" = 1.5, "Flow" = 1.5, "Parry" = 1.5, "Deflection" = 1, "Like Water" = 1.5, "Momentum" = 1, "PUSpike" = 10, "BlurringStrikes"=1.5, "Iaijutsu" = 1,)
 					StyleStr = 1.35
@@ -38,7 +38,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 					StyleSpd = 1.45
 					StyleOff = 1.35
 					StyleDef = 1.35
-			if(p.AscensionsUnlocked==3)
+			if(p.AscensionsAcquired==3)
 				if(p.isRace(ANGEL))
 					passives = list("Instinct" = 2, "Flow" = 2.5, "Parry" = 1.5, "Deflection" = 1, "Like Water" = 2.5, "Momentum" = 1, "PUSpike" = 10, "BlurringStrikes"=2, "Iaijutsu" = 1.5,)
 					StyleStr = 1.45
@@ -134,7 +134,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 		StyleOff = 1.1
 		Finisher = "/obj/Skills/Queue/Finisher/Instinct_Grapple"
 		adjust(mob/p)
-			if(p.AscensionsUnlocked==2)
+			if(p.AscensionsAcquired==2)
 				if(p.isRace(ANGEL))
 					passives = list("Instinct" = 1, "LikeWater" = 1.5, "Muscle Power" = 2.5, "Grippy" = 2.5, "Scoop" = 2, "Iron Grip" = 2, "Momentum" = 1.5, "Flow" = 1.5, "Deflection" = 0.5, "Reversal" = 0.5)
 					StyleStr = 1.45
@@ -149,7 +149,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 					StyleDef = 1.15
 					StyleSpd = 1.15
 					StyleOff = 1.25
-			if(p.AscensionsUnlocked==3)
+			if(p.AscensionsAcquired==3)
 				if(p.isRace(ANGEL))
 					passives = list("Instinct" = 1, "LikeWater" = 1.5, "Muscle Power" = 3.5, "Grippy" = 3, "Scoop" = 2.5, "Iron Grip" = 2, "Momentum" = 2, "Flow" = 1.5, "Deflection" = 0.5, "Reversal" = 1)
 					StyleStr = 1.65
@@ -192,7 +192,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 		ElementalOffense = "Mirror"
 		ElementalDefense = "Mirror"
 		adjust(mob/p)
-			if(p.AscensionsUnlocked==2)
+			if(p.AscensionsAcquired==2)
 				if(p.isRace(ANGEL))
 					passives = list("Instinct" = 1.5, "SpiritFlow" = 2, "LikeWater" = 2, "Amplify" = 1, "Flow" = 2, "AirBend" = 1, "WaveDancer" = 1, "Rain" = 1, "Burning" = 1, "Freezing" = 1,\
 			                        "Shocking" = 1, "Shattering" = 1, "MartialMagic" = 1,"PUSpike" = 15)
@@ -209,7 +209,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 					StyleDef = 1.15
 					StyleSpd = 1.25
 					StyleEnd = 1.1
-			if(p.AscensionsUnlocked==3)
+			if(p.AscensionsAcquired==3)
 				if(p.isRace(ANGEL))
 					passives = list("Instinct" = 2.5, "SpiritFlow" = 2, "LikeWater" = 3, "Amplify" = 1, "Flow" = 1.5, "AirBend" = 1, "WaveDancer" = 1, "Rain" = 1, "Burning" = 1, "Freezing" = 1,\
 			                        "Shocking" = 1, "Shattering" = 1, "MartialMagic" = 1,"PUSpike" = 15)
@@ -250,7 +250,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 		StyleFor = 1.05
 		Finisher = "/obj/Skills/Queue/Finisher/Instinct_Palm"
 		adjust(mob/p)
-			if(p.AscensionsUnlocked==3)
+			if(p.AscensionsAcquired==2)
 				if(p.isRace(ANGEL))
 					passives = list("Instinct" = 2, "LikeWater" = 2, "Momentum" = 1.5, "Flow" = 2.5, "Pressure" = 1, "Deflection" = 1.25, "CounterMaster" = 0.75, "Interception" = 1.5, "Reversal" = 0.75)
 					StyleStr = 1.35
@@ -267,7 +267,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 					StyleDef = 1.25
 					StyleEnd = 1.25
 					StyleFor = 1.1
-			if(p.AscensionsUnlocked==3)
+			if(p.AscensionsAcquired==3)
 				if(p.isRace(ANGEL))
 					passives = list("Instinct" = 3, "LikeWater" = 2, "Momentum" = 2, "Flow" = 3.5, "Pressure" = 1, "Deflection" = 2, "CounterMaster" = 1.5, "Interception" = 2, "Reversal" = 1.5)
 					StyleStr = 1.45

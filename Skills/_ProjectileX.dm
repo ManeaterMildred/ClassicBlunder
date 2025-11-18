@@ -1110,7 +1110,7 @@ obj
 				Delay=0.75
 				Stream=-1
 				EnergyCost=8
-				Cooldown=75
+				Cooldown=60
 				Deflectable = 1
 				Homing=1
 				LosesHoming=3
@@ -1220,7 +1220,7 @@ obj
 				Speed=1
 				IconChargeOverhead=1
 				Explode=1
-				Cooldown=75
+				Cooldown=60
 				IconLock='Plasma2.dmi'
 				Variation=0
 				verb/Spirit_Ball()
@@ -1249,7 +1249,7 @@ obj
 				LockY=-12
 				IconSize=0.75
 				Variation=4
-				Cooldown=75
+				Cooldown=60
 				verb/Crash_Burst()
 					set category="Skills"
 					usr.UseProjectile(src)
@@ -1318,7 +1318,7 @@ obj
 				HyperHoming=1
 				FireFromSelf=1
 				FireFromEnemy=0
-				Cooldown=75
+				Cooldown=60
 				EnergyCost=5
 				verb/Sudden_Storm()
 					set category="Skills"
@@ -1558,7 +1558,7 @@ obj
 				Blasts=10
 				Explode=1
 				EnergyCost=5
-				Cooldown=60
+				Cooldown=75
 				IconLock='Blast10.dmi'
 				LockX=0
 				LockY=0
@@ -1578,7 +1578,7 @@ obj
 				AccMult=2.5
 				Explode=2
 				EnergyCost=8
-				Cooldown=60
+				Cooldown=75
 				FollowUp="/obj/Skills/AutoHit/Warp_Bomb"
 				FollowUpDelay=-1
 				IconLock='Blast12.dmi'
@@ -3764,7 +3764,7 @@ obj
 					Knockback=1
 					Charge=0.5
 					EnergyCost=2
-					Cooldown=120
+					Cooldown=75
 					IconSize=2
 					Variation=0
 					IconLock='Air Render.dmi'
@@ -3789,7 +3789,7 @@ obj
 					Knockback=1
 					Charge=1
 					EnergyCost=5
-					Cooldown=60
+					Cooldown=75
 					IconSize=2
 					Variation=8
 					IconLock='Air Render.dmi'
@@ -3812,7 +3812,7 @@ obj
 					Devour=1
 					Knockback=1
 					EnergyCost=3
-					Cooldown=60
+					Cooldown=75
 					IconLock='TornadoDirected.dmi'
 					IconSize=2
 					LockX=-8
@@ -3834,7 +3834,7 @@ obj
 					MultiShot=5
 					Knockback=1
 					EnergyCost=3
-					Cooldown=60
+					Cooldown=75
 					Homing=1
 					IconLock='Scarring Breeze.dmi'
 					IconSize=0.35
@@ -3860,7 +3860,7 @@ obj
 					Knockback=1
 					Charge=0.5
 					EnergyCost=2
-					Cooldown=60
+					Cooldown=75
 					IconSize=2
 					Variation=0
 					IconLock='Air Render.dmi'

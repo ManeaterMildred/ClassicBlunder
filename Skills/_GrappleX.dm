@@ -259,7 +259,7 @@ obj/Skills/Grapple
 		ThrowMult=0
 		TriggerMessage="performs a judo throw on"
 		Effect="Shockwave"
-		Cooldown=75
+		Cooldown=60
 		verb/Judo_Throw()
 			set category="Skills"
 			src.Activate(usr)
@@ -431,7 +431,7 @@ obj/Skills/Grapple
 		Eviscerate
 			Copyable=4
 			SkillCost=TIER_3_COST
-			DamageMult=1.5
+			DamageMult=1.1
 			MultiHit=8
 			StrRate=1
 			ThrowMult=0
@@ -439,14 +439,14 @@ obj/Skills/Grapple
 			TriggerMessage="eviscerates"
 			Effect="Strike"
 			EffectMult=5
-			Cooldown=75
+			Cooldown=60
 			verb/Eviscerate()
 				set category="Skills"
 				src.Activate(usr)
 		Hacksaw
 			Copyable=4
 			SkillCost=TIER_3_COST
-			DamageMult=15
+			DamageMult=11
 			StrRate=1
 			ThrowMult=0
 			ThrowAdd=0
@@ -454,7 +454,7 @@ obj/Skills/Grapple
 			Effect="Strike"
 			EffectMult=3
 			MortalBlow=1
-			Cooldown=75
+			Cooldown=60
 			verb/Hacksaw()
 				set category="Skills"
 				src.Activate(usr)
@@ -483,7 +483,7 @@ obj/Skills/Grapple
 			TriggerMessage="does a slashing flip to break free of"
 			Effect="Strike"
 			EffectMult=2
-			Cooldown=75
+			Cooldown=60
 			verb/Form_Ataru()
 				set category="Skills"
 				set name="Form: Ataru"
