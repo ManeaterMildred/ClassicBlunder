@@ -1622,6 +1622,8 @@ mob
 				Mod+=1
 			if(Saga&&src.Saga=="Eight Gates")
 				Mod+=0.01*GatesActive
+			if(passive_handler["Determination(Red)"||passive_handler["Determination(Yellow)"]])
+				Mod+=(0.05*ManaAmount)
 			if(Secret == "Heavenly Restriction")
 				if(secretDatum?:hasImprovement("Speed"))
 					Mod += round(clamp(1 + secretDatum?:getBoon(src, "Speed") / 8, 1, 8), 0.1)

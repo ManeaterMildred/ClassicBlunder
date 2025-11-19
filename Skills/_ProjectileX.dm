@@ -1494,7 +1494,7 @@ obj
 				BusterSize=2//purely aesthetic
 				Knockback=0
 			//	Explode=2
-				EnergyCost=0.1
+				EnergyCost=0
 				Cooldown=0
 				IconLock='Blast12.dmi'
 				LockX=0
@@ -1514,7 +1514,7 @@ obj
 				BusterSize=2//purely aesthetic
 				Knockback=0
 				Explode=2
-				EnergyCost=0.1
+				EnergyCost=0
 				Cooldown=0
 				IconLock='Blast12.dmi'
 				LockX=0

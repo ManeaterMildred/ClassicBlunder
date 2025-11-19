@@ -47,6 +47,7 @@
 				critDMG+= ManaAmount/100
 				if(SagaLevel==3)
 					var/obj/Skills/s = findOrAddSkill(/obj/Skills/AutoHit/Unleash)
+					s.adjust(src)
 					Activate(s)
 			if(SagaLevel>=4&&RebirthHeroType!="Red")
 				if(ManaAmount<100)
@@ -54,6 +55,7 @@
 				if(ManaAmount==100)
 					critDMG+= ManaAmount/33
 					var/obj/Skills/s = findOrAddSkill(/obj/Skills/AutoHit/Unleash)
+					s.adjust(src)
 					Activate(s)
 					ManaAmount=0
 			if(SagaLevel<4||RebirthHeroType=="Red")

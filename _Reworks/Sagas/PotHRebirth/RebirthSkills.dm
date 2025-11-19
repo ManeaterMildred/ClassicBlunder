@@ -815,16 +815,21 @@ obj/Skills/Buffs
 			SwordY=-32
 			SwordClass="Small"
 			StrMult=1.85
+			SpdMult=1.5
 			PowerMult=1.25
 			Cooldown = 1
 			SwordAscension=5
-			OffMult=0.45
+			OffMult=0.75
 			passives = list("HolyMod" = 3)
 			ActiveMessage="pulls out a small shard of glass that seems barely usable as a weapon."
 			OffMessage="puts the black shard away."
 			adjust(mob/p)
-				passives = list("PUSpike"=50)
+				passives = list("PUSpike"=50, "HolyMod" = 3, "BlurringStrikes"=3)
 				PowerMult=1.25
+				StrMult=1.85
+				SpdMult=1.5
+				PowerMult=1.25
+				OffMult=0.75
 			verb/BlackShard()
 				set category="Skills"
 				adjust(usr)
@@ -883,7 +888,7 @@ obj/Skills/Buffs
 			ActiveMessage="draws forth a black and orange sword!"
 			OffMessage="sheathes their spooky blade!"
 			adjust(mob/p)
-				passives = list("PUSpike"=50)
+				passives = list("PUSpike"=50, "BlurringStrikes"=3)
 				PowerMult=1.25
 				if(p.SagaLevel>=3)
 					StrMult=1.5

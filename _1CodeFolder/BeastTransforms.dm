@@ -90,7 +90,6 @@
 					TopOverlayLock='SDTRedWings.dmi'
 					TopOverlayLock=-10
 					Enlarge=3
-					TimerLimit = 720
 					var/SS1pot=45 //ss1 pot is actually 40, the +5 is there because ssj1 always gives at least +5 pot once you hit 40
 					passives["PowerReplacement"] = SS1pot //MATH COMES LATER
 					passives["BuffMastery"] = 5 + (p.AscensionsAcquired / 10)
