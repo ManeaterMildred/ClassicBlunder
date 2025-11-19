@@ -23,6 +23,6 @@
             if(Tail)
                 OMessage(10, "<font color=red>[src]'s defiance reaches its peak!","Defiance (10) passive.")
         if(FindSkill(/obj/Skills/Buffs/SlotlessBuffs/Saiyan_Grit).cooldown_remaining < 1)
-            if(Health == 5) // hasnt been used and they r obligated to get their shit
+            if(Health <= 5) // hasnt been used and they r obligated to get their shit
             // might make this too easy a mechanic
                 DefianceCounter = 10

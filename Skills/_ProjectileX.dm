@@ -1902,7 +1902,8 @@ obj
 				FireFromEnemy=0
 				Dodgeable=-1
 				Knockback=1
-				DamageMult=1.6
+				DamageMult=2
+				Stunner=3
 				AccMult=30
 				MultiHit=10
 				Explode=5
@@ -2944,6 +2945,7 @@ obj
 					//No verb because set from queue.
 
 ////KoB
+
 			King_of_Braves
 				Broken_Magnum//t5
 					Distance=25
@@ -4627,7 +4629,7 @@ mob
 					Z.Cooldown()
 			if(Z.PartyReq) //I'll throw this into a PartyReqCheck() proc when I have more things use this
 				var/HeroPresent = 0
-				for(var/mob/player in party)
+				for(var/mob/player in src.party.members)
 					if(player == src)
 						continue
 					if(player.RebirthHeroType=="Cyan") //it might be possible to pass on abilities to the other hero type in the future, so I think this is the most graceful way to handle it

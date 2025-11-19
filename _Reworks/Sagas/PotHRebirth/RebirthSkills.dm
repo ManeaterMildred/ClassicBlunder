@@ -343,7 +343,7 @@ obj/Skills/AutoHit
 		StrOffense=0
 		ForOffense=1
 		DamageMult=14
-		HealthCost=15
+		HealthCost=3
 		Area="Circle"
 		Distance=8
 		TurfErupt=2
@@ -715,9 +715,9 @@ obj/Skills/Projectile
 		Radius=3
 		Homing=1
 		Cooldown=180
-		verb/Red_Buster()
+		verb/Burning_Black()
 			set category="Skills"
-			set name="Red Buster"
+			set name="Burning Black"
 			usr.UseProjectile(src)
 	Beams
 		TasteTheRainbow //Nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan

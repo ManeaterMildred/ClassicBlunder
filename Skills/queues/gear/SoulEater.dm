@@ -46,14 +46,13 @@ obj
 				Shockwave=2
 				Shockwaves=2
 				ActiveMessage="appears above their opponent for an instantaneous overhead slash!"
-				Cooldown=60
+				Cooldown=45
 				EnergyCost=10
 				verb/Dark_Break()
 					set category="Skills"
 					adjust(usr)
 					usr.Activate(src)
 			Shadowbreaker
-				SkillCost=TIER_4_COST
 				Copyable=5
 				NeedsSword=1
 				Area="Wide Wave"
@@ -79,7 +78,7 @@ obj
 				TurfShiftDuration=3
 				Cooldown=60
 				Instinct=1
-				verb/Crowd_Cutter()
+				verb/Shadowbreaker()
 					set category="Skills"
 					usr.Activate(src)
 /obj/Skills/Buffs/NuStyle/SwordStyle

@@ -933,6 +933,8 @@ mob/proc/
 			var/PUThreshold=150
 			if(src.passive_handler.Get("Red Hot Rage"))
 				PUThreshold=300
+			if(src.passive_handler.Get("Controlled Chaos"))
+				PUThreshold=200
 /*
 			if(src.Race=="Changeling"&&src.transActive()==4)
 				PUThreshold+=50

@@ -84,8 +84,18 @@
 				StrMult = 1.25
 				ForMult = 1.25
 				OffMult = 1.4
-				TimerLimit = 720
-		if(p.Potential > OOZARU_POTENTIAL_TRANS)
+				if(p.transUnlocked==1)
+					TimerLimit = 4800
+					IconTransform = 'SDTBlue.dmi'
+					TopOverlayLock='SDTRedWings.dmi'
+					TopOverlayLock=-10
+					Enlarge=3
+					TimerLimit = 720
+					var/SS1pot=45 //ss1 pot is actually 40, the +5 is there because ssj1 always gives at least +5 pot once you hit 40
+					passives["PowerReplacement"] = SS1pot //MATH COMES LATER
+					passives["BuffMastery"] = 5 + (p.AscensionsAcquired / 10)
+					VaizardHealth = 1 + (p.AscensionsAcquired/1.5)
+		if(p.Potential > OOZARU_POTENTIAL_TRANS&&p.oozaru_type!="Demonic")
 			passives["Transformation Power"] = p.AscensionsAcquired
 		if(length(p.race.transformations) >= 4 && p.race.transformations[4].type == /transformation/saiyan/super_saiyan_4 && p.transUnlocked >= 4||length(p.race.transformations) >= 2 && p.race.transformations[2].type == /transformation/saiyan/hellspawn_super_saiyan_2 && p.transUnlocked >= 2)
 			IconTransform = 'SSJOozaru.dmi'
@@ -101,11 +111,16 @@
 			SpdMult = 0.9
 			OffMult = 1.5
 			TimerLimit = 2400
-			if(p.oozaru_type=="Demonic")
-				TimerLimit = 4800
 			VaizardHealth = 1 + (p.AscensionsAcquired/1.5)
 			VaizardShatter = 1
 			PowerMult = 1.5
+			if(p.oozaru_type=="Demonic")
+				TimerLimit = 4800
+				IconTransform = 'SDTBlue.dmi'
+				TopOverlayLock='SDTRedWings.dmi'
+				TopOverlayLock=-10
+				TopOverlayLock=-10
+				Enlarge=3
 
 
 	Trigger(var/mob/User, Override=0)

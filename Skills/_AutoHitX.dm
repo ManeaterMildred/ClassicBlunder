@@ -3201,7 +3201,7 @@ obj
 					adjust(usr)
 					usr.Activate(src)
 			Crowd_Cutter
-				SkillCost=TIER_4_COST
+				SkillCost=TIER_3_COST
 				Copyable=5
 				NeedsSword=1
 				Area="Wide Wave"
