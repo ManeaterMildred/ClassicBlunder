@@ -8311,7 +8311,7 @@ NEW VARIABLES
 			StrMult = 1.1
 			ForMult = 1.1
 			EndMult = 1.1
-			passives = list("Pure Reduction" = 1, "Pure Damage" = 1)
+			passives = list("PureReduction" = 1, "PureDamage" = 1)
 			ActiveMessage="goes beyond, embracing the full power of Protection and Destruction in a desperate last stand!"
 			OffMessage="lets the power of creation and destruction ebb away..."
 			verb/Genesic_Brave()
@@ -8320,7 +8320,7 @@ NEW VARIABLES
 					StrMult= 1.05 + (0.05 * usr.SagaLevel)
 					ForMult= 1.05 + (0.05 * usr.SagaLevel)
 					EndMult= 1.05 + (0.05 * usr.SagaLevel)
-					passives= list("Pure Reduction" = usr.SagaLevel/2, "Pure Damage" = usr.SagaLevel/2)
+					passives= list("PureReduction" = usr.SagaLevel/2, "PureDamage" = usr.SagaLevel/2)
 				if(usr.SagaLevel<3 && usr.Health>25)
 					usr << "You aren't pressed enough to fuse the powers of Protection and Destruction!"
 					return

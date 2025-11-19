@@ -46,3 +46,10 @@
         BuffAffected="/obj/Skills/Buffs/SlotlessBuffs/Autonomous/QueueBuff/Finisher/Dismantled"
         BuffSelf="/obj/Skills/Buffs/SlotlessBuffs/Autonomous/QueueBuff/Finisher/Magnetism"
         HitMessage = "takes apart their foe's defense atomically!"
+
+    Jumbled_Line_Up //Acrobat
+        HitMessage = "hurls skyward a cascade of blades!"
+    Clear_Water //Two Heavens as One
+        HitMessage = "ushers in absolute serenity with a humble slash..."
+    Divine_Wrath //Fierce Diety
+        HitMessage= "unleashes the Fury of the Heavens!"

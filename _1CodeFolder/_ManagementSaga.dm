@@ -1489,7 +1489,8 @@ mob
 									del ks
 
 							if(choice == "Rebellion")
-								src << "...You will know your destiny in time...."
+								src << "Unshatterable, your resolve gains a twofold edge...Your goals are nearly within your grasp."
+								src.AddSkill(new/obj/Skills/Buffs/NuStyle/SwordStyle/Resolve)
 
 					if(src.SagaLevel==6)
 						if(src.KamuiType=="Senketsu")
@@ -1498,7 +1499,7 @@ mob
 							src.contents+=new/obj/Skills/Buffs/SpecialBuffs/Kamui_Unite
 							src << "Your being has merged with life fibers."
 						else if(src.KamuiType=="Junketsu")
-							src << "Unshatterable, your resolve gains a twofold edge...Your goals are nearly within your grasp."
+							src << "Insert cool Flavour Text Here"
 							src.contents+=new/obj/Skills/Buffs/SpecialBuffs/Kamui_Unite
 							src << "You gain the ability to force your Kamui to unite with you!"
 						else if (KamuiType == "Shinra Koketsu")

@@ -33,6 +33,8 @@
 		OverClock = 1 / level
 		if(level >= 5)
 			OverClock = 0
+			StrMult=1.25 + (level * 0.025)
+			EndMult=1.25 + (level * 0.025)
 		passives = list("KiControl" = 1, "HealthPU" = 1, "BleedHit" = 0.5, "Anaerobic" = 1, "CriticalDamage" = (0.1 + (level/10)), "CriticalChance" = level * 5, "CriticalBlock" = 1 + level/10, "BlockChance" = level * 5)
 		ActiveMessage="forces their blood into their Kamui, making use of its full power!<br><center><font color='blue'>Life Fiber Override: Kamui Junketsu!</font color></center>"
 		OffMessage="relaxes their bloodflow, allowing the Kamui they wear to revert..."
@@ -65,13 +67,13 @@ obj/Items/Sword/Heavy/Secret_Sword_Bakuzan
 			var/obj/Items/Sword/Light/Bakuzan_Koryu/bk = new()
 			m.contents += bk
 			m << "Secret Sword Bakuzan shatters - but the shattered parts are more than enough to still use!"
-			del src
+			del src */
 
 obj/Items/Sword/Medium/Bakuzan_Gako
 	Ascended = 3
 	Unobtainable = 1
 	LegendaryItem = 1
-	icon = 'cybox_sword.dm'
+	icon = 'cybox_sword.dmi'
 	pixel_x = -32
 	pixel_y = -32
 	passives = list("Life Fiber Rending" = 3)
@@ -80,10 +82,10 @@ obj/Items/Sword/Light/Bakuzan_Koryu
 	Ascended = 3
 	Unobtainable = 1
 	LegendaryItem = 1
-	icon = 'cybox_sword.dm'
+	icon = 'cybox_sword.dmi'
 	pixel_x = -32
 	pixel_y = -32
-	passives = list("Life Fiber Rending" = 2) */
+	passives = list("Life Fiber Rending" = 2)
 
 /obj/Skills/Bestow_Life_Fiber
 	var/consentNeeded = TRUE
@@ -270,3 +272,29 @@ obj/Skills/Buffs/SpecialBuffs
 			if(!usr.BuffOn(src))
 				adjust(usr)
 			src.Trigger(usr)
+
+/obj/Skills/Buffs/NuStyle/SwordStyle
+	Resolve
+		SagaSignature=1
+		Copyable=0
+		StyleActive="Show of Resolve"
+		StyleStr=1.1
+		StyleEnd=1.1
+		StyleSpd=1.1
+		passives = list("HybridStyle" = "Unarmed", "DoubleStrike" = 2, "NeedsSecondSword" = 1, "TechniqueMastery" = 3, "BuffMastery" = 3)
+		NeedsSecondSword = 1
+		Mastery=4
+		Finisher="/obj/Skills/Queue/Finisher/Rashomon"
+		adjust(mob/p)
+			passives = list("HybridStyle" = "Unarmed", "DoubleStrike" = 2, "NeedsSecondSword" = 1, "TechniqueMastery" = p.SagaLevel/2, "BuffMastery" = p.SagaLevel/2)
+			if(p.ActiveBuff != "Life Fiber Override") // Nudist Beach Satsuki, no Kamui allowed, just shank them if they bypass this, come back to this later and make it.. actually work how I'd like
+				StyleStr=1.1 * (0.05 * p.SagaLevel)
+				StyleEnd=1.1 * (0.05 * p.SagaLevel)
+				StyleSpd=1.1 * (0.05 * p.SagaLevel)
+				StyleOff=1.1
+				StyleDef=1.1
+		verb/Resolve()
+			set hidden=1
+			src.Trigger(usr)
+
+			// To Do: Unique Finisher.
