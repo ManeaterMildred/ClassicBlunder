@@ -11752,8 +11752,8 @@ mob
 							src.ActiveBuff.AngerPoint = 5 * AscensionsAcquired
 						src.ActiveBuff.passives["Pursuer"] = 0.5 * AscensionsAcquired
 						src.ActiveBuff.AngerMult = 1+round(2/(9-AscensionsAcquired), 0.01)
-						src.ActiveBuff.passives["PUSpike"] = round(50/(6-AscensionsAcquired))
-						src.ActiveBuff.PUSpike=round(50/(6-AscensionsAcquired))
+						src.ActiveBuff.passives["PUSpike"] = round(10*AscensionsAcquired)
+						src.ActiveBuff.PUSpike=round(10*AscensionsAcquired)
 				if(src.Saga=="Spiral")
 					src.ActiveBuff.ActiveMessage="channels their evolution with full strength!!!"
 					src.ActiveBuff.OffMessage="calms their evolution..."
