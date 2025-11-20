@@ -286,7 +286,7 @@ obj/Skills/AutoHit
 		StrOffense=0
 		ForOffense=1
 		HolyMod=40
-		DamageMult=3
+		DamageMult=15
 		Area="Circle"
 		Distance=3
 		TurfErupt=2
@@ -313,7 +313,7 @@ obj/Skills/AutoHit
 		StrOffense=0
 		ForOffense=1
 		HolyMod=100
-		DamageMult=2
+		DamageMult=20
 		Area="Circle"
 		Distance=5
 		TurfErupt=2

@@ -471,7 +471,7 @@ update
 				o.race.transformations += new /transformation/human/super_high_tension()
 				o.race.transformations += new /transformation/human/super_high_tension_MAX()
 				o.race.transformations += new /transformation/human/unlimited_high_tension()
-				o<<"You have been given High Tension."
+				o<<"You have been given High Tension. <b>Please customize your hair for HT1, or it will just make you bald..</b>"
 
 
 
