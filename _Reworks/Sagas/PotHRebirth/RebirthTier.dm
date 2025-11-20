@@ -10,7 +10,7 @@ sagaTierUpMessages/Rebirth
 
 /mob/tierUpSaga(path)
 	..()
-	if(path == "Rebirth")
+/*	if(path == "Rebirth")
 		src<<allSagaMessages[path].messages[SagaLevel]
 		switch(SagaLevel)
 			if(2)
@@ -130,4 +130,4 @@ sagaTierUpMessages/Rebirth
 				if(src.RebirthHeroType=="Red")
 					src.AddSkill(new/obj/Skills/Utility/Burning_Soul)
 			if(5)
-			if(6)
+			if(6)*/

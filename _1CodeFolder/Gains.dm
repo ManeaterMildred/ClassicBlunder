@@ -508,6 +508,9 @@ mob
 				scrollTicker--
 				if(scrollTicker<=0)
 					scrollTicker=0
+			if(passive_handler["TensionPowered"] && src.Tension>=50)
+				if(src.isRace(HUMAN)&& src.transActive==1 && src.transUnlocked>=2||src.isRace(CELESTIAL)&& src.transActive==1 && src.transUnlocked>=2)
+					src.race.transformations[2].transform(src, TRUE)
 			if(passive_handler["LegendarySaiyan"]&&src.Tension<100&&src.transActive==src.transUnlocked)
 				var/TensionRando=rand(6,15)
 				src.Tension+=0.7 * (glob.TENSION_MULTIPLIER)*(TensionRando/10)

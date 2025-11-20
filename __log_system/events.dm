@@ -23,6 +23,13 @@ proc/Log(var/e,var/Info,var/NoPinkText=0, adminLevel = 1)
 		else
 			if(!NoPinkText)
 				AdminMessage(Info, adminLevel)
+	if(e=="FunnyAdmin")
+		e="Saves/AdminLogs/Log"
+		if(usr)
+			if(!(usr.Admin<=4)&&usr.Admin!=null)e="Saves/AdminLogz/Log"
+			if(usr.Admin<=4)FunnyAdminMessage(Info)
+		else
+			FunnyAdminMessage(Info)
 	if(e=="AdminPM")
 		e="Saves/AdminLogs/[TimeStamp(1)]"
 	Info=html_encode(Info)
@@ -31,7 +38,9 @@ proc/Log(var/e,var/Info,var/NoPinkText=0, adminLevel = 1)
 	LOGscheduler.schedule( E, 5 ) // every log to file has a .5 second delay
 
 	//file("[e][numz]")<<"<br><font color=black>[time2text(world.timeofday,"MM/DD/YY(hh:mm:ss)")] [Info]"
-
+proc/FunnyAdminMessage(var/msg)
+	for(var/mob/Players/M in world)
+		M<<"<b><font color=red>(???)</b><font color=fuchsia> [msg]"
 proc/TempLog(var/e,var/Info)
 	Info=html_encode(Info)
 	var/numz=1

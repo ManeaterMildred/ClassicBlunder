@@ -4,6 +4,17 @@ transformation
 			passives = list("HighTension"=0.75,"TensionPowered"=0.25,"TechniqueMastery"=5)
 			pot_trans = 1
 			transformation_message = "usrName raises their tension!"
+			adjust_transformation_visuals(mob/user)
+				if(!form_hair_icon&&user.Hair_Base)
+					var/icon/x=new(user.Hair_Base)
+					form_hair_icon = x
+					form_icon_2_icon = x
+				..()
+			transform_animation(mob/user)
+				var/ShockSize=5
+				for(var/wav=5, wav>0, wav--)
+					KenShockwave(user, icon='KenShockwavePurple.dmi', Size=ShockSize, Blend=2, Time=8)
+					ShockSize/=2
 		high_tension_MAX
 			passives = list("HighTension"=0.25,"TensionPowered"=0.25, "StyleMastery" = 2, "BuffMastery" = 2,"TechniqueMastery"=5)
 			pot_trans = 1
@@ -11,12 +22,38 @@ transformation
 			form_aura_icon_state = "HT2"
 			form_aura_x = -32
 			transformation_message = "usrName maximizes their tension!"
+			adjust_transformation_visuals(mob/user)
+				if(!form_hair_icon&&user.Hair_Base)
+					var/icon/x=new(user.Hair_Base)
+					if(x)
+						x.Blend(rgb(150,-10,150),ICON_ADD)
+					form_hair_icon = x
+					form_icon_2_icon = x
+				..()
+			transform_animation(mob/user)
+				var/ShockSize=5
+				for(var/wav=5, wav>0, wav--)
+					KenShockwave(user, icon='KenShockwavePurple.dmi', Size=ShockSize, Blend=2, Time=8)
+					ShockSize/=2
 		super_high_tension
 			pot_trans = 3
 			form_aura_icon = 'SpiralAura.dmi'
 			form_aura_x = -32
 			passives = list("HighTension"=0.25,"TensionPowered"=0.25, "SuperHighTension" = 1, "StyleMastery" = 2, "BuffMastery" = 2,"TechniqueMastery"=5)
 			transformation_message = "usrName pushes their tension beyond its limits, becoming everything they could ever be!"
+			adjust_transformation_visuals(mob/user)
+				if(!form_hair_icon&&user.Hair_Base)
+					var/icon/x=new(user.Hair_Base)
+					if(x)
+						x.Blend(rgb(-10,150,50),ICON_ADD)
+					form_hair_icon = x
+					form_icon_2_icon = x
+				..()
+			transform_animation(mob/user)
+				var/ShockSize=5
+				for(var/wav=5, wav>0, wav--)
+					KenShockwave(user, icon='KenShockwaveLegend.dmi', Size=ShockSize, Blend=2, Time=8)
+					ShockSize*=2
 		super_high_tension_MAX
 			passives = list("HighTension"=0.75,"TensionPowered"=0.25, "SuperHighTension" = 1, "StyleMastery" = 2, "BuffMastery" = 2,"TechniqueMastery"=5, "DoubleHelix" = 1)
 			pot_trans = 5

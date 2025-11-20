@@ -198,7 +198,7 @@ obj/Skills/AutoHit
 		verb/Make_It_Count()
 			set category="Skills"
 			set name="Make It Count (Act 3)"
-			if(world.realtime < src.RebirthLastUse+(600*60*24*7))
+			if(world.realtime < src.RebirthLastUse)
 				usr << "This is on cooldown until [time2text(src.RebirthLastUse, "hh:ss") ]"
 				return
 			if(usr.Health>25)
@@ -240,14 +240,14 @@ obj/Skills/AutoHit
 		HahaWhoops=1
 		ActNumber=1
 	//	Area="Target"
+		adjust(mob/p)
+			src.DamageMult=rand(1,10)
 		verb/Never_See_It_Coming()
 			set category="Skills"
 			set name="Never See It Coming (Act 1)"
-			if(world.realtime < src.RebirthLastUse+(600*60*24))
+			if(world.realtime < src.RebirthLastUse)
 				usr << "This is on cooldown until [time2text(src.RebirthLastUse, "hh:ss") ]"
 				return
-			RandomMult=rand(1,10)
-			src.DamageMult=RandomMult
 			src.RebirthLastUse=world.realtime + 24 HOURS
 			usr.Activate(src)
 			usr.TriggerAwakeningSkill(ActNumber)
@@ -272,8 +272,8 @@ obj/Skills/AutoHit
 		verb/GenderDysphoria()
 			set category="Skills"
 			set name="Power Word: Gender Dysphoria (Act 2)"
-			if(world.realtime < src.RebirthLastUse+(600*60*72))
-				usr << "This is on cooldown until [time2text(src.RebirthLastUse, "hh:ss") ]"
+			if(world.realtime < src.RebirthLastUse)
+				usr << "This is on cooldown until [time2text(src.RebirthLastUse, "dd:hh:ss") ]"
 				return
 			if(usr.Health>50)
 				usr<<"You can only use this at 50% health or below."
@@ -314,7 +314,7 @@ obj/Skills/AutoHit
 		ForOffense=1
 		HolyMod=100
 		DamageMult=20
-		Area="Circle"
+		Area="Target"
 		Distance=5
 		TurfErupt=2
 		TurfEruptOffset=3
@@ -460,6 +460,34 @@ obj/Skills
 	var/PlatinumMad
 obj/Skills/Queue
 	var/RandomMult
+	HoldingOutForAHero
+		ManaCost=100
+		Cooldown=-1
+		var/buffpicked
+		icon_state="Heal"
+		Copyable=3
+		HarderTheyFall=3
+		Opener=1
+		Duration=5
+		ActiveMessage="prepares a chain of giant-toppling attacks!"
+		DamageMult=3
+		AccuracyMult=1.1
+		InstantStrikes=4
+		InstantStrikesDelay=1.5
+		BuffSelf="/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Temporary_Hero_Heart"
+		desc="Randomly cast Hero Heart or Hero Soul on yourself."
+		adjust(mob/p)
+			if(prob(50))
+				src.BuffSelf="/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Temporary_Hero_Heart"
+			else
+				src.BuffSelf="/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Temporary_Hero_Soul"
+		verb/HoldingOutForAHero()
+			set name="Holding Out For a Hero"
+			set category="Skills"
+			if(usr.ManaAmount<src.ManaCost)
+				usr<<"You need [src.ManaCost] ACT to use this."
+			adjust(usr)
+			usr.SetQueue(src)
 	NeverKnowsBest
 		Copyable=0
 		ActNumber=1
@@ -507,7 +535,7 @@ obj/Skills/Queue
 		verb/FistOfTheRedStar()
 			set category="Skills"
 			set name="Fist Of The Red Star (Act 2)"
-			if(world.realtime < src.RebirthLastUse+(600*60*72))
+			if(world.realtime < src.RebirthLastUse)
 				usr << "This is on cooldown until [time2text(src.RebirthLastUse, "hh:ss") ]"
 				return
 			if(usr.Health>50)
@@ -558,7 +586,7 @@ obj/Skills/Utility
 		verb/TheBlueExperience()
 			set category="Skills"
 			set name="The Blue Experience (Act 2)"
-			if(world.realtime < src.RebirthLastUse+(600*60*72))
+			if(world.realtime < src.RebirthLastUse)
 				usr << "This is on cooldown until [time2text(src.RebirthLastUse, "hh:ss") ]"
 				return
 			if(usr.Health>50)
@@ -575,7 +603,7 @@ obj/Skills/Utility
 		verb/Burning_Soul()
 			set category="Skills"
 			set name="Red Hot Rage (Act 3)"
-			if(world.realtime < src.RebirthLastUse+(600*60*24*7))
+			if(world.realtime < src.RebirthLastUse)
 				usr << "This is on cooldown until [time2text(src.RebirthLastUse, "hh:ss") ]"
 				return
 			if(usr.Health>25)
@@ -626,18 +654,75 @@ obj/Skills/Utility
 			set category="Utility"
 			usr.SkillX("BetterHeal",src)
 	HoldingOutForAHero
-		ManaCost=100
 		Cooldown=-1
-		var/buffpicked
-		icon_state="Heal"
-		desc="Randomly cast Hero Heart or Hero Soul on yourself."
 		verb/HoldingOutForAHero()
 			set name="Holding Out For a Hero"
 			set category="Skill"
-			if(usr.ManaAmount<src.ManaCost)
-				usr<<"You need [src.ManaCost] ACT to use this."
-			src.buffpicked=pick(list("/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Temporary_Hero_Heart", "/obj/Skills/Buffs/SlotlessBuffs/Autonomous/Temporary_Hero_Soul"))
-			usr.buffSelf(src.buffpicked)
+			usr.AddSkill(new/obj/Skills/Queue/HoldingOutForAHero)
+			del src
+	TheUndying
+		Cooldown=-1
+		verb/Undying()
+			set name="RISE UP"
+			set category="Skills"
+			if(src.Using) return
+			src.Using=1
+		//	usr.loc=usr.UndyingLoc
+			//usr.loc=usr.UndyingLoc
+			usr.passive_handler.Decrease("Undying")
+		//	usr.OMessage(15,"[usr] <b>shines brightly with everlasting Hope, refusing to allow their story to end!</b>","<font color=red>[usr]([usr.key]) used Undying.")
+			var/image/GG=image('GodGlow.dmi',pixel_x=-32,pixel_y=-32, loc = usr, layer=MOB_LAYER-0.5)
+			GG.appearance_flags=KEEP_APART | NO_CLIENT_COLOR | RESET_ALPHA | RESET_COLOR
+			GG.color=list(1,0,0, 0,1,0, 0,0,1, 0.2,0.2,0.4)
+			GG.filters+=filter(type = "drop_shadow", x=0, y=0, color=rgb(190, 34, 55, 37), size = 5)
+			animate(GG, alpha=0, transform=matrix()*0.7)
+			usr.loc=usr.UndyingLoc
+			usr.OMessage(15,"[usr] <b>shines brightly with everlasting Hope, refusing to allow their story to end!</b>","<font color=red>[usr]([usr.key]) used Undying.")
+			world << GG
+			animate(GG, alpha=255, time=30, transform=matrix()*1)
+			animate(usr, color = list(0.45,0.6,0.75, 0.64,0.88,1, 0.16,0.21,0.27, 0,0,0), pixel_y=32, time=30)
+			sleep(40)
+
+			var/image/GO=image('GodOrb.dmi',pixel_x=-16,pixel_y=-16, loc = usr, layer=EFFECTS_LAYER+0.5)
+			GO.appearance_flags=KEEP_APART | NO_CLIENT_COLOR | RESET_ALPHA | RESET_COLOR
+			GO.filters+=filter(type = "drop_shadow", x=0, y=0, color=rgb(190, 34, 55, 156), size = 3)
+			animate(GO, alpha=0)
+			world << GO
+			animate(GO, alpha=255, time=40)
+			for(var/mob/Players/T in view(31, usr))
+				animate(T.client, color=list(0.5,0,0, 0,0.5,0, 0,0,0.5, 0,0,0.1), time = 40)
+				spawn(40)
+					animate(T.client, color=null, time = 40)
+			spawn(10)
+				KenShockwave(usr, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+				animate(GO, color=list(1,0,0, 0,1,0, 0,0,1, 0.8,0.8,0.8), time=30)
+			spawn(20)
+				KenShockwave(usr, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+			spawn(30)
+				KenShockwave(usr, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+			spawn(40)
+				KenShockwave(usr, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+			spawn(50)
+				KenShockwave(usr, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+			sleep(50)
+			animate(usr, color = null)
+			sleep(30)
+			GG.filters-=filter(type = "drop_shadow", x=0, y=0, color=rgb(190, 34, 55, 37), size = 5)
+			GG.filters+=filter(type = "drop_shadow", x=0, y=0, color=rgb(51, 220, 243), size = 1)
+
+			animate(GO, alpha=0, time=10)
+			sleep(10)
+			animate(usr, pixel_y=0, time=30)
+			animate(GG, alpha=0, time=50)
+			usr.passive_handler.Increase("CalmAnger")
+			usr.passive_handler.Increase("FutureRewritten")
+			usr.OMessage(15,"[usr] <b>unlocks the full potential of the Axe of Justice!!!</b>","<font color=red>[usr]([usr.key]) used Undying.")
+			spawn(50)
+				GO.filters=null
+				del GO
+				GG.filters=null
+				del GG
+			del src
 obj/Skills/Projectile
 	var/PartyReq
 	var/PartyReqType
@@ -650,7 +735,7 @@ obj/Skills/Projectile
 		HyperHoming=1
 		Dodgeable=-1
 		Deflectable=-1
-		IconLock='RudeBuster.dmi'
+		IconLock='RudeBuster2.dmi'
 		LockX=-16
 		IconSize=1
 		Radius=3
@@ -664,8 +749,6 @@ obj/Skills/Projectile
 		Charge=0.25
 		ManaCost=40
 		DamageMult=8
-		PartyReq=1
-		PartyReqType="Cyan"
 		Shearing=1
 		AccMult=100
 		HyperHoming=1
@@ -690,7 +773,7 @@ obj/Skills/Projectile
 		HyperHoming=1
 		Dodgeable=-1
 		Deflectable=-1
-		IconLock='RudeBuster.dmi'
+		IconLock='Burning Black.dmi'
 		LockX=-16
 		IconSize=1
 		Radius=3
@@ -709,7 +792,8 @@ obj/Skills/Projectile
 		HyperHoming=1
 		Dodgeable=-1
 		Deflectable=-1
-		IconLock='RudeBuster.dmi'
+		IconLock='Burning Black.dmi'
+		TurfShift='OmegaLava.dmi'
 		LockX=-16
 		IconSize=1
 		Radius=3
@@ -779,8 +863,8 @@ obj/Skills/Projectile
 			verb/Final_Chaos()
 				set category="Skills"
 				set name="Final Chaos (Act 3)"
-				if(world.realtime < src.RebirthLastUse+(600*60*168))
-					usr << "This is on cooldown until [time2text(src.RebirthLastUse, "hh:ss") ]"
+				if(world.realtime < src.RebirthLastUse)
+					usr << "This is on cooldown until [time2text(src.RebirthLastUse, "dd:hh:ss") ]"
 					return
 				if(usr.Health>25)
 					usr<<"Can't use yet!"
@@ -804,6 +888,31 @@ obj/Skills/Buffs
 			ActiveMessage="tears their heart from their chest."
 			OffMessage="places their still-beating heart back into their chest."
 			verb/RemoveSOUL()
+				set category="Skills"
+				adjust(usr)
+				src.Trigger(usr)
+		BlackKnife
+			MakesSword=1
+			SwordName="Black Shard"
+			SwordIcon='BlackShard.dmi'
+			SwordX=-32
+			SwordY=-32
+			SwordClass="Large"
+			StrMult=1.85
+			SpdMult=1.5
+			PowerMult=1.25
+			Cooldown = 1
+			SwordAscension=5
+			passives = list("HolyMod" = 3)
+			ActiveMessage="materializes the Black Knife."
+			OffMessage="puts the black knight away."
+			adjust(mob/p)
+				passives = list("PUSpike"=50, "AbyssMod" = 3, "BlurringStrikes"=3, "HolyMod" = 3, "HellPower"=0.1, "Determination(Black)"=1)
+				PowerMult=1.25
+				StrMult=1.85
+				SpdMult=1.5
+				PowerMult=1.25
+			verb/BlackShard()
 				set category="Skills"
 				adjust(usr)
 				src.Trigger(usr)
@@ -870,8 +979,11 @@ obj/Skills/Buffs
 			adjust(mob/p)
 				passives = list("PUSpike"=50)
 				PowerMult=1.25
-			verb/Devilsknife()
+				if(p.passive_handler["FutureRewritten"])
+					passives = list("PUSpike"=50, "SpiritSword" = 0.75, "ManaGeneration" = 1)
+			verb/JusticeAxe()
 				set category="Skills"
+				set name="Axe of Justice"
 				adjust(usr)
 				src.Trigger(usr)
 		Spookysword
@@ -929,3 +1041,21 @@ obj/Skills/Grapple
 		verb/CHAOS_DUNK()
 			set category="Skills"
 			src.Activate(usr)
+/obj/Skills/Buffs/NuStyle/SwordStyle //t3 scaled styles
+	The_Roaring_Knight //cyan t5 evil path
+		StyleActive="The Roaring Knight"
+		passives = list("BlurringStrikes"=2, "Secret Knives" = "GodSlayer")
+		StyleEnd=1.5
+		StyleStr=1.5
+	White_Pen_Of_Hope //cyan t5 good path
+		StyleActive="The White Pen of Hope"
+		passives = list("ManaGeneration" = 1)
+		StyleSpd=1.5
+		StyleStr=1.25
+		StyleFor=1.25
+	Justice_Incarnate
+		StyleActive="Justice Incarnate"
+		StyleStr=1.25
+		StyleFor=1.25
+		StyleEnd=1.5
+		passives = list("DisableGodKi" = 1, "Deicide" = 10, "Rage" = 5, "Momentum" = 1)

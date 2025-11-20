@@ -777,8 +777,11 @@ mob/proc/Leave_Body(var/SuperDead=0, var/Zombie, var/ForceVoid=0)
 	A.loc=locate(src.x, src.y, src.z)
 	A.transform=src.transform
 	src.loc=locate(glob.currentlyVoidingLoc[1], glob.currentlyVoidingLoc[2], glob.currentlyVoidingLoc[3])
+	var/NotYet=0
+	if(src.passive_handler.Get("Undying"))
+		NotYet=1
 
-	if(!SuperDead)
+	if(!SuperDead||NotYet)
 		if(glob.VoidsAllowed||ForceVoid)
 			var/Timer
 			ActuallyDead=1
@@ -786,7 +789,7 @@ mob/proc/Leave_Body(var/SuperDead=0, var/Zombie, var/ForceVoid=0)
 				Timer=Minute(1)//this will always happen
 				ActuallyDead=0
 				A.TrulyDead=0
-			if(prob(Chance))
+			if(prob(Chance)||NotYet)
 				ActuallyDead=0
 				A.TrulyDead=0
 			if(!ActuallyDead)
@@ -817,6 +820,10 @@ mob/proc/Leave_Body(var/SuperDead=0, var/Zombie, var/ForceVoid=0)
 							return
 						else
 							src << "Your fate has been decided; you move on to the realm of the dead..."
+							if(src.isRace(DEMON, ELDRITCH)||src.Damned||src.Secret=="Eldritch")
+								src.Damned=0
+								src.loc=locate(198, 238, 8)
+								return
 							src.loc=locate(glob.DEATH_LOCATION[1], glob.DEATH_LOCATION[2], glob.DEATH_LOCATION[3])
 
 	else if(SuperDead&&Zombie)
@@ -902,6 +909,56 @@ mob/proc/Barely_Alive(mob/P) if(P)
 		P.Conscious()
 	P.Revive()
 	P<<"You have returned to your body, barely alive."
+	if(P.passive_handler.Get("Undying"))
+		P.passive_handler["Undying"]=0
+		P.passive_handler.Increase("CalmAnger")
+		P.OMessage(15,"[P] shines brightly with everlasting Hope, refusing to allow their story to end!","<font color=red>[P]([P.key]) used Undying.")
+		var/image/GG=image('GodGlow.dmi',pixel_x=-32,pixel_y=-32, loc = P, layer=MOB_LAYER-0.5)
+		GG.appearance_flags=KEEP_APART | NO_CLIENT_COLOR | RESET_ALPHA | RESET_COLOR
+		GG.color=list(1,0,0, 0,1,0, 0,0,1, 0.2,0.2,0.4)
+		GG.filters+=filter(type = "drop_shadow", x=0, y=0, color=rgb(190, 34, 55, 37), size = 5)
+		animate(GG, alpha=0, transform=matrix()*0.7)
+		world << GG
+		animate(GG, alpha=255, time=30, transform=matrix()*1)
+		animate(P, color = list(0.45,0.6,0.75, 0.64,0.88,1, 0.16,0.21,0.27, 0,0,0), pixel_y=32, time=30)
+		sleep(40)
+
+		var/image/GO=image('GodOrb.dmi',pixel_x=-16,pixel_y=-16, loc = P, layer=EFFECTS_LAYER+0.5)
+		GO.appearance_flags=KEEP_APART | NO_CLIENT_COLOR | RESET_ALPHA | RESET_COLOR
+		GO.filters+=filter(type = "drop_shadow", x=0, y=0, color=rgb(190, 34, 55, 156), size = 3)
+		animate(GO, alpha=0)
+		world << GO
+		animate(GO, alpha=255, time=40)
+		for(var/mob/Players/T in view(31, P))
+			animate(T.client, color=list(0.5,0,0, 0,0.5,0, 0,0,0.5, 0,0,0.1), time = 40)
+			spawn(40)
+				animate(T.client, color=null, time = 40)
+		spawn(10)
+			KenShockwave(P, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+			animate(GO, color=list(1,0,0, 0,1,0, 0,0,1, 0.8,0.8,0.8), time=30)
+		spawn(20)
+			KenShockwave(P, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+		spawn(30)
+			KenShockwave(P, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+		spawn(40)
+			KenShockwave(P, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+		spawn(50)
+			KenShockwave(P, icon='KenShockwaveDivine.dmi', PixelY=24, Size=5, Blend=2)
+		sleep(50)
+		animate(P, color = null)
+		sleep(30)
+		GG.filters-=filter(type = "drop_shadow", x=0, y=0, color=rgb(190, 34, 55, 37), size = 5)
+		GG.filters+=filter(type = "drop_shadow", x=0, y=0, color=rgb(51, 220, 243), size = 1)
+
+		animate(GO, alpha=0, time=10)
+		sleep(10)
+		animate(P, pixel_y=0, time=30)
+		animate(GG, alpha=0, time=50)
+		spawn(50)
+			GO.filters=null
+			del GO
+			GG.filters=null
+			del GG
 	del(src)
 
 mob/proc/Unholy_Alive(mob/P) if(P)

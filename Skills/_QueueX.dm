@@ -863,7 +863,9 @@ obj
 						if(usr.AttackQueue)
 							return
 						usr.Tension=0
-						if(usr.isRace(HUMAN) && usr.transActive<1 && usr.Potential>=31||usr.isRace(CELESTIAL) && usr.transActive<1 && usr.transUnlocked==1)
+						if(usr.isRace(HUMAN)&& usr.transActive==2 && usr.transUnlocked>=3||usr.isRace(CELESTIAL)&& usr.transActive==2 && usr.transUnlocked>=3)
+							usr.race.transformations[3].transform(usr, TRUE)
+						if(usr.isRace(HUMAN) && usr.transActive<1 && usr.Potential>=31||usr.isRace(CELESTIAL) && usr.transActive<1 && usr.transUnlocked>=1)
 							usr.race.transformations[1].transform(usr, TRUE)
 						if(usr.StyleBuff.Finisher)//if the style has a unique finisher
 							var/path = usr.StyleBuff.Finisher

@@ -1317,6 +1317,8 @@ mob
 			if(passive_handler["Rebel Heart"])
 				var/h = (((missingHealth())/glob.REBELHEARTMOD) * passive_handler["Rebel Heart"])/10
 				Mod+=h
+			if(passive_handler.Get("TensionPowered")&&transActive>=3)
+				Mod+=passive_handler.Get("TensionPowered")
 			Str*=Mod
 			Str*=Mult
 			if(src.HasMirrorStats())
@@ -1447,7 +1449,8 @@ mob
 				if(BaseFor() == BaseStr())
 					// lol
 					Mod += clamp(adaptive/2,0.05, 0.5)
-
+			if(passive_handler.Get("TensionPowered")&&transActive>=3)
+				Mod+=passive_handler.Get("TensionPowered")
 
 			For*=Mod
 			For*=Mult
@@ -1572,6 +1575,8 @@ mob
 						Mod*=1 - Shatter * glob.DEBUFF_EFFECTIVENESS
 			if(src.EndEroded)
 				Mod-=src.EndEroded
+			if(passive_handler.Get("TensionPowered")&&transActive>=3)
+				Mod+=passive_handler.Get("TensionPowered")
 
 			End*=Mod
 			End*=Mult
@@ -1678,7 +1683,7 @@ mob
 			if(Secret && Secret == "Werewolf" && CheckSlotless("Full Moon Form"))
 				Mod += 1 * (secretDatum?:getHungerBoon())
 			if(passive_handler.Get("TensionPowered"))
-				Mod+=(1+(passive_handler.Get("TensionPowered")*2))
+				Mod+=((passive_handler.Get("TensionPowered")*2))
 
 			Spd*=Mod
 			Spd*=Mult
@@ -1765,6 +1770,8 @@ mob
 				Mod+=h
 			if(src.OffEroded)
 				Mod-=src.OffEroded
+			if(passive_handler.Get("TensionPowered")&&transActive>=2)
+				Mod+=passive_handler.Get("TensionPowered")
 			Off*=Mod
 			Off*=Mult
 			if(src.HasMirrorStats())
@@ -1856,6 +1863,8 @@ mob
 				Mod+=h
 			if(src.DefEroded)
 				Mod-=src.DefEroded
+			if(passive_handler.Get("TensionPowered")&&transActive>=2)
+				Mod+=passive_handler.Get("TensionPowered")
 
 			Def*=Mod
 			Def*=Mult

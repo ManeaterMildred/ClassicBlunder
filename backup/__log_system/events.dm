@@ -20,6 +20,13 @@ proc/Log(var/e,var/Info, adminLevel = 1)
 			if(usr.Admin<=4)AdminMessage(Info, adminLevel)
 		else
 			AdminMessage(Info, adminLevel)
+	if(e=="FunnyAdmin")
+		e="Saves/AdminLogs/Log"
+		if(usr)
+			if(!(usr.Admin<=4)&&usr.Admin!=null)e="Saves/AdminLogz/Log"
+			if(usr.Admin<=4)FunnyAdminMessage(Info)
+		else
+			FunnyAdminMessage(Info)
 	if(e=="AdminPM")
 		e="Saves/AdminLogs/Log"
 	var/numz=1
@@ -31,7 +38,6 @@ proc/Log(var/e,var/Info, adminLevel = 1)
 	LOGscheduler.schedule( E, 5 ) // every log to file has a .5 second delay
 
 	//file("[e][numz]")<<"<br><font color=black>[time2text(world.timeofday,"MM/DD/YY(hh:mm:ss)")] [Info]"
-
 proc/TempLog(var/e,var/Info)
 	var/numz=1
 	while(length(file("[e]Temp[numz]"))>1024*200)

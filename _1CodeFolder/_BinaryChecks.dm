@@ -431,6 +431,8 @@ mob
 				Total=4
 			return Total
 		HasTensionLock()
+			if(passive_handler.Get("TensionPowered"))
+				return 0
 			if(passive_handler.Get("TensionLock"))
 				return 1
 			return 0

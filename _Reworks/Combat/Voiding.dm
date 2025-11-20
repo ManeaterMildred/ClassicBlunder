@@ -30,7 +30,9 @@ mob/proc/getVoidRolls(extraRolls = 0)
 /mob/var/extraVoidChance = 0
 
 /mob/proc/applyVoidNerf()
-	if(glob.VoidMaim)
+	if(src.passive_handler.Get("Undying"))
+		return
+	if(glob.VoidMaim||!src.)
 		Maimed++
 		src << "After managing to survive, you're left with a maim."
 	if(glob.VoidCut)
@@ -103,6 +105,8 @@ mob/proc/StartFresh()
 
 /mob/proc/makeCorpse(oldLoc)
 	Stunned = 0
+	if(src.passive_handler.Get("Undying"))
+		return
 	var/mob/Body/corpse = new()
 	corpse.race = new/race/human()
 	corpse.appearance = appearance
@@ -175,8 +179,10 @@ mob/proc/Void(override, zombie, forceVoid, extraChance = 0, extraRolls = 0)
 		src<<"You have [extraChance] reduced void chance from your REDACTED" //TODO: leaving as a note to change if needed
 
 	// handle the rolling here maybe
-
-	if(override)
+	var/NotYet=0
+	if(src.passive_handler.Get("Undying"))
+		NotYet=1
+	if(override&&!NotYet)
 		if(zombie)
 			actuallyDead = 0
 			src<<"You get past it all"
@@ -212,7 +218,7 @@ mob/proc/Void(override, zombie, forceVoid, extraChance = 0, extraRolls = 0)
 	makeCorpse(oldLoc)
 
 
-	if(glob.VoidsAllowed)
+	if(glob.VoidsAllowed||NotYet)
 
 		if(forceVoid)
 			// there is no need to roll
@@ -233,7 +239,9 @@ mob/proc/Void(override, zombie, forceVoid, extraChance = 0, extraRolls = 0)
 						src<<"You rolled a [roll] and the roll to beat was [100-glob.VoidChance]! You have died!"
 				if(rolls<0)
 					rolls = 0
-
+		if(NotYet)
+			src<<"<b>But... it's not over for you yet, [src]!!!!</b>"
+			actuallyDead=0
 		// forced void
 		if(actuallyDead)
 			if(NoSoul)
@@ -244,6 +252,9 @@ mob/proc/Void(override, zombie, forceVoid, extraChance = 0, extraRolls = 0)
 			else
 				src<<"You sustain the injuries detailed in your death -- as the pain fades, you awaken in the afterlife. Alone, but not for long."
 				src.loc=locate(glob.DEATH_LOCATION[1], glob.DEATH_LOCATION[2], glob.DEATH_LOCATION[3])
+				if(src.isRace(DEMON)||src.isRace(ELDRITCH)||src.Damned||src.Secret=="Eldritch")
+					src.Damned=0
+					src.loc=locate(198, 238, 8)
 				if(istype(src, /mob/Players/))
 					ArchiveSave(src)
 				Dead = 1
@@ -252,9 +263,15 @@ mob/proc/Void(override, zombie, forceVoid, extraChance = 0, extraRolls = 0)
 			// voided
 			src << glob.VOID_MESSAGE
 			void_timer = world.realtime + glob.VOID_TIME
+			if(NotYet)
+				void_timer = world.realtime + 50
 			voiding = TRUE
 			Conscious()
 			src.loc = locate(glob.VOID_LOCATION[1], glob.VOID_LOCATION[2], glob.VOID_LOCATION[3])
+			if(NotYet)
+				src<<"Your story has not yet ended. Cast the final die, and awaken anew."
+				src.AddSkill(new/obj/Skills/Utility/TheUndying)
+				src.UndyingLoc=oldLoc
 			applyVoidNerf()
 	if(src.Grab)
 		src.Grab_Release()

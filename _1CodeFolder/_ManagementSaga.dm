@@ -84,7 +84,7 @@ mob/var
 	tmp/AwakeningSkillUsed
 	Snowgrave=5
 	TranceLevel=0
-
+	UndyingLoc
 	//SAINT SEIYA
 	SenseUnlocked=5
 	ClothBronze
@@ -867,7 +867,7 @@ mob
 										src<< "nyoro~n :3c"
 										src.AddSkill(new/obj/Skills/Utility/NeverTooEarly)
 										src.AddSkill(new/obj/Skills/Projectile/Beams/TasteTheRainbow)
-										src.AddSkill(new/obj/Skills/Utility/HoldingOutForAHero)
+										src.AddSkill(new/obj/Skills/Queue/HoldingOutForAHero)
 						if(3)
 							src.SagaLevel=3
 							if(src.RebirthHeroType=="Cyan")
