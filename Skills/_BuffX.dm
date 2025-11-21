@@ -1955,9 +1955,10 @@ NEW VARIABLES
 				src.Trigger(usr)
 		Spirit_Burst
 			SignatureTechnique=3
-			FatigueThreshold=10
+			EnergyThreshold=25
 			passives = list("Instinct" = 1, "PureDamage" = 2, "FatigueLeak" = 3)
 			FatigueDrain = 0.0025
+			Cooldown=60
 			Instinct=1
 			Flicker=1
 			PureDamage=2
@@ -1971,13 +1972,14 @@ NEW VARIABLES
 				src.Trigger(usr)
 		Unbound_Mode
 			SignatureTechnique=3
-			ManaThreshold=1
+			EnergyThreshold=10
 			EnergyLeak=1.5
 			StrMult=1.2
 			EndMult=1.2
 			SpdMult=1.2
 			ForMult=1.2
 			RecovMult=1.2
+			Cooldown=60
 			passives = list("MovementMastery" = 3, "TechniqueMastery" = 2.5, "BuffMastery" = 2)
 			FlashChange=1
 			KenWaveIcon='Unbound.dmi'
@@ -2355,7 +2357,7 @@ NEW VARIABLES
 			Ghost_Install
 				SignatureTechnique=3
 				Afterimages=1
-				Cooldown = -1
+				Cooldown = 30
 				passives = list("DoubleStrike" = 1)
 				DoubleStrike=1
 				SpdMult=1.5
@@ -2367,11 +2369,8 @@ NEW VARIABLES
 					set category="Skills"
 					if(!altered)
 						if(!usr.BuffOn(src))
-							AngerMult = 0
-							AutoAnger = 0
 							switch(fightingType)
 								if("Berserker")
-									AngerMult = 1.25
 									passives = list("PureReduction" = -1, "PureDamage" = 2, "DoubleStrike" = 1, "HeavyHitter" = 0.5, "Steady" = 1, "CancelDemonicDura" = 1 )
 									StrMult = 1.3
 									ForMult = 1.3
@@ -2393,7 +2392,6 @@ NEW VARIABLES
 
 			Way_of_the_Stripe//true tiger
 				SignatureTechnique=3
-				PreRequisite=list("/obj/Skills/Buffs/NuStyle/UnarmedStyle/Cat_Style")
 				passives = list("MovementMastery" = 2,"TechniqueMastery" = 2, "HardStyle" = 1, "UnarmedDamage" = 1)
 				HardStyle=1
 				StrMult=1.2
@@ -2406,7 +2404,6 @@ NEW VARIABLES
 					src.Trigger(usr)
 			Constricting_Coil_Dance//true dragon
 				SignatureTechnique=3
-				PreRequisite=list("/obj/Skills/Buffs/NuStyle/UnarmedStyle/Snake_Style")
 				Cooldown = -1
 				passives = list("MovementMastery" = 2,"TechniqueMastery" = 2, "SoftStyle" = 1, "SpiritHand" = 1, "Deflection" = 1)
 				TechniqueMastery=5
@@ -2426,7 +2423,6 @@ NEW VARIABLES
 					src.Trigger(usr)
 			Hollow_Shell_Kata//true tortoise
 				SignatureTechnique=3
-				PreRequisite=list("/obj/Skills/Buffs/NuStyle/UnarmedStyle/Turtle_Style")
 				Cooldown = -1
 				passives = list("MovementMastery" = 2,"TechniqueMastery" = 2, "Void" = 1, "FluidForm" = 1, "VoidField" = 2, "DeathField" = 2)
 				Void=1
@@ -2443,7 +2439,6 @@ NEW VARIABLES
 					src.Trigger(usr)
 			Sky_Emperor_Walk//true phoenix
 				SignatureTechnique=3
-				PreRequisite=list("/obj/Skills/Buffs/NuStyle/UnarmedStyle/Crane_Style")
 				Cooldown = -1
 				passives = list("MovementMastery" = 2,"TechniqueMastery" = 2, "Skimming" = 2, "SpiritFlow" = 1, "HybridStrike" = 0.25 )
 				SpiritFlow=1
@@ -3447,7 +3442,7 @@ NEW VARIABLES
 				if(!usr.BuffOn(src))
 					if(usr.CheckActive("Keyblade"))
 						if(!src.Using)
-							if(prob(5*usr.LimitCounter) && usr.SagaLevel < 8)
+							if(prob(5*usr.LimitCounter) && usr.SagaLevel < 6)
 								usr.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/AntiForm)
 								usr.LimitCounter=0
 								return
@@ -3488,7 +3483,7 @@ NEW VARIABLES
 				if(!usr.BuffOn(src))
 					if(usr.CheckActive("Keyblade"))
 						if(!src.Using)
-							if(prob(7.5*usr.LimitCounter) && usr.SagaLevel < 8)
+							if(prob(7.5*usr.LimitCounter) && usr.SagaLevel < 6)
 								usr.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Autonomous/AntiForm)
 								usr.LimitCounter=0
 								return
@@ -3567,7 +3562,7 @@ NEW VARIABLES
 			KenWaveY=105
 			ActiveMessage="glows with limitless heart!"
 			OffMessage="de-syncs with their heart..."
-			Cooldown=10800
+			Cooldown=-1
 			verb/Final_Form()
 				set category="Skills"
 				if(!usr.BuffOn(src))
@@ -3646,7 +3641,7 @@ NEW VARIABLES
 					AutoAnger=1
 					passives = list("Tenacity" = player.SagaLevel, "UnderDog" = player.SagaLevel/2, "Persistence" = player.SagaLevel, "AngerThreshold" = 1.75)
 				if(player.SagaLevel>=5)
-					ActiveMessage="roars with a heart full of courage, they are the embodiement of courage itself!"
+					ActiveMessage="roars with a heart full of courage, they are the embodiment of courage itself!"
 					AngerMult=2
 				if(!player.BuffOn(src))
 					StrMult = 1.15 + (0.05 * usr.SagaLevel)
