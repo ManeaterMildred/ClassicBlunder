@@ -1355,8 +1355,9 @@ mob
 			for(var/obj/Skills/Buffs/SlotlessBuffs/Autonomous/A in src.Buffs)
 				//Activations
 				if(!A.SlotlessOn)
-
-
+					for(var/obj/Items/omni in src.contents)
+						if(omni.LocksOutAutonomous && omni.suffix=="*Equipped*")
+							return
 					if(A.NeedsPassword)
 						if(!A.Password)
 							continue
