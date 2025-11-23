@@ -59,7 +59,7 @@
 
 /obj/Skills/Buffs/SlotlessBuffs/Autonomous/Racial/Undying_Rage
 	TooMuchHealth = 25
-	NeedsHealth = 1
+	NeedsHealth = 10
 	passives = list("Undying Rage" = 1)
 	Cooldown = -1
 	SpdMult=1.5

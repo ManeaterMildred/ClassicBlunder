@@ -34,31 +34,19 @@ race
 
 		onFinalization(mob/user)
 			var/Choice
-			var/Confirm
-			while(Confirm!="Yes")
-				Choice=input(user, "Have you gained the powers of Angels or Demons?", "Celestial Type") in list("Angel", "Demon")
-				user.CelestialAscension = Choice
-				switch(user.CelestialAscension)
-					if("Angel")
-						Confirm=alert(user, "Your body was imparted with the spark of the divine normally reserved for the soul, granting your mind and body natural harmony far beyond that of the average mortal.", "Angel", "Yes", "No")
-						if("Yes")
-							passives["TechniqueMastery"]=1
-							passives["StyleMastery"]=2
-							if(!locate(/obj/Skills/Buffs/NuStyle/MortalUI/Mortal_Instinct_Style, user))
-								var/obj/Skills/Buffs/NuStyle/s=new/obj/Skills/Buffs/NuStyle/MortalUI/Mortal_Instinct_Style
-								user.AddSkill(s)
-							user << "You have embarked upon the path of true martial arts mastery: Ultra Instinct."
-					if("Demon")
-						Confirm=alert(user, "An inert demon has been forcibly implanted in your soul, allowing you to brandish its power as a weapon.", "Demon", "Yes", "No")
-						if("Yes")
-							user.TrueName=input(user, "What is the name of the Demon within?", "Get True Name") as text
-							user.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Devil_Arm2)
-				user.CelestialAscension = Choice
-				user.passive_handler.increaseList(passives)
-				user.race.transformations += new /transformation/human/high_tension()
-				user.race.transformations += new /transformation/human/high_tension_MAX()
-				user.race.transformations += new /transformation/human/super_high_tension()
-				user.race.transformations += new /transformation/human/super_high_tension_MAX()
-				user.race.transformations += new /transformation/human/unlimited_high_tension()
-				for(var/s in skills)
-					user.AddSkill(new s)
+			..()
+			Choice=input(user, "Have you gained the powers of Angels (Ultra Instinct) or Demons (Devil Arms)?", "Celestial Type") in list("Angel", "Demon")
+			user.CelestialAscension = Choice
+			GiveRacial(user)
+		proc/GiveRacial(mob/p)
+			switch(p.CelestialAscension)
+				if("Angel")
+					p.passive_handler.Increase("TechniqueMastery", 1)
+					p.passive_handler.Increase("StyleMastery", 2)
+					if(!locate(/obj/Skills/Buffs/NuStyle/MortalUI/Mortal_Instinct_Style, p))
+						var/obj/Skills/Buffs/NuStyle/s=new/obj/Skills/Buffs/NuStyle/MortalUI/Mortal_Instinct_Style
+						p.AddSkill(s)
+					p << "You have embarked upon the path of true martial arts mastery: Ultra Instinct."
+				if("Demon")
+					p.TrueName=input(p, "What is the name of the Demon within?", "Get True Name") as text
+					p.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/Devil_Arm2)

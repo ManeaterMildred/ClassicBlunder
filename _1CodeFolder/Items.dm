@@ -944,7 +944,7 @@ obj/Items/Sword
 				name="Soul Eater"
 				pixel_x=-16
 				pixel_y=-16
-				Techniques=list("/obj/Skills/Queue/Heart_Slayer","/obj/Skills/AutoHit/Dark_Break","/obj/Skills/AutoHit/Shadowbreaker","/obj/Skills/Buffs/NuStyle/SwordStyle/Seeker_of_Darkness")
+				Techniques=list("/obj/Skills/Queue/Heart_Slayer","/obj/Skills/AutoHit/Dark_Break","/obj/Skills/AutoHit/Shadowbreaker","/obj/Skills/Buffs/NuStyle/SwordStyle/Seeker_of_Darkness","/obj/Skills/Buffs/NuStyle/SwordStyle/Seeker_of_Darkness_Dual_Wield")
 				Destructable = 0
 				ShatterTier = 0
 				NoSaga=1
