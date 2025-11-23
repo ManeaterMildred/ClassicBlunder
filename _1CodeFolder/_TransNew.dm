@@ -112,7 +112,7 @@ mob/proc/isSaiyanHalfie()
 
 
 mob/proc/CanTransform()
-	if(src.CyberCancel&&!isRace(ANDROID))
+	if(src.CyberCancel&&!isRace(ANDROID)&&!isRace(HUMAN)&&!isRace(CELESTIAL))
 		return 0
 	if(src.TotalFatigue>=90)
 		src<<"You are too tired to transform!"
@@ -167,7 +167,7 @@ mob/proc/CanTransform()
 mob/proc/CanRevert()
 	if(src.HellspawnBerserk&&src.Energy>=10)
 		return 0
-	if(src.CyberCancel&&!isRace(ANDROID))
+	if(src.CyberCancel&&!isRace(ANDROID)&&!isRace(HUMAN)&&!isRace(CELESTIAL))
 		return 0
 	if(src.HasNoRevert())
 		return 0

@@ -792,6 +792,8 @@ mob/proc/SkillX(var/Wut,var/obj/Skills/Z,var/bypass=0)
 					return
 				if(src.PoweringUp==1)
 					if(src.transActive()<src.transUnlocked)
+						if(src.isRace(HUMAN)&&src.transActive<3||src.isRace(CELESTIAL)&&src.transActive<3)
+							return
 						src.PoweringUp=0
 						src.Transform()
 						return

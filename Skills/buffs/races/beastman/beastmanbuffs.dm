@@ -58,7 +58,7 @@
 		passives = list("Brutalize" = 1.25 + (0.5 * p.AscensionsAcquired), "Godspeed" = p.AscensionsAcquired,  "Afterimages" = 2, "Crippling" = 5 + 5 * p.AscensionsAcquired)
 
 /obj/Skills/Buffs/SlotlessBuffs/Autonomous/Racial/Undying_Rage
-	TooMuchHealth = 3
+	TooMuchHealth = 25
 	NeedsHealth = 1
 	passives = list("Undying Rage" = 1)
 	Cooldown = -1

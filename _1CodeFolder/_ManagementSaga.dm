@@ -895,9 +895,7 @@ mob
 							src.SagaLevel=4
 							if(src.RebirthHeroType=="Cyan")
 								src<<"The special power you wield grows stronger, heightening the strength of your SOUL colors."
-								src<<"You have gained the BlackShard, a small yet incredibly powerful weapon that renders it difficult to hit in exchange for being among the ultimate weapons against darkness."
 								src<<"You have gained Banish."
-								src.AddSkill(new/obj/Skills/Buffs/Rebirth/BlackShard)
 								src.AddSkill(new/obj/Skills/AutoHit/Banish)
 							if(src.RebirthHeroType=="Purple")
 								src<<"<font color='#9BFD4D'><b>I see a story hidden in your eyes.</font></b>" //i literally extracted the mod files for gerson's rude buster to make sure this color was as accurate as possible. praise me.

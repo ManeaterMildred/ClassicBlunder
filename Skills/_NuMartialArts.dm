@@ -178,10 +178,10 @@ obj
 						StyleStr=1.15
 						StyleEnd=1.15
 						StyleSpd=1.45
-						StyleActive="Strong Fist"
+						StyleActive="Stronger Fist"
 						passives = list("Pursuer" = 2, "TechniqueMastery" = 2, "Flicker"=2)
 						AllOutAttack=1
-						verb/Ansatsuken_Style()
+						verb/Stronger_Fist()
 							set hidden=1
 							src.Trigger(usr)
 					Strongest_Fist //t5????
@@ -190,10 +190,10 @@ obj
 						StyleStr=1.25
 						StyleEnd=1.25
 						StyleSpd=1.6
-						StyleActive="Strong Fist"
+						StyleActive="Strongest Fist"
 						passives = list("Pursuer" = 4, "TechniqueMastery" = 2.5, "Flicker"=4)
 						AllOutAttack=1
-						verb/Ansatsuken_Style()
+						verb/Strongest_Fist()
 							set hidden=1
 							src.Trigger(usr)
 

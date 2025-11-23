@@ -310,31 +310,27 @@ obj/Skills/AutoHit
 			usr.Activate(src)
 	Banish
 		ManaCost=100
-		StrOffense=0
-		ForOffense=1
-		HolyMod=100
-		DamageMult=20
+		ElementalClass="Water"
+		SagaSignature=1
+		SignatureTechnique=2
+		SignatureName="Banish"
 		Area="Target"
-		Distance=5
-		TurfErupt=2
-		TurfEruptOffset=3
-//		Slow=1
-//		WindUp=1
-		WindupIcon='Ripple Radiance.dmi'
-		WindupIconUnder=1
-		WindupIconX=-32
-		WindupIconY=-32
-		WindupIconSize=1.3
-		Divide=1
-		PullIn=25
-		WindupMessage="glows with a certain power..."
-		ActiveMessage="banishes all darkness!"
-		HitSparkIcon='BLANK.dmi'
-		HitSparkX=0
-		HitSparkY=0
+		Distance=15
+		HolyMod=2000
+		DamageMult=30
+		WindUp=1
+		HitSparkIcon='Hit Effect Pearl.dmi'
+		HitSparkX=-32
+		HitSparkY=-32
+		HitSparkTurns=1
+		HitSparkSize=5
+		HitSparkCount=10
+		HitSparkDispersion=1
+		ForOffense=1
+		SpecialAttack=1
 		verb/Banish()
 			set category="Skills"
-			if(world.realtime < src.RebirthLastUse+(600*60*168))
+			if(world.realtime < src.RebirthLastUse)
 				usr << "This is on cooldown until [time2text(src.RebirthLastUse, "hh:ss") ]"
 				return
 			src.RebirthLastUse=world.realtime + 168 HOURS

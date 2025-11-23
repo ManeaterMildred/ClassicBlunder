@@ -718,6 +718,8 @@ mob
 			if(Secret == "Vampire")
 				var/secretLevel = getSecretLevel()
 				Return += 1 + (secretLevel / 4) * (1 + (secretDatum.secretVariable["BloodPower"] * 0.25))
+			if(src.isRace(BEASTMAN) && race?:Racial == "Heart of The Beastman" && src.VaizardHealth>0)
+				Return += 2
 			Return=round(Return)
 			Return=min(8,Return)
 			return Return
@@ -735,23 +737,35 @@ mob
 			if(Target)
 				if(passive_handler.Get("HellRisen")  && isDominating(Target))
 					Return += clamp((passive_handler.Get("HellRisen")*2), 1, 2)
+			if(src.isRace(BEASTMAN) && race?:Racial == "Heart of The Beastman" && src.VaizardHealth>0)
+				Return += 5
 			return Return
 		HasDeathField()
 			if(passive_handler.Get("DeathField"))
 				return 1
 			if(src.KamuiBuffLock)
 				return 1
+			if(src.isRace(BEASTMAN) && race?:Racial == "Heart of The Beastman" && src.VaizardHealth>0)
+				return 1
 			return 0
 		GetDeathField()
-			return passive_handler.Get("DeathField")+(src.KamuiBuffLock*5)
+			var/HeartVal=0
+			if(src.isRace(BEASTMAN) && race?:Racial == "Heart of The Beastman" && src.VaizardHealth>0)
+				HeartVal += 5
+			return passive_handler.Get("DeathField")+(src.KamuiBuffLock*5)+HeartVal
 		HasVoidField()
 			if(passive_handler.Get("VoidField"))
 				return 1
 			if(src.CheckSlotless("Drunken Mastery") && src.Drunk)
 				return 1
+			if(src.isRace(BEASTMAN) && race?:Racial == "Heart of The Beastman" && src.VaizardHealth>0)
+				return 1
 			return 0
 		GetVoidField()
 			var/Extra=0
+			if(src.isRace(BEASTMAN) && race?:Racial == "Heart of The Beastman" && src.VaizardHealth>0)
+				Extra += 5
+
 			if(src.CheckSlotless("Drunken Mastery") && src.Drunk)
 				Extra+=2
 			return passive_handler.Get("VoidField")+Extra

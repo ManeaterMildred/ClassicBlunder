@@ -1576,25 +1576,26 @@ window "mainwindow"
 	elem "mainwindow"
 		type = MAIN
 		pos = 291,0
-		size = 640x500
+		size = 960x750
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		background-color = #000000
 		is-default = true
 		saved-params = "pos;size;is-maximized"
-		title = "The Jesse Experienceth: Requiem"
-		statusbar = false
+		title = "Roleplay Rebirth: The Fourth Fate"
+		icon = 'CreationPics\\fouthfate.png'
+		image-mode = center
 		macro = "macro"
 		menu = "menu"
-		outer-size = 656x559
+		outer-size = 976x828
 		outer-pos = 291,0
-		inner-size = 640x500
+		inner-size = 960x750
 		inner-pos = 8,51
 		screen-size = 1920x1032
 	elem "mainvsplit"
 		type = CHILD
 		pos = 0,0
-		size = 640x480
+		size = 960x735
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = none
@@ -1603,8 +1604,8 @@ window "mainwindow"
 		is-vert = true
 	elem "input"
 		type = INPUT
-		pos = 0,480
-		size = 320x20
+		pos = 0,730
+		size = 480x20
 		anchor1 = 0,100
 		anchor2 = 50,100
 		font-family = "@Arial Unicode MS"
@@ -1615,8 +1616,8 @@ window "mainwindow"
 		saved-params = ""
 	elem "BarMana"
 		type = LABEL
-		pos = 480,480
-		size = 80x20
+		pos = 720,730
+		size = 121x20
 		anchor1 = 75,100
 		anchor2 = 88,100
 		font-family = "Lucida Console,@Arial Unicode MS"
@@ -1628,8 +1629,8 @@ window "mainwindow"
 		text = "Mana"
 	elem "BarHealth"
 		type = LABEL
-		pos = 320,480
-		size = 80x20
+		pos = 480,730
+		size = 121x20
 		anchor1 = 50,100
 		anchor2 = 63,100
 		font-family = "Lucida Console,@DotumChe,@Arial Unicode MS"
@@ -1641,8 +1642,8 @@ window "mainwindow"
 		text = "Health"
 	elem "BarEnergy"
 		type = LABEL
-		pos = 400,480
-		size = 80x20
+		pos = 601,730
+		size = 119x20
 		anchor1 = 63,100
 		anchor2 = 75,100
 		font-family = "Lucida Console,@Arial Unicode MS"
@@ -1654,8 +1655,8 @@ window "mainwindow"
 		text = "Energy"
 	elem "BarPower"
 		type = LABEL
-		pos = 560,480
-		size = 80x20
+		pos = 841,730
+		size = 119x20
 		anchor1 = 88,100
 		anchor2 = 100,100
 		font-family = "Lucida Console,@Arial Unicode MS"

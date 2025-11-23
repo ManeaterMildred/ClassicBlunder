@@ -15,7 +15,7 @@ proc/generateVersionDatum()
 		glob.currentUpdate = updateversion
 
 globalTracker
-	var/UPDATE_VERSION = 26
+	var/UPDATE_VERSION = 27
 	var/tmp/update/currentUpdate
 
 	proc/updatePlayer(mob/p)
@@ -479,6 +479,7 @@ update
 			.=..()
 			if(o.isRace(HUMAN)||o.isRace(CELESTIAL))
 				for(var/transformation/human/HT in o.race.transformations)
+					o.race.transformations -=HT
 					del HT
 				o<< "Your old High Tension Forms have been Removed due to Updates making them better. They have been summarily Regranted, please restore your <b>Customizations</b>"
 				o.race.transformations += new /transformation/human/high_tension()

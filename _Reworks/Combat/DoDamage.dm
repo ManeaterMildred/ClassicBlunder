@@ -74,7 +74,7 @@
 				defender.vis_contents += p
 				flick("critblock", p)
 
-			
+
 	#if DEBUG_DAMAGE
 	log2text("Damage", "After CritAndBlock", "damageDebugs.txt", "[src.ckey]/[src.name]")
 	log2text("Damage", val,"damageDebugs.txt", "[src.ckey]/[src.name]")
@@ -183,7 +183,7 @@
 		log2text("trueMult", trueMult,"damageDebugs.txt", "[src.ckey]/[src.name]")
 		#endif
 
-	trueMult += ElementalCheck(src, defender, damageOnly = TRUE) 
+	trueMult += ElementalCheck(src, defender, damageOnly = TRUE)
 	#if DEBUG_DAMAGE
 	log2text("trueMult", "After ElementPassives", "damageDebugs.txt", "[src.ckey]/[src.name]")
 	log2text("trueMult", trueMult,"damageDebugs.txt", "[src.ckey]/[src.name]")
@@ -206,7 +206,7 @@
 	log2text("trueMult", "After AttackModifiers", "damageDebugs.txt", "[src.ckey]/[src.name]")
 	log2text("trueMult", trueMult,"damageDebugs.txt", "[src.ckey]/[src.name]")
 	#endif
-	
+
 	if(defender.DefianceRetaliate&&!defender.CheckSlotless("Great Ape"))
 		if(Health>defender.Health)
 			trueMult -= defender.DefianceRetaliate
@@ -233,8 +233,9 @@
 			val *= 1 + (0.1 * passive_handler.Get("Ruckus"))
 		else
 			val *= 1 - (0.05 * passive_handler.Get("Ruckus"))
-			
 
+	if(passive_handler.Get("Undying Rage"))
+		val*=0.1
 	#if DEBUG_DAMAGE
 	log2text("Damage", "After TrueMult", "damageDebugs.txt", "[src.ckey]/[src.name]")
 	log2text("Damage", val,"damageDebugs.txt", "[src.ckey]/[src.name]")

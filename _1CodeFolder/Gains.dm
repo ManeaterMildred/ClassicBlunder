@@ -415,6 +415,8 @@ mob
 			var/grit_value = passive_handler["Grit"]
 			if (grit_value >= 1 && Health <= clamp(15 + AscensionsAcquired * 10, 15, 75))
 				HealHealth(grit_value / glob.racials.GRITDIVISOR)
+				if(prob(15*(AscensionsAcquired+1)))
+					src.VaizardHealth += (grit_value / glob.racials.GRITDIVISOR)
 			if(src.Lethal)
 				src.Lethal--
 				if(src.Lethal<=0)
@@ -508,9 +510,12 @@ mob
 				scrollTicker--
 				if(scrollTicker<=0)
 					scrollTicker=0
+			if(src.isRace(HUMAN) && src.transActive>=1&&src.icon_state=="Meditate"||src.isRace(CELESTIAL) && src.transActive>=1&&src.icon_state=="Meditate")
+				src.Revert()
 			if(passive_handler["TensionPowered"] && src.Tension>=50)
 				if(src.isRace(HUMAN)&& src.transActive==1 && src.transUnlocked>=2||src.isRace(CELESTIAL)&& src.transActive==1 && src.transUnlocked>=2)
-					src.race.transformations[2].transform(src, TRUE)
+					if(src.icon_state!="Meditate")
+						src.race.transformations[2].transform(src, TRUE)
 			if(passive_handler["LegendarySaiyan"]&&src.Tension<100&&src.transActive==src.transUnlocked)
 				var/TensionRando=rand(6,15)
 				src.Tension+=0.7 * (glob.TENSION_MULTIPLIER)*(TensionRando/10)
@@ -1354,52 +1359,53 @@ mob
 
 			for(var/obj/Skills/Buffs/SlotlessBuffs/Autonomous/A in src.Buffs)
 				//Activations
+				var/AGLock
+				for(var/obj/Items/omni in src.contents)
+					if(omni.LocksOutAutonomous && omni.suffix=="*Equipped*")
+						AGLock=1
 				if(!A.SlotlessOn)
-					for(var/obj/Items/omni in src.contents)
-						if(omni.LocksOutAutonomous && omni.suffix=="*Equipped*")
-							return
-					if(A.NeedsPassword)
+					if(A.NeedsPassword&&!AGLock)
 						if(!A.Password)
 							continue
-					if(A.SlotlessBuffNeeded)
+					if(A.SlotlessBuffNeeded&&!AGLock)
 						if(!(A.SlotlessBuffNeeded in SlotlessBuffs))
 							continue
-					if(A.ABuffNeeded)
+					if(A.ABuffNeeded&&!AGLock)
 						if(!src.ActiveBuff)
 							continue
 						if(!(src.ActiveBuff.BuffName in A.ABuffNeeded))
 							continue
-					if(A.SBuffNeeded)
+					if(A.SBuffNeeded&&!AGLock)
 						if(!src.SpecialBuff)
 							continue
 						if(src.SpecialBuff.BuffName!=A.SBuffNeeded)
 							continue
-					if(A.StyleNeeded)
+					if(A.StyleNeeded&&!AGLock)
 						if(!src.StyleActive)
 							continue
 						if(src.StyleActive!=A.StyleNeeded)
 							continue
-					if(A.WoundIntentRequired)
+					if(A.WoundIntentRequired&&!AGLock)
 						if(!src.WoundIntent)
 							continue
-					if(A.NeedsHealth&&!A.Using&&!src.KO)
+					if(A.NeedsHealth&&!A.Using&&!src.KO&&!AGLock)
 						if(src.Health<=A.NeedsHealth*(1-src.HealthCut))
 							A.Trigger(src,Override=1)
 							if(A.NeedsVary)
 								A.NeedsHealth=rand(10,A.TooMuchHealth-5)
-					if(A.NeedsInjury&&!A.Using&&!src.KO)
+					if(A.NeedsInjury&&!A.Using&&!src.KO&&!AGLock)
 						if(src.TotalInjury>=A.NeedsInjury)
 							A.Trigger(src,Override=1)
 							if(A.NeedsVary)
 								A.NeedsInjury=rand(10,A.TooMuchInjury-5)
 
-					if(A.ManaThreshold&&!A.Using&&!src.KO)//TODO: Align the requirements and variables more sensibly in this area
+					if(A.ManaThreshold&&!A.Using&&!src.KO&&!AGLock)//TODO: Align the requirements and variables more sensibly in this area
 						if(src.ManaAmount>=A.ManaThreshold)
 							A.Trigger(src,Override=1)
-					if(A.NeedsAnger&&!A.Using&&!src.KO)
+					if(A.NeedsAnger&&!A.Using&&!src.KO&&!AGLock)
 						if(src.Anger)
 							A.Trigger(src,Override=1)
-					if(A.NeedsAlignment)
+					if(A.NeedsAlignment&&!AGLock)
 						if(A.NeedsAlignment=="Evil")
 							if(src.IsEvil())
 								A.Trigger(src,Override=1)
@@ -1419,6 +1425,9 @@ mob
 
 				//Deactivations
 				if(A.SlotlessOn)
+					if(AGLock)
+						A.Trigger(src,Override=1)
+						continue
 					if(A.ABuffNeeded)
 						if(A.ABuffNeeded.len>0)
 							if(!src.ActiveBuff)

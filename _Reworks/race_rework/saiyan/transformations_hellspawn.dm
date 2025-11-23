@@ -13,9 +13,10 @@ transformation
 			passives = list("Instinct" = 3, "Flicker" = 4, "Pursuer" = 5,  "BuffMastery" = 4, "PureDamage" = 3, "BleedHit"=0.75, "PureReduction"=-2)
 			PUSpeedModifier = 1.5
 			mastery_boons(mob/user)
-				if(mastery>=75)
-					passives = list("Instinct" = 3, "Flicker" = 4, "Pursuer" = 5,  "BuffMastery" = 4, "PureDamage" = 3, "Unstoppable"=1, "SlayerMod"= 1)
-
+				if(mastery>=75&&mastery<100)
+					passives = list("Instinct" = 3, "Flicker" = 4, "Pursuer" = 5, "BuffMastery" = 4, "PureDamage" = 3, "UnderDog" = 1, "PureReduction"=-1)
+				if(mastery==100)
+					passives = list("Instinct" = 3, "Flicker" = 4, "Pursuer" = 5, "BuffMastery" = 4, "PureDamage" = 3, "UnderDog" = 1)
 			adjust_transformation_visuals(mob/user)
 				if(!form_hair_icon&&user.Hair_Base)
 					var/icon/x=new(user.Hair_Base)

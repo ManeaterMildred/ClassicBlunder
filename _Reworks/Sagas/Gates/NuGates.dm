@@ -57,6 +57,11 @@
 	strAdd=0.1
 	spdAdd=0.25
 	endAdd=0.1
+	adjust(mob/p)
+		passives = list("Blurring Strikes"=1.5, "Momentum"=1.5, "Instinct"=1,"PUSpike" = 10)
+	Trigger(mob/User, Override=FALSE)
+		adjust(User)
+		..()
 /obj/Skills/Buffs/SlotlessBuffs/Autonomous/GateFive
 	GatesNeeded=5
 	BuffName = "Fifth Gate"

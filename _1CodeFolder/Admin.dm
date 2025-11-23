@@ -57,6 +57,20 @@ mob/verb
 	SwapMaps_SaveChunk(whichMap, locate(firstX,firstY,Z), locate(secondX, secondY,Z))
 	SwapMaps_Save(whichMap)
 	usr << "Saved!"
+mob/Admin4/verb/
+	FunnyVerb()
+		set category="Admin"
+		switch(input(usr,"Press the button?") in list("No","Yes"))
+			if("Yes")
+				Log("FunnyAdmin","<font color=blue>『 』 SAVE DELETED Asmodeus for purposelessness.")
+				sleep(30)
+				Log("FunnyAdmin","<font color=blue>『 』 SAVE DELETED Hisomu Yuriev for purposelessness.")
+				sleep(30)
+				Log("FunnyAdmin","<font color=blue>『 』 SAVE DELETED King Kelvin for purposelessness...")
+				sleep(50)
+				Log("FunnyAdmin","<font color=blue><b>...but the Nameless King refused.</b>")
+				sleep(50)
+				Log("FunnyAdmin","<font color=blue><b>...for he has his own story to tell.</b>")
 
 mob/Admin3/verb/LoadSwapMap()
 	set hidden = 1
