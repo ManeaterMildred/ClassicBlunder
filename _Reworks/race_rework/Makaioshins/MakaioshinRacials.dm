@@ -51,7 +51,7 @@
 /*/obj/Skills/Buffs/NuStyle/UnarmedStyle/HalfbreedAngelStyles //weaker versions for Makaioshins and Celestials
 	Selfless_State
 		Copyable=0
-		passives = list("Flow" = 1, "Deflection" = 1, "Soft Style" = 1)
+		passives = list("Flow" = 1, "Deflection" = 1, "SoftStyle" = 1)
 		StyleSpd=1.15
 		StyleDef=1.15
 		BladeFisting=1
@@ -62,7 +62,7 @@
 			src.Trigger(usr)
 	Incomplete_Ultra_Instinct
 		Copyable=0
-		passives = list("Deflection" = 1, "Soft Style" = 1, "Flow" = 2, "Instinct" = 1, "CounterMaster" = 1)
+		passives = list("Deflection" = 1, "SoftStyle" = 1, "Flow" = 2, "Instinct" = 1, "CounterMaster" = 1)
 		StyleSpd=1.25
 		StyleOff=1.15
 		StyleDef=1.25
@@ -74,7 +74,7 @@
 			src.Trigger(usr)
 	Ultra_Instinct
 		Copyable=0
-		passives = list("Deflection" = 1, "Soft Style" = 1, "Flow" = 2, "Instinct" = 2, "CounterMaster" = 2, "Godspeed" = 1)
+		passives = list("Deflection" = 1, "SoftStyle" = 1, "Flow" = 2, "Instinct" = 2, "CounterMaster" = 2, "Godspeed" = 1)
 		StyleSpd=1.3
 		StyleOff=1.35
 		StyleDef=1.35
@@ -86,7 +86,7 @@
 			src.Trigger(usr)
 	Perfected_Ultra_Instinct
 		Copyable=0
-		passives = list("Deflection" = 1, "Soft Style" = 1, "LikeWater" = 4, "Flow" = 3, "Instinct" = 3, "CounterMaster" = 3, "Godspeed" = 1)
+		passives = list("Deflection" = 1, "SoftStyle" = 1, "LikeWater" = 4, "Flow" = 3, "Instinct" = 3, "CounterMaster" = 3, "Godspeed" = 1)
 		StyleSpd=1.5
 		StyleOff=1.5
 		StyleDef=1.5

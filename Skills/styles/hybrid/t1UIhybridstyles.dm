@@ -33,7 +33,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 					StyleDef = 1.45
 					StyleSpd = 1.45
 				if(p.isRace(CELESTIAL))
-					passives = list("Deflection" = 1, "Soft Style" = 1, "Flow" = 3, "Instinct" = 1, "CounterMaster" = 1, "BlurringStrikes"=1.5, "Iaijutsu" = 1)
+					passives = list("Deflection" = 1, "SoftStyle" = 1, "Flow" = 3, "Instinct" = 1, "CounterMaster" = 1, "BlurringStrikes"=1.5, "Iaijutsu" = 1)
 					StyleStr = 1.45
 					StyleSpd = 1.45
 					StyleOff = 1.35
@@ -46,7 +46,7 @@ obj/Skills/Buffs/NuStyle/MortalUIStyles// ~~ Angel-taught basic forms ~~  unlock
 					StyleDef = 1.45
 					StyleSpd = 1.65
 				if(p.isRace(CELESTIAL))
-					passives = list("Deflection" = 1, "Soft Style" = 1, "Flow" = 3, "Instinct" = 1, "CounterMaster" = 1, "BlurringStrikes"=2, "Iaijutsu" = 1.5)
+					passives = list("Deflection" = 1, "SoftStyle" = 1, "Flow" = 3, "Instinct" = 1, "CounterMaster" = 1, "BlurringStrikes"=2, "Iaijutsu" = 1.5)
 					StyleStr = 1.45
 					StyleSpd = 1.65
 					StyleOff = 1.35

@@ -157,7 +157,7 @@ obj/Skills/Utility/Recall_Armaments
 /obj/Skills/Buffs/NuStyle/UnarmedStyle/AngelStyles
 	Selfless_State //placeholder because I might implement the Demon Slayer thing. basically baby UI
 		Copyable=0
-		passives = list("Flow" = 2, "Deflection" = 1, "Soft Style" = 1)
+		passives = list("Flow" = 2, "Deflection" = 1, "SoftStyle" = 1)
 		NeedsSword=0
 		NeedsStaff=0
 		NoSword=0
@@ -178,7 +178,7 @@ obj/Skills/Utility/Recall_Armaments
 			src.Trigger(usr)
 	Incomplete_Ultra_Instinct
 		Copyable=0
-		passives = list("Deflection" = 1, "Soft Style" = 1, "Flow" = 3, "Instinct" = 1, "CounterMaster" = 1)
+		passives = list("Deflection" = 1, "SoftStyle" = 1, "Flow" = 3, "Instinct" = 1, "CounterMaster" = 1)
 		NeedsSword=0
 		NeedsStaff=0
 		NoSword=0
@@ -202,7 +202,7 @@ obj/Skills/Utility/Recall_Armaments
 			src.Trigger(usr)
 	Ultra_Instinct
 		Copyable=0
-		passives = list("Flow" = 2, "Deflection" = 1, "Soft Style" = 1, "Flow" = 3, "Instinct" = 3, "CounterMaster" = 3, "Godspeed" = 1, "UnarmedDamage"=4)
+		passives = list("Flow" = 2, "Deflection" = 1, "SoftStyle" = 1, "Flow" = 3, "Instinct" = 3, "CounterMaster" = 3, "Godspeed" = 1, "UnarmedDamage"=4)
 		NeedsSword=0
 		NeedsStaff=0
 		NoSword=0
@@ -226,7 +226,7 @@ obj/Skills/Utility/Recall_Armaments
 			src.Trigger(usr)
 	Perfected_Ultra_Instinct //I hope this is as gorked as I intend it on being.
 		Copyable=0
-		passives = list("Deflection" = 1, "Soft Style" = 1, "LikeWater" = 4, "Flow" = 4, "Instinct" = 4, "CounterMaster" = 5, "Godspeed" = 1,"UnarmedDamage"=5)
+		passives = list("Deflection" = 1, "SoftStyle" = 1, "LikeWater" = 4, "Flow" = 4, "Instinct" = 4, "CounterMaster" = 5, "Godspeed" = 1,"UnarmedDamage"=5)
 		NeedsSword=0
 		NeedsStaff=0
 		NoSword=0

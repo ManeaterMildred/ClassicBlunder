@@ -9,6 +9,7 @@
         passives = list("The Way" = 1, "Sword Master" = 1, "LikeWater" = 4, "SweepingStrike" = 1, "DoubleStrike" = 2, "BlurringStrikes" = 1, \
                         "Zornhau" = 2, "Half-Sword" = 2, "Rage" = 1, "TripleStrike" = 0.5, "Iaijutsu" = 2, "Musoken" = 1, "Fury" = 2.5, \
                         "Parry" = 2.5, "Disarm" = 2, "Deflection" = 1)
+        Finisher="/obj/Skills/Queue/Finisher/Clear_Water"
         verb/Two_Heaven_As_One()
             set hidden=1
             src.Trigger(usr)
@@ -23,6 +24,7 @@
         StyleOff=1.25
         StyleStr=1.25
         NeedsThirdSword = 1
+        Finisher="/obj/Skills/Queue/Finisher/Jumbled_Line_Up"
         verb/Acrobat()
             set hidden=1
             src.Trigger(usr)
@@ -35,6 +37,7 @@
         passives = list("DisableGodKi" = 1, "Deicide" = 4, "Rage" = 2, "Half-Sword" = 2.5, "Zornhau" = 2.5, "FavoredPrey" = "Secrets", "SlayerMod" = 4 , "Shearing" = 8, \
                         "BladeFisting" = 1, "Secret Knives" = "Stake", "Tossing" = 3, "Half-Sword" = 3, "Zornhau" = 2.5, "Parry" = 3,"Disarm" = 3,\
                         "Hardening" = 2, "Deflection" = 1)
+        Finisher="/obj/Skills/Queue/Finisher/Divine_Wrath"
         verb/Fierce_Deity()
             set hidden=1
             src.Trigger(usr)

@@ -66,7 +66,7 @@ obj/Skills
 	var/VoidField  //get this NONstatic amount of fatigue just for slapping someone.
 	var/SoftStyle
 	var/HardStyle
-	var/CyberStigma //Like Soft/Hard Styles, but for cybernetics
+	var/CyberStigma //Like Soft/HardStyles, but for cybernetics
 
 	var/LifeStealTrue //Applies health cuts and heals your health cuts
 	var/SoulSteal //Adds stolen health to vaizard health.

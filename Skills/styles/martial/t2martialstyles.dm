@@ -15,14 +15,14 @@
 		Copyable=0
 		StyleEnd=1.15
 		StyleStr=1.45
-		passives = list("DoubleStrike" = 3, "Fa Jin" = 2, "Momentum" = 2, "Hard Style"=1, "Instinct"=2)
+		passives = list("DoubleStrike" = 3, "Fa Jin" = 2, "Momentum" = 2, "HardStyle"=1, "Instinct"=2)
 		StyleActive="Futae no Kiwami"
 		Finisher="/obj/Skills/Queue/Finisher/Mastery_of_Two_Layers"
 		verb/Futae_No_Kiwami()
 			set hidden=1
 			src.Trigger(usr)
 	Mantis_And_Crane_Style
-		passives = list("Acupuncture" = 2, "Interception" = 2, "Flow" = 2, "Soft Style" = 1, "FluidForm" = 1)
+		passives = list("Acupuncture" = 2, "Interception" = 2, "Flow" = 2, "SoftStyle" = 1, "FluidForm" = 1)
 		StyleDef=1.45
 		StyleEnd=1.45
 		StyleStr=0.85
@@ -46,7 +46,7 @@
 				StyleEnd=1.45
 				StyleStr=0.85
 				StyleOff=0.85
-				passives = list("Acupuncture" = 2, "Interception" = 2, "Flow" = 2, "Soft Style" = 1, "FluidForm" = 1)
+				passives = list("Acupuncture" = 2, "Interception" = 2, "Flow" = 2, "SoftStyle" = 1, "FluidForm" = 1)
 				Finisher="/obj/Skills/Queue/Finisher/Zetsuei" // Shitenketsu, follow up
 		verb/Swap_Stance()
 			set category="Skills"

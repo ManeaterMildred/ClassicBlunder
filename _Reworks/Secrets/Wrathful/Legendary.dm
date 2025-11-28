@@ -5,12 +5,12 @@ obj/Skills/Buffs/NuStyle/Legendary
 		StyleEnd=1.15
 		StyleStr=1.3
 		Enlarge = 1.25
-		passives = list("GiantForm" = 1, "DoubleStrike" = 1, "Fa Jin" = 2, "Momentum" = 1, "Hard Style"=1, "Instinct"=2, "Juggernaut" = 1, "PureReduction" = 1,\
+		passives = list("GiantForm" = 1, "DoubleStrike" = 1, "Fa Jin" = 2, "Momentum" = 1, "HardStyle" = 1, "Instinct"=2, "Juggernaut" = 1, "PureReduction" = 1,\
 						"SweepingStrike" = 1, "Meaty Paws" = 1, "Brutalize" = 1, "LegendarySaiyan" = 1,"Momentum"=1,"Hardening" = 1.5, "Deflection" = 0.5)
 		StyleActive="Legendary Stance"
 		Finisher="/obj/Skills/Queue/Finisher/Tengenkotsu"
 		adjust(mob/p)
-			passives = list("GiantForm" = 1, "DoubleStrike" = 1, "Fa Jin" = 2, "Momentum" = 1, "Hard Style"=1, "Instinct"=2, "Juggernaut" = 1, "PureReduction" = 1,\
+			passives = list("GiantForm" = 1, "DoubleStrike" = 1, "Fa Jin" = 2, "Momentum" = 1, "HardStyle"=1, "Instinct"=2, "Juggernaut" = 1, "PureReduction" = 1,\
 						"SweepingStrike" = 1, "Meaty Paws" = 1, "Brutalize" = 1, "LegendarySaiyan" = 1,"Momentum"=1,"Hardening" = 1.5, "Deflection" = 0.5, "UnarmedDamage"=1)
 		verb/Legendary_Stance()
 			set hidden=1
@@ -22,11 +22,11 @@ obj/Skills/Buffs/NuStyle/Legendary
 		StyleEnd=1.25
 		StyleStr=1.35
 		Enlarge = 1.5
-		passives = list("GiantForm" = 1, "DoubleStrike" = 2, "Fa Jin" = 2, "Momentum" = 2, "Hard Style"=1, "Instinct"=3, "Juggernaut" = 1, "PureDamage" = 0.5, "PureReduction" = 1.5,\
+		passives = list("GiantForm" = 1, "DoubleStrike" = 2, "Fa Jin" = 2, "Momentum" = 2, "HardStyle" = 1, "Instinct"=3, "Juggernaut" = 1, "PureDamage" = 0.5, "PureReduction" = 1.5,\
 						"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 2,"Gum Gum" =1, "Meaty Paws" = 1.5, "KiControlMastery" = 1,"LegendarySaiyan"=1,"Momentum"=2,"Hardening" = 2,\
 						 "Deflection" = 1)
 		adjust(mob/p)
-			passives = list("GiantForm" = 1, "DoubleStrike" = 2, "Fa Jin" = 2, "Momentum" = 2, "Hard Style"=1, "Instinct"=3, "Juggernaut" = 1, "PureDamage" = 0.5, "PureReduction" = 1.5,\
+			passives = list("GiantForm" = 1, "DoubleStrike" = 2, "Fa Jin" = 2, "Momentum" = 2, "HardStyle" = 1, "Instinct"=3, "Juggernaut" = 1, "PureDamage" = 0.5, "PureReduction" = 1.5,\
 							"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 2,"Gum Gum" =1, "Meaty Paws" = 1.5, "KiControlMastery" = 1,"LegendarySaiyan"=1,"Momentum"=2,"Hardening" = 2,\
 							 "Deflection" = 1, "UnarmedDamage"=2)
 		StyleActive="Legacy Of The Fabled King"
@@ -41,11 +41,11 @@ obj/Skills/Buffs/NuStyle/Legendary
 		StyleEnd=1.5
 		StyleStr=1.5
 		Enlarge = 1.75
-		passives = list("GiantForm" = 1, "DoubleStrike" = 3, "Fa Jin" = 2, "Momentum" = 3, "Hard Style"=1, "Instinct"=4, "Juggernaut" = 1, "PureDamage" = 1, "PureReduction" = 2,\
+		passives = list("GiantForm" = 1, "DoubleStrike" = 3, "Fa Jin" = 2, "Momentum" = 3, "HardStyle"=1, "Instinct"=4, "Juggernaut" = 1, "PureDamage" = 1, "PureReduction" = 2,\
 						"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 2, "Meaty Paws" = 1.5, "KiControlMastery" = 2,"LegendarySaiyan"=1, "Pride"=1, "Zeal"=1, "Honor"=1,\
 						"Hardening" = 2, "Deflection" = 1,"Gum Gum" =1)
 		adjust(mob/p)
-			passives = list("GiantForm" = 1, "DoubleStrike" = 3, "Fa Jin" = 2, "Momentum" = 3, "Hard Style"=1, "Instinct"=4, "Juggernaut" = 1, "PureDamage" = 1, "PureReduction" = 2,\
+			passives = list("GiantForm" = 1, "DoubleStrike" = 3, "Fa Jin" = 2, "Momentum" = 3, "HardStyle" = 1, "Instinct"=4, "Juggernaut" = 1, "PureDamage" = 1, "PureReduction" = 2,\
 				"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 2, "Meaty Paws" = 1.5, "KiControlMastery" = 2,"LegendarySaiyan"=1, "Pride"=1, "Zeal"=1, "Honor"=1,\
 				"Hardening" = 2, "Deflection" = 1,"Gum Gum" =1, "UnarmedDamage"=3)
 		StyleActive="Fist Of The Fabled King (True)"

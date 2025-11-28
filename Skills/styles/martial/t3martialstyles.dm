@@ -26,7 +26,7 @@
         StyleStr = 1.25
         StyleActive="Jeet Kune Do"
         passives = list("LikeWater" = 4, "Fa Jin" = 3, "Interception" = 3, "Sunyata" = 3 , "Gum Gum" = 1, "Acupuncture" = 2, \
-                        "Flow" = 2, "Instinct" = 2, "Momentum" = 1.5, "Hardening" = 1.5, "Pressure" = 2, "Soft Style" = 1, \
+                        "Flow" = 2, "Instinct" = 2, "Momentum" = 1.5, "Hardening" = 1.5, "Pressure" = 2, "SoftStyle" = 1, \
                         "FluidForm" = 1)
         Finisher="/obj/Skills/Queue/Finisher/Be_Water"
         verb/Jeet_Kune_Do()
