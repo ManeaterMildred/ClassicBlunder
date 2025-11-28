@@ -1615,13 +1615,6 @@ NEW VARIABLES
 			TextColor=rgb(204, 0, 0)
 			ActiveMessage="erupts with immense intensity!!"
 			AllOutPU=1
-			adjust(mob/p)
-				if(p.isRace(SAIYAN)&&p.transActive==1||p.isRace(HALFSAIYAN)&&p.transActive==1)
-					if(p.race.transformations[p.transActive].mastery==100)
-						src.ActiveMessage="erupts with immense intensity, their golden aura overcome with a furious red!!"
-						p.passive_handler.Set("Super Kaioken", 1)
-				else
-					src.ActiveMessage="erupts with immense intensity!!"
 			verb/Kaioken()
 				set category="Skills"
 				if(!usr.BuffOn(src))
@@ -1636,9 +1629,7 @@ NEW VARIABLES
 							usr.UseBuff(KC)
 				else
 					usr.passive_handler.Set("Kaioken", 0)
-					usr.passive_handler.Set("Super Kaioken", 0)
 				usr.Auraz("Remove")
-				adjust(usr)
 				src.Trigger(usr)
 		FadeIntoShadows
 			IconTint=list(0,0,0, 0,0,0, 0,0,0, 0,0,0)
@@ -1694,10 +1685,6 @@ NEW VARIABLES
 			TextColor=rgb(255, 55, 0)
 			adjust(mob/p)
 				passives = list("BurningShot" = 1, "NoWhiff" = 1, "SuperDash" = 1 + p.Potential/30, "Pursuer" = 1 + p.Potential/30)
-				if(p.isRace(SAIYAN)&&p.transActive==1||p.isRace(HALFSAIYAN)&&p.transActive==1||p.passive_handler.Get("SuperSaiyanSignature"))
-					if(p.race.transformations[p.transActive].mastery==100)
-						passives = list("BurningShot" = 1, "NoWhiff" = 1, "SuperDash" = 1 + p.Potential/25, "Pursuer" = 2 + p.Potential/30, "SuperSaiyanSignature" = 1)
-						src.ActiveMessage="funnels their life force into their Super Saiyan power, setting their golden aura ablaze!!!"
 				OffMult = 1 + p.Potential/300
 				StrMult = 1 + p.Potential/300
 			verb/Burning_Shot()
@@ -1715,9 +1702,6 @@ NEW VARIABLES
 			TextColor=rgb(65, 177, 218)
 			adjust(mob/p)
 				passives = list("MirrorStats" = 1, "Flow" = 1 + p.Potential/30, "Instinct" = 1 + p.Potential/30, "LikeWater" = 2 + p.Potential/30, "FluidForm" = 1)
-				if(p.isRace(SAIYAN)&&p.transActive==1||p.isRace(HALFSAIYAN)&&p.transActive==1||p.passive_handler.Get("SuperSaiyanSignature"))
-					if(p.race.transformations[p.transActive].mastery==100)
-						passives = list("MirrorStats" = 1, "Flow" = 1 + p.Potential/20, "Instinct" = 1 + p.Potential/20, "LikeWater" = 2 + p.Potential/20, "FluidForm" = 1,"KiControlMastery" = 1+p.Potential/50, "SuperSaiyanSignature" = 1)
 				OffMult = 1 + p.Potential/300
 				DefMult = 1 + p.Potential/300
 			verb/Kyoukaken()
@@ -1736,10 +1720,6 @@ NEW VARIABLES
 			TextColor=rgb(224, 224, 235)
 			adjust(mob/p)
 				passives = list("Erosion" = 0.1 + p.Potential/150, "SoulFire" = 1 + p.Potential/30, "WeaponBreaker" = 2 + p.Potential/30, "DeathField" = 5 + p.Potential/10, "VoidField" = 5 + p.Potential/10)
-				if(p.isRace(SAIYAN)&&p.transActive==1||p.isRace(HALFSAIYAN)&&p.transActive==1||p.passive_handler.Get("SuperSaiyanSignature"))
-					if(p.race.transformations[p.transActive].mastery==100)
-						passives = list("Erosion" = 0.1 + p.Potential/150, "SoulFire" = 1 + p.Potential/20, "WeaponBreaker" = 2 + p.Potential/30, "DeathField" = 5 + p.Potential/7, "VoidField" = 5 + p.Potential/7, "SuperSaiyanSignature" = 1)
-						src.ActiveMessage="'s golden aura flows like wind, eroding the world around them."
 				SpdMult = 1.25 + p.Potential/300
 				DefMult = 1.25 + p.Potential/300
 			verb/Toppuken()
@@ -2011,16 +1991,11 @@ NEW VARIABLES
 			KenWaveTime=5
 			ActiveMessage="unleashes their complete self!"
 			OffMessage="returns to their old self..."
-			adjust(mob/p)
-				if(p.isRace(SAIYAN)&&p.transActive==1||p.isRace(HALFSAIYAN)&&p.transActive==1||p.passive_handler.Get("SuperSaiyanSignature"))
-					if(p.race.transformations[p.transActive].mastery==100)
-						passives = list("MovementMastery" = 4, "TechniqueMastery" = 5, "BuffMastery" = clamp(round(usr.Potential/20), 1, 5),"SuperSaiyanSignature"=1)
 			verb/Unbound_Mode()
 				set category="Skills"
 				if(!usr.BuffOn(src))
 					if(!altered)
 						passives = list("MovementMastery" = 3, "TechniqueMastery" = 3, "BuffMastery" = clamp(round(usr.Potential/20), 1, 5))
-				adjust(usr)
 				src.Trigger(usr)
 		Sparking_Blast
 			SignatureTechnique=3
@@ -7008,7 +6983,7 @@ NEW VARIABLES
 			ActiveMessage="draws spirit energy into their hand to form a blade!"
 			OffMessage="dispels their Spirit Sword!"
 			adjust(mob/p)
-				passives = list("SpiritSword" = 1, "SwordAscension" = 3, "SwordAscensionSecond" = 3, "SwordAscensionThird" = 3)
+				passives = list("SpiritSword" = 0.25, "SwordAscension" = 2, "SwordAscensionSecond" = 2, "SwordAscensionThird" = 2)
 			verb/Transfigure_Spirit_Sword()
 				set category="Utility"
 				var/Choice
@@ -8331,6 +8306,7 @@ NEW VARIABLES
 			StrMult = 1.1
 			ForMult = 1.1
 			EndMult = 1.1
+			TooMuchHealth=50
 			passives = list("PureReduction" = 1, "PureDamage" = 1)
 			ActiveMessage="goes beyond, embracing the full power of Protection and Destruction in a desperate last stand!"
 			OffMessage="lets the power of creation and destruction ebb away..."
@@ -8953,6 +8929,7 @@ NEW VARIABLES
 				TransformX=-7
 				TransformY=-4
 				SpecialBuffLock=1
+				ActiveBuffLock=1
 				verb/Customize_Full_Moon()
 					set category = "Other"
 					IconTransform=input(usr, "What icon will your Full Moon Form use?", "Full Moon Form Icon") as icon|null

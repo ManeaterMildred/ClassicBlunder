@@ -483,13 +483,9 @@ obj/Skills/Utility
 	Mind_Reading_Toggle
 		desc="Ignore thoughts."
 		verb/Filter_Thoughts()
-			set category="Utility"
-			if(usr.HearThoughts)
-				usr.HearThoughts=0
-				usr << "You toggle thought hearing <font color='red'>OFF</font color>."
-			else
-				usr.HearThoughts=1
-				usr << "You toggle thought hearing <font color='green'>ON</FONT COLOR>."
+			set hidden = 1;
+			set name = ".angryNoises"
+			//TODO: Blow up this object after wipe.
 
 
 	GodTransformationToggle //This is a fix for how transformations are coded for saiyans.
@@ -553,6 +549,14 @@ obj/Skills/Utility
 		desc="Allows you to send a telepathic message to someone."
 		Level=100
 		var/anonymous = FALSE
+		verb/Filter_Thoughts()//why was this not a part of telepathy ??
+			set category="Utility"
+			if(usr.HearThoughts)
+				usr.HearThoughts=0
+				usr << "You toggle thought hearing <font color='red'>OFF</font color>."
+			else
+				usr.HearThoughts=1
+				usr << "You toggle thought hearing <font color='green'>ON</FONT COLOR>."
 		verb/Toggle_Anonymous()
 			set category = "Utility"
 			if(src.anonymous)
@@ -561,15 +565,13 @@ obj/Skills/Utility
 			else
 				src.anonymous=1
 				usr << "You toggle anonymous telepathy <font color='green'>ON</font color>."
-//		verb/Telepathic_Message()
-//			set category="Utility"
-//			usr.SkillX("Telepath",src)
 		verb/Telepathic_Link()
 			set category="Utility"
 			if(usr.Secret == "Heavenly Restriction" && usr.secretDatum?:hasRestriction("Senses"))
 				return
 			var/list/who=list("Cancel")
 			for(var/mob/Players/A in players)
+				if(A == usr) continue
 				who.Add(A)
 			for(var/mob/Players/W in who)
 				if(!usr.isRace(SHINJIN))
@@ -2805,13 +2807,7 @@ obj/Skills/Utility
 				OMsg(usr, "[usr] decides not to tinker.")
 				src.Using=0
 				return
-			if(M!=usr)
-				if(!("War Crimes" in usr.knowledgeTracker.learnedKnowledge)||!M.KO)
-					Consent=alert(M, "Do you want to undergo the augmentation procedure?", "Cybernetic Augmentation", "No", "Yes")
-					if(Consent!="Yes")
-						OMsg(usr, "[usr] rejects the surgery.")
-						src.Using=0
-						return
+			
 
 			if(M.EnhanceChips>=M.EnhanceChipsMax)
 				ModChoices.Remove("Enhanced Strength")
@@ -2954,8 +2950,18 @@ obj/Skills/Utility
 
 			if(M.isRace(ANDROID))
 				Cost*=2
+			
+			if(M!=usr)
+				if(("War Crimes" in usr.knowledgeTracker.learnedKnowledge)&&M.KO) Consent="Yes"//i hate this btw
+				else Consent=alert(M, "[ModDesc]\nDo you want to undergo the augmentation procedure?", "Cybernetic Augmentation", "No", "Yes")//hate hate hate
+				
+				if(Consent!="Yes")
+					OMsg(usr, "[usr] rejects the surgery.")
+					src.Using=0
+					return
 
 			ModDesc="[ModDesc]  It costs [Commas(Cost)] to install.  Do you wish to install this module into [M]?"
+
 			Confirm=alert(usr, "[ModDesc]", "Cybernetic Augmentation ([ModChoice])", "No", "Yes")
 			if(Confirm=="No")
 				OMsg(usr, "[usr] decided to not operate.")

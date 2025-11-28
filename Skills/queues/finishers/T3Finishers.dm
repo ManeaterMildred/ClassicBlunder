@@ -48,6 +48,9 @@
         HitMessage = "takes apart their foe's defense atomically!"
 
     Jumbled_Line_Up //Acrobat
+        Combo=10
+        DamageMult=0.3
+        FollowUp="/obj/Skills/Projectile/ThreeShot_Path"
         HitMessage = "hurls skyward a cascade of blades!"
     Clear_Water //Two Heavens as One
         HitMessage = "ushers in absolute serenity with a humble slash..."

@@ -12,10 +12,10 @@ race
 		imagination = 4
 		anger = 1.5
 		regeneration = 4
-		strength = 1.25
-		endurance = 1.5
-		speed = 1
-		force = 1.25
+		strength = 2
+		endurance = 2
+		speed = 1.5
+		force = 2
 		offense = 1.5
 		defense = 1
 

@@ -206,6 +206,10 @@ proc/removeDuplicates(list/list1)
         if(BEASTMAN)
             if(Class=="Heart of The Beastman")
                 . += "Grit"
+            if(Class=="Unseen Predator")
+                . += "Momentum"
+                . += "KillerInstinct"
+                . += "Wrathful Tenacity"
             if(Class=="Monkey King")
                 . += "Hardening"
                 . += "Instinct"
@@ -221,6 +225,12 @@ proc/removeDuplicates(list/list1)
                 . += "Tossing"
                 . += "Momentum"
                 . += "BladeFisting"
+            if(Class=="Fox Fire")
+                . += "SoftStyle"
+                . += "Soulfire"
+            if(Class=="Spirit Walker")
+                . += "Flow"
+                . += "Instinct"
         if(YOKAI)
             . += "ManaGeneration"
             . += "Touch of Death"

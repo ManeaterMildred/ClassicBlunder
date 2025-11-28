@@ -2673,9 +2673,8 @@ obj
 								Size=0.5
 								WindUp=0.25
 								Rounds= round(magicLevel/5) + asc
-								DamageMult = clamp(magicLevel/3 + asc * 2, 4, 12)
+								DamageMult = clamp(magicLevel/3 + asc * 2, 4, 12)/(Rounds)
 								ManaCost *= DamageMult/4
-								DamageMult /= (Rounds)
 							else
 								Rush=0
 								ControlledRush=0
