@@ -1068,11 +1068,11 @@ obj/Skills/Buffs
 			Cooldown = 1
 			SwordAscension=5
 			OffMult=0.75
-			passives = list("HolyMod" = 3)
+			passives = list("HolyMod" = 3,"KiControl" = 1)
 			ActiveMessage="pulls out a small shard of glass that seems barely usable as a weapon."
 			OffMessage="puts the black shard away."
 			adjust(mob/p)
-				passives = list("PUSpike"=50, "HolyMod" = 3, "BlurringStrikes"=3)
+				passives = list("PUSpike"=50, "HolyMod" = 3, "BlurringStrikes"=3, "KiControl"=1)
 				PowerMult=1.25
 				StrMult=1.85
 				SpdMult=1.5
