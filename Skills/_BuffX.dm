@@ -8695,6 +8695,8 @@ NEW VARIABLES
 					..()
 
 			Haki_Armor//Specialized
+				Cooldown=30
+				CooldownStatic=1
 				TimerLimit=15
 				Hardening=2
 				KBRes=2
@@ -8712,6 +8714,8 @@ NEW VARIABLES
 						adjust(User)
 					..()
 			Haki_Armor_Lite//Not specialized
+				Cooldown=30
+				CooldownStatic=1
 				TimerLimit=15
 				StrMult=1.25
 				EndMult=1.25
