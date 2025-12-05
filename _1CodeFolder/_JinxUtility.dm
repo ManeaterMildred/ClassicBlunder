@@ -767,7 +767,7 @@ mob
 				defender.TotalInjury=99
 			defender.MaxHealth()
 		WoundSelf(var/val)
-			if(src.BioArmor)
+			if(src.BioArmor && val != 0)
 				src.DamageSelf(val)
 				return
 			// if(src.isRace(MAJIN))
