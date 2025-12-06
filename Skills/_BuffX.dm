@@ -1620,7 +1620,7 @@ NEW VARIABLES
 					if(p.race.transformations[p.transActive].mastery==100)
 						src.ActiveMessage="erupts with immense intensity, their golden aura overcome with a furious red!!"
 						p.passive_handler.Set("Super Kaioken", 1)
-				if(p.isRace(SAIYAN)&&p.transActive==2||p.isRace(HALFSAIYAN)&&p.transActive==2)
+				if(p.isRace(SAIYAN)&&p.transActive>=2||p.isRace(HALFSAIYAN)&&p.transActive>=2)
 					src.ActiveMessage="erupts with immense intensity, their golden aura overcome with a furious red!!"
 				else
 					src.ActiveMessage="erupts with immense intensity!!"

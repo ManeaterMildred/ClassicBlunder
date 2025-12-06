@@ -106,6 +106,10 @@ globalTracker/var/TOTAL_SPEED_BONUS = 0.4
 globalTracker/var/SPEED_DELAY_LOWEST = 1.75
 mob/proc/MovementSpeed()
 	var/Spd=max(0.1,round(sqrt(src.GetSpd(glob.TOTAL_SPEED_BONUS)),0.1))
+	var/SpdMin=max(0.1,round(sqrt(passive_handler.Get("Skimming")*2*glob.TOTAL_SPEED_BONUS),0.1))
+	if(passive_handler.Get("Skimming") + is_dashing)
+		if(Spd<SpdMin)
+			Spd=SpdMin
 	var/SpdMult = 0
 	if(HasGodspeed())
 		SpdMult = max(0.1,glob.GOD_SPEED_MULT*sqrt(max(1,src.HasGodspeed())))

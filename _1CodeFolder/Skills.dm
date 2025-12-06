@@ -625,8 +625,6 @@ obj/Skills
 			set category="Skills"
 			switch(input(usr,"Delete [Target]?") in list("No","Yes"))
 				if("Yes")
-					usr<<"No."
-					return
 					spawn()RecoverImage(Target)
 					spawn(2)RecoverImage(Target)
 					spawn(4)RecoverImage(Target)

@@ -714,8 +714,8 @@ mob
 				Return += secretDatum.currentTier
 			Return+=passive_handler.Get("Godspeed")
 			Return+=passive_handler.Get("GodSpeed") // just in case man
-			if(passive_handler.Get("Super Kaioken"))
-				Return+=(src.Kaioken/2)
+			if(passive_handler.Get("Super Kaioken")||src.Kaioken>=5)
+				Return+=src.Kaioken
 			var/t=src.HighestTrans()
 			if(t)
 				Return+=t/2
@@ -740,8 +740,8 @@ mob
 			Return+=src.SaiyanTransPower()
 			if(src.KamuiBuffLock)
 				Return += 2
-			if(src.passive_handler.Get("Super Kaioken"))
-				Return+=(src.Kaioken/2)
+			if(src.passive_handler.Get("Super Kaioken")||src.Kaioken>=5)
+				Return+=src.Kaioken
 			if(Target)
 				if(passive_handler.Get("HellRisen")  && isDominating(Target))
 					Return += clamp((passive_handler.Get("HellRisen")*2), 1, 2)
@@ -1030,6 +1030,10 @@ mob
 				Return += cursedSheathValue/100
 			if(dainsleifDrawn)
 				Return += 1+SagaLevel // i hope someone gets cratered by dainsleif
+			if(src.TarotFate=="The Hanged Man")
+				Return+=5
+			if(src.TarotFate=="Justice")
+				Return-=5
 			if(isRace(MAJIN))
 				Return += AscensionsAcquired * getMajinRates("Damage")
 			if(passive_handler["Rebel Heart"])

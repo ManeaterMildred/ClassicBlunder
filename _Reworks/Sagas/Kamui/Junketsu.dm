@@ -231,7 +231,7 @@ obj/Skills/Buffs/SpecialBuffs
 		adjust(mob/p)
 			SpdMult = 1.05 + (p.SagaLevel * 0.05)
 			DefMult = 1.05 + (p.SagaLevel * 0.05)
-			passives = list("Skimming" = 2,"Godspeed"=1+p.SagaLevel*2, "Flicker" = p.SagaLevel, "Flow" = p.SagaLevel/2, "DoubleStrike" = p.SagaLevel/2, "Pursuer" = p.SagaLevel/2, "CounterMaster" = p.SagaLevel, "BleedHit" = 6-p.SagaLevel)
+			passives = list("Skimming" = 2,"Godspeed"=1+p.SagaLevel, "Flicker" = p.SagaLevel, "Flow" = p.SagaLevel/2, "DoubleStrike" = p.SagaLevel/2, "Pursuer" = p.SagaLevel/2, "CounterMaster" = p.SagaLevel, "BleedHit" = 6-p.SagaLevel)
 
 		verb/Kamui_Senpu()
 			set category="Skills"
@@ -265,7 +265,7 @@ obj/Skills/Buffs/SpecialBuffs
 			OffMult = 1.04 + (p.SagaLevel * 0.04)
 			SpdMult = 1.04 + (p.SagaLevel * 0.04)
 			DefMult = 1.04 + (p.SagaLevel * 0.04)
-			passives = list("DeathField" = round(p.SagaLevel*1.25,1), "SwordAscension" = round(p.SagaLevel/1.5,1), "HardStyle" = round(p.SagaLevel/1.5,1), "PureDamage" = round(p.SagaLevel/2.5,1), "Skimming" = 2, "Godspeed"=1+(p.SagaLevel*2), "Flicker" = round(p.SagaLevel/1.25,1), "Flow" = round(p.SagaLevel/2.5,1), "DoubleStrike" = round(p.SagaLevel/2.5,1), "Pursuer" = round(p.SagaLevel/2.5,1), "CounterMaster" = round(p.SagaLevel/1.25,1), "BleedHit" = 8-p.SagaLevel)
+			passives = list("DeathField" = round(p.SagaLevel*1.25,1), "SwordAscension" = round(p.SagaLevel/1.5,1), "HardStyle" = round(p.SagaLevel/1.5,1), "PureDamage" = round(p.SagaLevel/2.5,1), "Skimming" = 2, "Godspeed"=1+p.SagaLevel, "Flicker" = round(p.SagaLevel/1.25,1), "Flow" = round(p.SagaLevel/2.5,1), "DoubleStrike" = round(p.SagaLevel/2.5,1), "Pursuer" = round(p.SagaLevel/2.5,1), "CounterMaster" = round(p.SagaLevel/1.25,1), "BleedHit" = 8-p.SagaLevel)
 
 		verb/Kamui_Senpu_Zanken()
 			set category="Skills"
