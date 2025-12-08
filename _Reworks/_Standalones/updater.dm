@@ -554,7 +554,7 @@ update
 		version = 32
 		updateMob(mob/o)
 			.=..()
-			if(o.isRace(BEASTMAN) && o.Class!="Undying Rage" && o.AscensionsAcquired == 3)
+			if(o.isRace(BEASTMAN) && o.Class!="Undying Rage" && o.AscensionsAcquired == 3 && o.AngerMax<2.05)
 				o.AngerMax=2.05
 			if(o.isRace(BEASTMAN) && o.Class=="Undying Rage" && o.AscensionsAcquired == 3 && o.AngerMax<2.5)
 				o.AngerMax=2.5
