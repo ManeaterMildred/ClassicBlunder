@@ -2631,9 +2631,8 @@ mob
 					return 1
 			return 0
 		UsingMasteredMartialStyle()
-			if(src.StyleActive in list("Turtle", "Crane", "Snake", "Cat","Black Leg", "Strong Fist", "Gentle Fist","Heavenly", "Lightning Kickboxing", "Golden Kirin","Heavenly Dragon Stance", "Drunken Fist", "North Star", "Imperial Devil"))
-				if(!equippedSword)
-					return 1
+			if(usingStyle("UnarmedStyle") && StyleBuff?.SignatureTechnique>=1)
+				return 1
 			return 0
 		UsingMysticStyle()
 			if(!StyleBuff)
@@ -2646,7 +2645,7 @@ mob
 			if(src.Saga=="Keyblade")
 				if(src.SagaLevel>=4)
 					return 1
-			if(src.StyleActive in list("Moonlight", "Entropy", "Imperial Devil", "Atomic Karate", "East Star"))
+			if(usingStyle("MysticStyle") && StyleBuff?.SignatureTechnique>=1)
 				return 1
 			if(src.isRace(DRAGON)&&src.AscensionsAcquired>=3)
 				return 1
