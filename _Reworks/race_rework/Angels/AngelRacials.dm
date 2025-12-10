@@ -222,7 +222,7 @@ obj/Skills/Utility/Recall_Armaments
 		NoSword=1
 		StyleActive="Ultra Instinct (Complete)"
 		adjust(mob/p)
-			passives = list("Flow" = 2, "Deflection" = 1, "SoftStyle" = 1, "Flow" = 3, "Instinct" = 3, "CounterMaster" = 3, "Godspeed" = 1, "BlurringStrikes"=4)
+			passives = list("Flow" = 2, "Deflection" = 1, "SoftStyle" = 1, "Flow" = 3, "Instinct" = 3, "CounterMaster" = 3, "Godspeed" = 1, "BlurringStrikes"=4, "UnarmedDamage"=4)
 			StyleStr=1.35
 			StyleFor=1.35
 			StyleSpd=1.75
