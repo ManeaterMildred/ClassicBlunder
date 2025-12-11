@@ -14,18 +14,11 @@
 			SpdMult = 1.1
 			adjust(mob/p)
 				var/secretLevel = p.getSecretLevel()
-				if(p.CheckSlotless("Rotshreck"))
-					StrMult = 1 + (secretLevel * 0.25)
-					OffMult = 1 + (secretLevel * 0.25)
-					DefMult = 1.1 + (secretLevel * 0.25)
-					ForMult = 1 + (secretLevel * 0.25)
-					SpdMult = 1.1 + (secretLevel * 0.25)
-				else
-					StrMult = 1.1 + (secretLevel * 0.1)
-					OffMult = 1 + (secretLevel * 0.1)
-					DefMult = 1 + (secretLevel * 0.1)
-					ForMult = 1 + (secretLevel * 0.1)
-					SpdMult = 1.1 + (secretLevel * 0.1)
+				StrMult = 1.1 + (secretLevel * 0.1)
+				OffMult = 1 + (secretLevel * 0.1)
+				DefMult = 1 + (secretLevel * 0.1)
+				ForMult = 1 + (secretLevel * 0.1)
+				SpdMult = 1.1 + (secretLevel * 0.1)
 			verb/Vampire()
 				set category="Skills"
 				adjust(usr)
