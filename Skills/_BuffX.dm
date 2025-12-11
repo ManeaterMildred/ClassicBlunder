@@ -1869,6 +1869,7 @@ NEW VARIABLES
 				proc/changeVariables(mob/p)
 					if(altered) return
 					var/SuperSaiyanBuff=1
+					if(p.isRace(SAIYAN)&&p.transActive>=1||p.isRace(HALFSAIYAN)&&p.transActive>=1||p.passive_handler.Get("SuperSaiyanSignature"))
 						if(p.race.transformations[1].mastery==100)
 							SuperSaiyanBuff=1.1
 						if(p.race.transformations[2].mastery==100)
