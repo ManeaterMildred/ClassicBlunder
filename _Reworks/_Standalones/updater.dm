@@ -562,6 +562,16 @@ update
 				o.Revert()
 				KMS.is_active=FALSE
 				o<<"Grats! You can transform as usual again! I have no idea what caused this fucking bug!!!!"
+	
+	version33
+		version = 33
+		updateMob(mob/o)
+			.=..()
+			if(o.isRace(ELDRITCH) && o.AscensionsAcquired == 3)
+				o.passive_handler.Set("SoulFire",3)
+				o.passive_handler.Set("DeathField",9)
+				o.passive_handler.Set("VoidField",9)
+	
 
 
 
