@@ -12839,7 +12839,7 @@ mob
 			if(B.VanishImage)
 				src.VanishPersonal=B.VanishImage
 
-			if(B.ManaGlow)
+			if(B.ManaGlow!="Rainbow")
 				filters = null
 				filters += filter(type="drop_shadow",x=0,y=0,size=B.ManaGlowSize, offset=B.ManaGlowSize/2, color=B.ManaGlow)
 				GlowFilter = filters[filters.len]
