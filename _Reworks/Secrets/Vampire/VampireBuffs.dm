@@ -26,6 +26,11 @@
 					DefMult = 1 + (secretLevel * 0.1)
 					ForMult = 1 + (secretLevel * 0.1)
 					SpdMult = 1.1 + (secretLevel * 0.1)
+			verb/Vampire()
+				set category="Skills"
+				adjust(usr)
+				src.Trigger(usr)
+				usr << "Your vampiric blood awakens!"
 
 		Wassail
 			Curse=1
@@ -84,6 +89,11 @@
 				TooMuchHealth = 100
 			LifeSteal = (10 + secretLevel + 5) * (1 + (p.secretDatum.secretVariable["BloodPower"] * 0.25))
 			Godspeed = secretLevel * (1 + (p.secretDatum.secretVariable["BloodPower"] * 0.25))
+			StrMult = 0.9 + (secretLevel * 0.15)
+			OffMult = 1 + (secretLevel * 0.15)
+			DefMult = 1 + (secretLevel * 0.15)
+			ForMult = 1 + (secretLevel * 0.15)
+			SpdMult = 1 + (secretLevel * 0.15)
 			passives = list("LifeSteal" = LifeSteal, "Godspeed" = Godspeed, "ShearImmunity" = 1)
 
 		Trigger(mob/User, Override = 0)
