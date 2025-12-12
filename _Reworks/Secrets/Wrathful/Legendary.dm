@@ -45,7 +45,7 @@ obj/Skills/Buffs/NuStyle/Legendary
 						"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 2, "Meaty Paws" = 1.5, "KiControlMastery" = 2,"LegendarySaiyan"=1, "Pride"=1, "Zeal"=1, "Honor"=1,\
 						"Hardening" = 2, "Deflection" = 1,"Gum Gum" =1)
 		adjust(mob/p)
-			if(usr.Potential<60)
+			if(usr.Potential<55)
 				passives = list("GiantForm" = 1, "DoubleStrike" = 3, "Fa Jin" = 2, "Momentum" = 3, "HardStyle" = 1, "Instinct"=4, "Juggernaut" = 1, "PureDamage" = 1, "PureReduction" = 2,\
 					"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 2, "Meaty Paws" = 1.5, "KiControlMastery" = 2,"LegendarySaiyan"=1, "Pride"=1, "Zeal"=1, "Honor"=1,\
 					"Hardening" = 2, "Deflection" = 1,"Gum Gum" =1, "UnarmedDamage"=3,"DisableGodKi"=1)
@@ -57,6 +57,46 @@ obj/Skills/Buffs/NuStyle/Legendary
 		StyleActive="Fist Of The Fabled King (True)"
 		Finisher="/obj/Skills/Queue/Finisher/Erupting_Mugen_Tengenkotsu"
 		verb/Fist_Of_The_Fabled_King_Stance()
+			set hidden=1
+			adjust(usr)
+			src.Trigger(usr)
+	Fist_Of_The_King_Of_Tomorrow //no god ki
+		SignatureTechnique=4
+		Copyable=0
+		StyleEnd=1.5
+		StyleStr=2.5
+		Enlarge =2
+		passives = list("GiantForm" = 1, "DoubleStrike" = 3, "Fa Jin" = 2, "Momentum" = 3, "HardStyle"=1, "Instinct"=4, "Juggernaut" = 1, "PureDamage" = 1, "PureReduction" = 2,\
+						"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 2, "Meaty Paws" = 1.5, "KiControlMastery" = 2,"LegendarySaiyan"=1, "Pride"=1, "Zeal"=1, "Honor"=1,\
+						"Hardening" = 2, "Deflection" = 1,"Gum Gum" =1)
+		adjust(mob/p)
+			passives = list("GiantForm" = 1, "DoubleStrike" = 3, "Fa Jin" = 3, "Momentum" = 3, "HardStyle" = 1, "Instinct"=4, "Juggernaut" = 1, "PureDamage" = 2, "PureReduction" = 3,\
+				"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 3, "Meaty Paws" = 2, "KiControlMastery" = 3,"LegendarySaiyan"=1, "Pride"=1, "Zeal"=1, "Honor"=1,\
+				"Hardening" = 2, "Deflection" = 2,"Gum Gum" =1, "UnarmedDamage"=4,"DisableGodKi"=1, "Deicide" = 15, "ZenkaiPower" = 1)
+
+		StyleActive="Fist Of The King Of Tomorrow"
+		Finisher="/obj/Skills/Queue/Finisher/Saigo_no_Kyukyoku_Tengenkotsu"
+		verb/Fist_Of_The_King_Of_Tomorrow()
+			set hidden=1
+			adjust(usr)
+			src.Trigger(usr)
+	Apotheosis_Of_The_Fabled_King //god ki
+		SignatureTechnique=4
+		Copyable=0
+		StyleEnd=1.5
+		StyleStr=2.5
+		Enlarge =2
+		passives = list("GiantForm" = 1, "DoubleStrike" = 3, "Fa Jin" = 2, "Momentum" = 3, "HardStyle"=1, "Instinct"=4, "Juggernaut" = 1, "PureDamage" = 1, "PureReduction" = 2,\
+						"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 2, "Meaty Paws" = 1.5, "KiControlMastery" = 2,"LegendarySaiyan"=1, "Pride"=1, "Zeal"=1, "Honor"=1,\
+						"Hardening" = 2, "Deflection" = 1,"Gum Gum" =1)
+		adjust(mob/p)
+			passives = list("GiantForm" = 1, "DoubleStrike" = 3, "Fa Jin" = 3, "Momentum" = 3, "HardStyle" = 1, "Instinct"=4, "Juggernaut" = 1, "PureDamage" = 2, "PureReduction" = 3,\
+				"NoDodge" = 1, "SweepingStrike" = 1, "Brutalize" = 3, "Meaty Paws" = 2, "KiControlMastery" = 5,"LegendarySaiyan"=1, "Pride"=1, "Zeal"=1, "Honor"=1,\
+				"Hardening" = 2, "Deflection" = 2,"Gum Gum" =1, "UnarmedDamage"=4, "MovementMastery" = 5)
+
+		StyleActive="Apotheosis Of The Fabled King"
+		Finisher="/obj/Skills/Queue/Finisher/Saigo_no_Kyukyoku_Tengenkotsu"
+		verb/Apotheosis_Of_The_Fabled_King()
 			set hidden=1
 			adjust(usr)
 			src.Trigger(usr)
