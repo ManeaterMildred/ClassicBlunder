@@ -271,6 +271,10 @@ mob
 			if(passive_handler.Get("ComboMaster"))
 				return 1
 			return 0
+		HasAlphainForce()
+			if(passive_handler.Get("AlphainForce"))
+				return 1
+			return 0
 		HasSwordAscension()
 			if(passive_handler.Get("SwordAscension"))
 				return 1

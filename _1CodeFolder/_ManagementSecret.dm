@@ -294,8 +294,6 @@ SecretInfomation
 			. = MADNESS_MAX + (MADNESS_ADD_PER_TIER * (1+p.AscensionsAcquired))
 			if(. <0)
 				. = 50
-			else if(. > MADNESS_MAX)
-				. = MADNESS_MAX
 		proc/addMadness(mob/p,amount)
 			if(secretVariable["Madness Active"] == 1) return
 			if(amount < 0.9)
