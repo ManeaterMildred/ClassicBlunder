@@ -873,10 +873,10 @@ mob/proc/
 					SSJBoost= 1.45
 				Ratio*=SSJBoost
 
-			if(src.Target)
+			/*if(src.Target)
 				if(ismob(src.Target))
 					if(src.HasMirrorStats()&&!src.Target.HasMirrorStats()&&!src.Target.CheckSlotless("Saiyan Soul"))
-						Ratio=src.Target.Power/src.Target.GetPowerUpRatio()
+						Ratio=src.Target.Power/src.Target.GetPowerUpRatio()*/
 
 		if(passive_handler["Rebel Heart"])
 			var/h = ((missingHealth()/glob.REBELHEARTMOD) * passive_handler["Rebel Heart"])/5
