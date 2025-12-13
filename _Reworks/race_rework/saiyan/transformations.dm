@@ -287,7 +287,7 @@ transformation
 			var/tailUnderlayIcon = 'saiyantail_ssj4_under.dmi'
 			var/tailWrappedIcon = 'saiyantail-wrapped_ssj4.dmi'
 			form_icon_1_icon = 'GokentoMaleBase_SSJ4.dmi'
-			passives = list("GiantForm" = 1, "SweepingStrike" = 1, "Brutalize" = 3, "Meaty Paws" = 2, "KiControlMastery" = 3, "PureReduction" = 5, "LifeGeneration" = 5, "Unstoppable" = 1, "AllOutAttack" = 1, "Reversal" = 0.3)
+			passives = list("DisableGodKi" = 1,"GiantForm" = 1, "SweepingStrike" = 1, "Brutalize" = 3, "Meaty Paws" = 2, "KiControlMastery" = 3, "PureReduction" = 5, "LifeGeneration" = 5, "Unstoppable" = 1, "AllOutAttack" = 1, "Reversal" = 0.3)
 			adjust_transformation_visuals(mob/user)
 				if(user.Hair_Base && !form_hair_icon)
 					var/icon/x=new(user.Hair_Base)
@@ -295,7 +295,7 @@ transformation
 				..()
 
 			mastery_boons(mob/user)
-				passives = list("GiantForm" = 1, "Juggernaut" = 1+(mastery/25), "BuffMastery" = 5 + (mastery/10), "SweepingStrike" = 1, "Brutalize" = 3, "Meaty Paws" = 2 + (mastery/50), "KiControlMastery" = 3 + (mastery/50), "PureReduction" = 5 + (mastery/10),\
+				passives = list("DisableGodKi" = 1, "GiantForm" = 1, "Juggernaut" = 1+(mastery/25), "BuffMastery" = 5 + (mastery/10), "SweepingStrike" = 1, "Brutalize" = 3, "Meaty Paws" = 2 + (mastery/50), "KiControlMastery" = 3 + (mastery/50), "PureReduction" = 5 + (mastery/10),\
 				"LifeGeneration" = 1 + (mastery/15), "Unstoppable" = 1, "AllOutAttack" = 1, "Reversal" = 0.1 + (mastery/200), "Flow" = 4, "Instinct" = 4, "Transformation Power" = clamp(user.AscensionsAcquired * 3, 1, 20))
 				speed = 1.5 + (mastery/200)
 				endurance = 1.5 + (mastery/200)
@@ -353,15 +353,19 @@ transformation
 		super_saiyan_god
 			tier = 4
 			passives = list("GodKi" = 0.5, "EnergyGeneration" = 1, "Godspeed" = 4, "Flow" = 4, "BackTrack" = 2, "StunningStrike" = 1, "Sunyata" = 1 )
-			unlock_potential = 80
+			unlock_potential = 70
 			form_aura_icon = 'SSBGlow.dmi'
 			form_aura_x = -32
 			form_aura_y = -32
+			strength = 1.2
+			speed = 1.4
+			offense = 1.2
+			defense = 1.4
+			force = 1.2
 			// at full mastery, give the saiyan beyond god buff, then remove ssjgod, and replace it with ssjgb
 			mastery_boons(mob/user)
-				passives = list("GodKi" = 0.5, "EnergyGeneration" = 5 * (mastery/100), "Godspeed" = 4, "Flow" = 1 + round(mastery/25, 1), \
-								 "BackTrack" = round(mastery/50, 1) , "StunningStrike" = 2.5 * (mastery/100), "Sunyata" = 5 * (mastery/100))
-			// in order to do first transformation, 4 saiyans need to be giving energy (this is troll, but who cares)
+				passives = list("GodKi" = 0.5, "EnergyGeneration" = 5 * round(mastery/100, 0.1), "Godspeed" = 4, "Flow" = 1 + round(mastery/25, 1), \
+								 "BackTrack" = round(mastery/50, 1) , "StunningStrike" = 2.5 * round(mastery/100, 0.1), "Sunyata" = 5 * round(mastery/100,1),"GodlyCalm"=1)
 			adjust_transformation_visuals(mob/user)
 				if(user.Hair_Base && !form_hair_icon)
 					var/icon/x=new(user.Hair_Base)
@@ -370,7 +374,7 @@ transformation
 					form_hair_icon=x
 				..()
 			transform_animation(mob/user)
-				if(mastery < 75)
+				if(mastery < 25)
 					sleep(10)
 				//src.Transforming=1
 					user.Frozen=2
@@ -436,11 +440,17 @@ transformation
 						animate(user, color = null, time=5)
 
 			transform(mob/user)
+				if(user.CheckSlotless("Beyond God"))
+					return
 				if(mastery>=100)
-					user.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/SaiyanBeyondGod)
-					user << "You are able to use your god boons in base form (Beyond God Buff)"
-					user.race.transformations-=src
-					del src
+					if(!locate(/obj/Skills/Buffs/SlotlessBuffs/SaiyanBeyondGod, user))
+						user.AddSkill(new/obj/Skills/Buffs/SlotlessBuffs/SaiyanBeyondGod)
+						user << "You are able to use your god boons in base form (Beyond God Buff)"
+						return
+					else
+						..()
+				//	user.race.transformations-=src
+				//	del src
 				else
 					..()
 
@@ -459,17 +469,17 @@ transformation
 			force = 1.3
 			mastery_boons(mob/user)
 				passives = list("GodKi" = 0.75, "Instinct" = 4, "Brutalize" = 1.5, "Steady" = 3,  "BuffMastery" = 6, "MovementMastery" = 5, \
-								"PureDamage" = 2, "PureReduction" = 1)
+								"PureDamage" = 2, "PureReduction" = 1, "InBlue" = 1)
 
 				if(mastery >= 100)
 					// perfected
 					passives = list("GodKi" = 1, "Instinct" = 4, "Brutalize" = 3, "BuffMastery" = 8, "Steady" = 6, "MovementMastery" = 10, \
 									"EnergyGeneration" = 3,  "PureDamage" = 2, "PureReduction" = 2, "Godspeed" = 4, "LikeWater" = 8, \
-									"BackTrack" = 1 , "StunningStrike" = 2, "Sunyata" = 3)
+									"BackTrack" = 1 , "StunningStrike" = 2, "Sunyata" = 3, "InBlue" = 1)
 					if(user.race.ascensions[1].choiceSelected == /ascension/sub_ascension/saiyan/pride) // ssgsse
 						passives = list("GodKi" = 1.25, "Brutalize" = 5, "BuffMastery" = 8, "MovementMastery" = 15, "EnergyLeak" = 3, \
 								 	"PureDamage" = 3, "PureReduction" = 1, "Godspeed" = 4, "LikeWater" = 10, \
-									"Sunyata" = 6)
+									"Sunyata" = 6, "InBlue" = 1)
 						strength = 2
 						speed = 2
 						force = 2
@@ -488,7 +498,7 @@ transformation
 
 
 			transform(mob/user)
-				if(user.CheckSlotless("Beyond God"))
+				if(user.CheckSlotless("Beyond God")&&user.transUnlocked>=5)
 					..()
 				else return 0
 

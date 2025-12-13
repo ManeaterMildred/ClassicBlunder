@@ -550,7 +550,7 @@ mob
 				if(race.transformations[transActive].mastery<100)
 					drain = glob.racials.SSJ_BASE_DRAIN - (glob.racials.SSJ_BASE_DRAIN * (race.transformations[transActive].mastery/100))
 					cut_off = glob.racials.SSJ_BASE_CUT_OFF + (glob.racials.SSJ_CUT_OFF_PER_MAST * (race.transformations[transActive].mastery/100))
-					if(src.HasMystic())
+					if(src.HasMystic()||src.CheckSlotless("Beyond God")||src.passive_handler.Get("GodlyCalm"))
 						drain = 0
 
 				if(drain>0)

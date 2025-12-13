@@ -675,6 +675,7 @@
 #include "Skills\queues\finishers\T1Finishers.dm"
 #include "Skills\queues\finishers\T2Finishers.dm"
 #include "Skills\queues\finishers\T3Finishers.dm"
+#include "Skills\queues\finishers\T4Finishers.dm"
 #include "Skills\queues\finishers\UIHybridFinishers.dm"
 #include "Skills\queues\gear\Cyberize.dm"
 #include "Skills\queues\gear\NoxNyoctore.dm"

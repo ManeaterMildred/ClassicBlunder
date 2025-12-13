@@ -106,6 +106,7 @@
 			passives["Meaty Paws"] = 2 + (p.AscensionsAcquired /2)
 			passives["Juggernaut"] = 1 + (p.AscensionsAcquired / 2)
 			passives["BuffMastery"] = 5 + (p.AscensionsAcquired / 10)
+			passives["DisableGodKi"] = 1
 			AutoAnger = 1
 			StrMult = 1.5
 			ForMult = 1.5
@@ -156,6 +157,10 @@ mob/proc/Oozaru(Go_Oozaru=1,var/revert, obj/Skills/Buffs/SlotlessBuffs/Oozaru/Bu
 		Buff.adjust(src)
 		src.PowerControl=100
 		Buff.Trigger(src, 1)
+	/*	if(src.KamuiBuffLock)
+			for(var/obj/Skills/Buffs/SlotlessBuffs/Oozaru/B in src.SlotlessBuffs)
+				if(!src.BuffOn(B))
+					B.Trigger(src, Override = 1)*/
 
 		// src.Anger=2
 

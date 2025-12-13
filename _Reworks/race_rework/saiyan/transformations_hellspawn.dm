@@ -77,6 +77,12 @@ transformation
 			//	if(user.TotalInjury<50)
 			//		user.TotalInjury=50
 				sleep(2)
+
+			transform(mob/user)
+				if(user.CheckSlotless("Beyond God")||user.passive_handler.Get("InBlue"))
+					return
+				else
+					..()
 		hellspawn_super_saiyan_2 //it's super saiyan 4
 			tier = 6//full transparency this does functionally nothing for hellspawns, but it's a bandaid for our special regular saiyans hahaha
 			unlock_potential = 80
@@ -156,3 +162,8 @@ transformation
 					ShockSize/=2
 				spawn(10)
 					animate(user, color = user.MobColor, time=20)
+			transform(mob/user)
+				if(user.CheckSlotless("Beyond God")||user.passive_handler.Get("InBlue"))
+					return
+				else
+					..()

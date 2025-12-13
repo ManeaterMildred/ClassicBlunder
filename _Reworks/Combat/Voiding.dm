@@ -105,7 +105,7 @@ mob/proc/StartFresh()
 
 /mob/proc/makeCorpse(oldLoc)
 	Stunned = 0
-	if(src.passive_handler.Get("Undying"))
+	if(src.passive_handler.Get("Undying")||glob.VoidChance>=90)
 		return
 	var/mob/Body/corpse = new()
 	corpse.race = new/race/human()

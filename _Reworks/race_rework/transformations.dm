@@ -193,7 +193,7 @@ transformation
 			user.potential_trans = user.Potential+pot_trans
 			var/SaiyanTrans=0
 			if(user.isRace(SAIYAN)||user.isRace(HALFSAIYAN))
-				SaiyanTrans=unlock_potential-user.Potential
+				SaiyanTrans=(pot_trans+unlock_potential)-user.Potential
 				if(SaiyanTrans<5*user.transActive)
 					SaiyanTrans=5*user.transActive
 				user.potential_trans=user.Potential+SaiyanTrans

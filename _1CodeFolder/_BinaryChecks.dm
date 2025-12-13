@@ -864,6 +864,8 @@ mob
 			Return+=passive_handler.Get("BurnHit")
 			return Return
 		HasEnergyLeak()
+			if(passive_handler.Get("Pride")&&Health>=90)
+				return 0
 			if(passive_handler.Get("EnergyLeak"))
 				return 1
 			if(src.transActive()&&!src.HasMystic())
@@ -897,6 +899,8 @@ mob
 				Total = 0
 			return Total
 		HasFatigueLeak()
+			if(passive_handler.Get("Pride")&&Health>=90)
+				return 0
 			if(passive_handler.Get("FatigueLeak"))
 				return 1
 			if(src.GatesActive && src.GatesActive < 8)
@@ -906,6 +910,7 @@ mob
 			return 0
 		GetFatigueLeak()
 			var/Total=0
+			var/PrideDrain=0
 			Total+=passive_handler.Get("FatigueLeak")
 			if(Total >= 3 && isRace(YOKAI))
 				Total -= 0.5 * AscensionsAcquired
@@ -916,6 +921,15 @@ mob
 					Total+=0.25
 				if(src.DoubleHelix>=2)
 					Total+=src.DoubleHelix*0.5
+			if(passive_handler.Get("Pride"))
+				PrideDrain=(100-Health)*0.01
+				if(PrideDrain>1)
+					PrideDrain=1
+				if(PrideDrain<0.01)
+					PrideDrain=0.01
+
+		//		Total=PrideDrain
+				Total*=PrideDrain
 			return Total
 		HasSoftStyle()
 			if(passive_handler.Get("SoftStyle"))
@@ -1145,7 +1159,7 @@ mob
 				if(Target.passive_handler.Get("Pressure"))
 					Return -= Target.passive_handler.Get("Pressure")
 			if(src.passive_handler.Get("Zeal"))
-				Return+=1
+				Return+=2
 			return Return
 		HasUnarmedDamage()
 			if(passive_handler.Get("UnarmedDamage"))
@@ -1182,6 +1196,8 @@ mob
 		GetVanish()
 			return passive_handler.Get("Vanishing")
 		HasMovementMastery()
+			if(passive_handler.Get("Zeal"))
+				return 1
 			if(passive_handler.Get("MovementMastery"))
 				return 1
 			if(InfinityModule)
@@ -1192,6 +1208,8 @@ mob
 		GetMovementMastery()
 			var/Total=0
 			Total+=passive_handler.Get("MovementMastery")
+			if(passive_handler.Get("Zeal"))
+				Total += transActive
 			if(Saga=="Cosmo" && !SpecialBuff)
 				Total += SagaLevel * 2.5
 			if(InfinityModule)
@@ -1620,7 +1638,7 @@ mob
 		HasHellPower()
 			if(CheckSlotless("Satsui no Hado") && SagaLevel>=6)
 				return 1
-			if(passive_handler.Get("ZenkaiPower")
+			if(passive_handler.Get("ZenkaiPower"))
 				return 0
 			if(passive_handler.Get("HellPower"))
 				if(isRace(DEMON)||oozaru_type=="Demonic")
@@ -1631,20 +1649,24 @@ mob
 			var/hellpower = passive_handler.Get("HellPower")
 			if(CheckSlotless("Satsui no Hado") && SagaLevel>=6)
 				hellpower++
-			if(passive_handler.Get("ZenkaiPower")
+			if(passive_handler.Get("ZenkaiPower"))
 				hellpower=0
 			return hellpower
 		HasZenkaiPower()
 			if(passive_handler.Get("ZenkaiPower"))
 				return 2
+			if(passive_handler.Get("Honor"))
+				return 1
 			return 0
 		GetZenkaiPower()
-			var/ZenkaiPower = passive_handler.Get("ZenkaiPower")
+			var/ZenkaiPower = (passive_handler.Get("ZenkaiPower")/2)
+			if(passive_handler.Get("Honor"))
+				ZenkaiPower+=0.5
 			return ZenkaiPower
 		GetZenkaiScaling()
 			var/Return=1
 			var/Mult=GetZenkaiPower() / glob.HELL_SCALING_MULT
-			if(HasHellPower() == 2)
+			if(HasZenkaiPower() == 2)
 				Mult*=glob.HELL_SCALING_MULT
 				Mult+=round(src.Potential/100, 0.05)
 			var/HealthLost = abs(src.Health-100)

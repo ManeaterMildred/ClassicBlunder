@@ -341,7 +341,6 @@ mob
 			if(defender.Health<=defender.AngerPoint*(1-src.HealthCut)&&defender.passive_handler.Get("Defiance")&&!defender.CheckSlotless("Great Ape"))
 				if(defender.Anger)
 					defender.DefianceCalcs(val, src)
-
 			if(defender.passive_handler["Shonen"]&&defender.Target)
 				if(defender.Health < defender.Target.Health && Health < 50 + 5 * defender.AscensionsAcquired)
 					defender.ShonenCounter+=(val * (defender.AscensionsAcquired/40)) * 1 + (defender.passive_handler["Shonen"]/5)
@@ -1532,6 +1531,8 @@ mob
 			if(passive_handler.Get("DemonicDurability") && (Anger||HasCalmAnger()))
 				if(!passive_handler.Get("CancelDemonicDura"))
 					End += End * (glob.DEMONIC_DURA_BASE * passive_handler.Get("DemonicDurability"))
+			if(CheckSlotless("The Grit") && (Anger||HasCalmAnger()))
+				End += End * (glob.DEMONIC_DURA_BASE)
 			End+=EndAdded
 			if(UsingHotnCold())
 				if(StyleBuff?:hotCold<0)

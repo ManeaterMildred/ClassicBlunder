@@ -15,7 +15,7 @@ proc/generateVersionDatum()
 		glob.currentUpdate = updateversion
 
 globalTracker
-	var/UPDATE_VERSION = 32
+	var/UPDATE_VERSION = 34
 	var/tmp/update/currentUpdate
 
 	proc/updatePlayer(mob/p)
@@ -562,7 +562,7 @@ update
 				o.Revert()
 				KMS.is_active=FALSE
 				o<<"Grats! You can transform as usual again! I have no idea what caused this fucking bug!!!!"
-	
+
 	version33
 		version = 33
 		updateMob(mob/o)
@@ -571,9 +571,13 @@ update
 				o.passive_handler.Set("SoulFire",3)
 				o.passive_handler.Set("DeathField",9)
 				o.passive_handler.Set("VoidField",9)
-	
 
-
+	version34
+		version = 34
+		updateMob(mob/o)
+			if(o.isRace(ELDRITCH) && o.AscensionsAcquired == 3)
+				o.EnhanceChipsMax = 18
+				o.passive_handler.Increase("MovementMastery",2)
 
 /globalTracker/var/COOL_GAJA_PLAYERS = list("Thorgigamax", "Gemenilove" )
 /globalTracker/var/GAJA_PER_ASC_CONVERSION = 0.25

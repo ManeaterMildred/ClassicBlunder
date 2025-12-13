@@ -1,6 +1,7 @@
 /obj/Skills/Buffs/SlotlessBuffs/Racial/Beastman/The_Grit
 	// since grit won't b used elsewhere i could just make it consume the grit on active, but that is sloppy
 	// otherwise i can replace the usesX vars and make it 1 variable BUT I AM LAZY AS HELL
+	BuffName = "The Grit"
 	Cooldown = -1
 	NeedsHealth = 50
 	ActiveMessage = "channels their grit and prepares for the next attack!"
@@ -8,9 +9,11 @@
 	adjust(mob/p)
 		var/currentGrit = p.passive_handler["Grit"]
 		currentGrit/=10
-		VaizardHealth = currentGrit
+		VaizardHealth = 10+ currentGrit
+		BuffName = "The Grit"
 	verb/The_Grit()
 		set category = "Skills"
+		adjust(usr)
 		Trigger(usr)
 
 
@@ -58,7 +61,7 @@
 		passives = list("Brutalize" = 1.25 + (0.5 * p.AscensionsAcquired), "Godspeed" = p.AscensionsAcquired,  "Afterimages" = 2, "Crippling" = 5 + 5 * p.AscensionsAcquired)
 
 /obj/Skills/Buffs/SlotlessBuffs/Autonomous/Racial/Undying_Rage
-	TooMuchHealth = 25
+	TooMuchHealth = 35
 	NeedsHealth = 10
 	passives = list("Undying Rage" = 1)
 	Cooldown = -1
@@ -67,6 +70,7 @@
 	EndMult=0.9
 	ActiveMessage = "is too angry to die!"
 	adjust(mob/p)
+		TooMuchHealth = 35
 		TimerLimit = 10 + (glob.racials.UNDYINGRAGE_DURATION * (p.AscensionsAcquired))
 		var/wT = 1.5 - p.passive_handler["Wrathful Tenacity"]
 		passives = list("Undying Rage" = 1, "Fury" = 1 + p.AscensionsAcquired, "Godspeed" = 3, "Relentlessness" = 1, "ShearImmunity" = 1, "Adrenaline" = 3, "LifeSteal" = 50 + (25 * p.AscensionsAcquired), \

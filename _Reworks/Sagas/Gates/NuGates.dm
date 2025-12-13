@@ -105,7 +105,6 @@
 	BuffName = "Jort Gate"
 /obj/Skills/AutoHit
 	Night_Guy
-		GatesNeeded=8
 		Area="Circle"
 		DamageMult=1.1
 		Rounds=10

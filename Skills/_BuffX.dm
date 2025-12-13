@@ -1493,7 +1493,7 @@ NEW VARIABLES
 			UnrestrictedBuff=1
 			NeedsSSJ=1
 			EnergyExpenditure=1.5
-			PowerMult=1.1
+			PowerMult=1.05
 			StrMult=1.2
 			ForMult=1.2
 			EndMult=1.2
@@ -1509,9 +1509,9 @@ NEW VARIABLES
 			adjust(mob/p)
 				if(src.Mastery<1)
 					src.Mastery=1
-					src.PowerMult=1.1
+					src.PowerMult=1.05
 				if(src.Mastery>=2)
-					src.PowerMult=1.2
+					src.PowerMult=1.1
 					SpdMult=1
 					passives = list("MovementMastery" = 3)
 					DefMult=0.8
@@ -1530,7 +1530,7 @@ NEW VARIABLES
 			UnrestrictedBuff=1
 			NeedsSSJ=1
 			EnergyExpenditure=2
-			PowerMult=1.2
+			PowerMult=1.1
 			StrMult=1.2
 			ForMult=1.2
 			EndMult=1.5
@@ -1549,9 +1549,9 @@ NEW VARIABLES
 			adjust(mob/p)
 				if(src.Mastery<1)
 					src.Mastery=1
-					src.PowerMult=1.2
+					src.PowerMult=1.1
 				if(src.Mastery>=2)
-					src.PowerMult=1.3
+					src.PowerMult=1.2
 					OffMult=0.8
 					DefMult=0.8
 			verb/Super_Saiyan_Grade3()
@@ -1595,6 +1595,9 @@ NEW VARIABLES
 					passives = list("MovementMastery" = 3+round(p.Potential/10), "PureDamage" = 2, "PureReduction" = 2, "Flicker" = 2)
 			verb/Super_Saiyan_Perfected()
 				set category="Skills"
+				if(usr.passive_handler.Get("GodlyCalm")||usr.passive_handler.Get("InBlue"))
+					usr<<"You cannot use these forms with a godly form active."
+					return
 				adjust(usr)
 				if(!usr.BuffOn(src))
 					src.NeedsSSJ=src.Mastery
@@ -4124,9 +4127,9 @@ NEW VARIABLES
 					if(usr.transActive>0)
 						src << "You can't handle transforming while using divinity."
 						return
-					usr.transActive = 3
+					usr.transActive = 1
 				src.Trigger(usr)
-				if(!usr.BuffOn(src) && usr.transActive != 4)
+				if(!usr.BuffOn(src) && usr.transActive != 2)
 					usr.transActive = 0
 		Saiyan_Dominance
 			AutoAnger=1
