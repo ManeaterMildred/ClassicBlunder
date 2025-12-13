@@ -31,6 +31,7 @@ obj
 			Distance=1//Unless otherwise stated, assume it's a one tile attack of varying style.
 			var/DistanceAround //this is only used for AroundTarget type techs.
 			var
+				UsesinForce = 0
 				Cleansing = 0
 				ManaDrain = 0
 				HitSelf = 0
@@ -5458,6 +5459,9 @@ mob
 				CostMultiplier*=src.GetSwordDelay(sord)
 			if(src.Frozen!=3)
 				src.Frozen=0
+			if(Z.UsesinForce)
+				Z.DamageMult += (src.inForceAmp() / 10)
+				src.passive_handler.Set("AlphainForce", 0)
 			if(Z.ChargeFlight)
 				src.icon_state=""
 			if(Z.HitSparkIcon)

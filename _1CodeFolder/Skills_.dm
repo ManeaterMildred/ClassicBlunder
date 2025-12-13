@@ -174,6 +174,8 @@ mob/proc/SkillX(var/Wut,var/obj/Skills/Z,var/bypass=0)
 					if(Z.Using==1)
 						return
 					src.icon_state=""
+					if(src.passive_handler.Get("AlphainForce") > 0)
+						(src.passive_handler.Set("AlphainForce", 0))
 					if(MeditateTime >= 15)
 						src.Tension=0
 						Momentum = 0

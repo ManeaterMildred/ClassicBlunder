@@ -236,7 +236,7 @@
 
 	if(passive_handler.Get("Undying Rage"))
 		val*=0.1
-	if(HasAlphainForce())
+	if(HasEmptySeat())
 		passive_handler.Increase("AlphainForce", val)
 	#if DEBUG_DAMAGE
 	log2text("Damage", "After TrueMult", "damageDebugs.txt", "[src.ckey]/[src.name]")

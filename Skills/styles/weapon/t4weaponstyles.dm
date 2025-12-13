@@ -25,6 +25,20 @@
         verb/Kyutoryu()
             set hidden=1
             src.Trigger(usr)
+    Alpha_inForce
+        SignatureTechnique = 4
+        StyleActive="Alpha inForce"
+        StyleStr=1.5
+        StyleFor=1.5
+        StyleEnd=1.25
+        StyleOff=1.25
+        StyleSpd=1.25
+        passives = list("Knight of the Empty Seat" = 1, "HybridStyle" = "MysticStyle", "CriticalChance" = 15, "CriticalDamage"= 0.15, "SpiritSword" = 1, "SpiritFlow"= 4, "SweepingStrike" = 1, \
+        				"MovingCharge"= 1, "TripleStrike" = 1, "DoubleStrike" = 2, "Momentum" = 2, "Parry" = 2, "Deflection" = 2, "HybridStrike" = 1, "QuickCast" = 5, "ManaSteal" = 25, "ManaGeneration" = 5)
+        Finisher = "/obj/Skills/Queue/Finisher/Seiken_Gradalpha"
+        verb/Alpha_inForce()
+            set hidden=1
+            src.Trigger(usr)  
     War_God
         SignatureTechnique = 4
         StyleActive="Kratos"
