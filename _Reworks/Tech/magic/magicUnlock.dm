@@ -53,6 +53,9 @@ var/knowledgePaths/magic/list/MagicTree = list()
 			if(n == "Crest Legend")
 				if(CrestCreationUnlocked<7)
 					buyList += knowledge
+			if(n == "Piloting Foundations")
+				if(PilotingProwess<7)
+					buyList += knowledge
 			continue
 		if(length(knowledge.requires) > 0)
 			if(knowledge.meetsReqs(knowledgeList))
@@ -66,7 +69,7 @@ var/knowledgePaths/magic/list/MagicTree = list()
 		return
 	if(input in buyList)
 		var/knowledgePaths/knowledge = global.vars["[pathType]Tree"]["[input]"]
-		
+
 		if(knowledge.meetsReqs(knowledgeList))
 			theCost *= 1 + (0.25 * length(knowledge.requires))
 			if(knowledge.breakthrough)
@@ -76,7 +79,7 @@ var/knowledgePaths/magic/list/MagicTree = list()
 			if(confirm == "Yes")
 				if(SpendRPP(theCost, "[knowledge.name]"))
 					UnlockTech(knowledge, pathType)
-		
+
 
 
 /mob/verb/learnMagic()

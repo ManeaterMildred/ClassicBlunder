@@ -346,8 +346,13 @@ Fast Actig -> Automed dispensers
             name = "Vehicular Power Armor"
             description = "Allows access to mobile suit through Access Technology menu.\nNo further technology unlocks."
             requires = list("Hydraulic Weaponry", "Blast Shielding", "Combat Scanning", "Prosthetic Limbs" )
-        
+
         Culinary_Basics
             name="Culinary Basics"
             requires = list();
-            description = "Learn the basics of getting yourself fed. Or drunk.";
+            description = "Learn the basics of getting yourself fed. Or drunk."
+
+        Piloting_Foundations
+            name="Piloting Foundations"
+            requires = list();
+            description = "Learn how to pilot War Machines,like Powered Armor and Mobile Suits.";

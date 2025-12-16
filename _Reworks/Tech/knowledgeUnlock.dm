@@ -80,6 +80,8 @@ var/knowledgePaths/tech/list/TechnologyTree = list()
 		if("Culinary Basics")
 			for(var/obj/Skills/Utility/Cooking/cock in src)
 				del cock
+		if("Piloting Foundations")
+			PilotingProwess=0
 
 /mob/verb/learnTech()
 	set category = "Utility"
@@ -345,6 +347,11 @@ var/knowledgePaths/tech/list/TechnologyTree = list()
 			if(!locate(/obj/Skills/Utility/Cooking, src))
 				src.AddSkill(new/obj/Skills/Utility/Cooking);
 				src << "You have learned the basics of <u>Cooking</u>!"
+		if("Piloting Foundations")
+			PilotingProwess++
+			if(PilotingProwess>7)
+				PilotingProwess=7
+
 
 /knowledgePaths/proc/meetsReqs(list/acquired)
 	for(var/req in requires)
@@ -580,3 +587,7 @@ var/knowledgePaths/tech/list/TechnologyTree = list()
 			if(locate(/obj/Skills/Utility/Cooking, src))
 				for(var/obj/Skills/Utility/Cooking/cock in src)
 					del cock
+		if("Piloting Foundations")
+			PilotingProwess--
+			if(PilotingProwess < 0)
+				PilotingProwess=0
