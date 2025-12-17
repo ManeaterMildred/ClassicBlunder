@@ -236,6 +236,9 @@
 
 	if(passive_handler.Get("Undying Rage"))
 		val*=0.1
+	if(defender.passive_handler.Get("Miracle"))
+		if( prob(defender.passive_handler.Get("Miracle") * 15))
+			val=0
 	if(HasEmptySeat())
 		passive_handler.Increase("AlphainForce", val)
 	#if DEBUG_DAMAGE
