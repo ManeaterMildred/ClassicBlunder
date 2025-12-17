@@ -5492,7 +5492,7 @@ mob
 			if(src.Frozen!=3)
 				src.Frozen=0
 			if(Z.UsesinForce)
-				Z.DamageMult += (src.inForceAmp() / 10)
+				Z.DamageMult += (src.inForceAmp() / 100)
 				src.passive_handler.Set("AlphainForce", 0)
 			if(Z.ChargeFlight)
 				src.icon_state=""
