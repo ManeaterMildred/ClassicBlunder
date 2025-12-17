@@ -4148,6 +4148,19 @@ NEW VARIABLES
 					usr.passive_handler.Set("Alter the Future", 0)
 					usr.passive_handler.Set("Alter the Future", 100)
 				src.Trigger(usr)
+		Digimental_of_Miracles
+			BuffName = "Digimental of Miracles"
+			SignatureTechnique=4
+			Mastery=-1
+			UnrestrictedBuff=1
+			passives = list("GodKi" = 1, "Miracle" = 1, "Sunyata" = 5, "Flow" = 10, "Instinct" = 10, "LifeSteal" = 30, "Deflection" = 5, "Reversal" = 2.5, "CounterMaster" = 5, \
+								"BlockChance" = 25, "CriticalBlock" = 0.25, "Unstoppable" = 1)
+			FlashChange=1
+			ActiveMessage="radiates with a miraculous power that can overcome any predicament!"
+			OffMessage="releases the power of miracles."
+			verb/Digimental_of_Miracles()
+				set category="Skills"
+				src.Trigger(usr)
 		Power_of_Destruction //will be a saga later
 			BuffName = "Power of Destruction"
 			SignatureTechnique=4
