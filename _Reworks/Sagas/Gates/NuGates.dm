@@ -97,18 +97,24 @@
 	spdAdd=0.75
 	endAdd=0.4
 	adjust(mob/p)
-		passives = list("TechniqueMastery"=3, "Pursuer"=4, "Flicker"=3, "PureDamage" = 2, "PureReduction"=2,"Godspeed"=4, "Deicide" = 15)
+		passives = list("TechniqueMastery"=3, "Pursuer"=4, "Flicker"=3, "PureDamage" = 2, "PureReduction"=2,"Godspeed"=4, "Deicide" = 15, "The Flame of Youth" = 1)
 /obj/Skills/Buffs/SlotlessBuffs/Autonomous/GateEight
 	BuffName = "Eight Inner Gates Released Formation"
 	GatesNeeded=8
 	adjust(mob/p)
-		passives = list("Sunyata"=3, "Seki"=100, "PUSpike" = 200, "Deicide" = 20, "EndlessNine" = 2)
+		strAdd=10
+		spdAdd=10
+		endAdd=10
+		HealthCut=0.99
+		BuffTechniques=list("/obj/Skills/AutoHit/Night_Guy")
+		passives = list("Sunyata"=3, "Seki"=100, "PUSpike" = 200, "Deicide" = 20, "EndlessNine" = 2, "Sekizou" = 1)
 /obj/Skills/Buffs/SlotlessBuffs/Autonomous/GateJort
 	BuffName = "Jort Gate"
 /obj/Skills/AutoHit
+	var/ResourceCost
 	Night_Guy
 		Area="Circle"
-		DamageMult=1.1
+		DamageMult=1.5
 		Rounds=10
 		Knockback = 1
 		ComboMaster=1
@@ -119,6 +125,7 @@
 		Rush=5
 		PullIn=2
 		ControlledRush=20
+		Cooldown=30
 		Instinct=1
 		TurfStrike=4
 		TurfShift='Dirt1.dmi'
@@ -128,6 +135,7 @@
 		IconX = -8
 		IconY = -8
 		ChargeTech = 1
+		ResourceCost = list("Seki", 10)
 		WindupMessage="crouches down..."
 		ActiveMessage="and kicks off with intense force, bending space around them!!!"
 		verb/Night_Guy()

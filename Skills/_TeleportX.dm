@@ -328,9 +328,6 @@ obj/Skills
 										continue
 									if(m.PowerControl<=25)
 										continue
-							if(m.HasGodKi())
-								if(!User.HasGodKi())
-									continue
 							if(!src.ZWarp)
 								if(m.z != User.z)
 									continue

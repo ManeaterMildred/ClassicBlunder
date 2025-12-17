@@ -6,7 +6,7 @@ transformation
 			transformation_message = "usrName raises their tension!"
 			mastery_boons(mob/user)
 				if(mastery >= 0)
-					passives = list("HighTension"=0.75,"TensionPowered"=0.25,"TechniqueMastery"=1, "BuffMastery" = 2, "PureReduction"=2, "PureDamage"=2)
+					passives = list("HighTension"=0.75,"TensionPowered"=0.25,"TechniqueMastery"=1, "BuffMastery" = 2, "PureReduction"=2, "PureDamage"=2,"UnderDog"=0.3,"Tenacity"=2)
 					pot_trans = 2
 			adjust_transformation_visuals(mob/user)
 				if(!form_hair_icon&&user.Hair_Base)
@@ -29,7 +29,7 @@ transformation
 			mastery_boons(mob/user)
 				if(mastery >= 0)
 					pot_trans=3
-					passives = list("HighTension"=0.25,"TensionPowered"=0.25, "StyleMastery" = 2, "BuffMastery" = 2,"TechniqueMastery"=1)
+					passives = list("HighTension"=0.25,"TensionPowered"=0.25, "StyleMastery" = 2, "BuffMastery" = 2,"TechniqueMastery"=1,"UnderDog"=0.3,"Tenacity"=2)
 				if(!locate(/obj/Skills/Buffs/SlotlessBuffs/Racial/Human/Activate_High_Tension, user))
 					var/obj/Skills/Buffs/SlotlessBuffs/Racial/Human/Activate_High_Tension/s=new/obj/Skills/Buffs/SlotlessBuffs/Racial/Human/Activate_High_Tension
 					user.AddSkill(s)
@@ -56,7 +56,7 @@ transformation
 			mastery_boons(mob/user)
 				if(mastery >= 0)
 					pot_trans = 3
-					passives = list("HighTension"=0.25,"TensionPowered"=0.25, "SuperHighTension" = 1, "StyleMastery" = 2, "BuffMastery" = 2,"TechniqueMastery"=3, "PureReduction"=3, "PureDamage"=3)
+					passives = list("HighTension"=0.25,"TensionPowered"=0.25, "SuperHighTension" = 1, "StyleMastery" = 2, "BuffMastery" = 2,"TechniqueMastery"=3, "PureReduction"=3, "PureDamage"=3,"UnderDog"=0.4,"Tenacity"=3)
 			adjust_transformation_visuals(mob/user)
 				if(!form_hair_icon&&user.Hair_Base)
 					var/icon/x=new(user.Hair_Base)
@@ -76,7 +76,7 @@ transformation
 			transformation_message = "usrName maximizes the very limits of their potential, evolving beyond the person they were a minute before!"
 			mastery_boons(mob/user)
 				if(mastery >= 0)
-					passives = list("HighTension"=0.75,"TensionPowered"=0.25, "SuperHighTension" = 1, "StyleMastery" = 2, "BuffMastery" = 2,"TechniqueMastery"=5, "DoubleHelix" = 1)
+					passives = list("HighTension"=0.75,"TensionPowered"=0.25, "SuperHighTension" = 1, "StyleMastery" = 2, "BuffMastery" = 2,"TechniqueMastery"=5, "DoubleHelix" = 1,"UnderDog"=1,"Tenacity"=10)
 			adjust_transformation_visuals(mob/user)
 				if(!form_hair_icon&&user.Hair_Base)
 					var/icon/x=new(user.Hair_Base)

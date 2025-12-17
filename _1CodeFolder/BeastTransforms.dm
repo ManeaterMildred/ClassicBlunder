@@ -45,6 +45,9 @@
 				usr<<"You cannot will yourself out of the transformed state!"
 				return
 			usr.Oozaru = 0
+			if(usr.CheckSlotless("Great Ape"))
+				Trigger(usr, Override = 1)
+		if(usr.CheckSlotless("Great Ape"))
 			Trigger(usr, Override = 1)
 		usr<< "You will [Looking ? "look" : "not look"] at the moon."
 
@@ -119,7 +122,7 @@
 			SpdMult = 0.9
 			OffMult = 1.5
 			EnergyHeal = 1
-			TimerLimit = 600
+			TimerLimit = 2400
 			VaizardHealth = 10 + (p.AscensionsAcquired*2)
 			PowerMult = 1.6
 			if(p.oozaru_type=="Demonic")

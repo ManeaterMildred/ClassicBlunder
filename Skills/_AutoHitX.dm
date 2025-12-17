@@ -4954,6 +4954,24 @@ mob
 					if(!src.HasBladeFisting() && !src.UsingBattleMage())
 						src << "You need a sword equipped to use [Z]!"
 						return
+			if(Z.ResourceCost)
+				var/resourceName = Z.ResourceCost[1]
+				var/storage = 0
+				var/cost = Z.ResourceCost[2]
+				if(resourceName in vars) //AHAHAHA!
+					// the cost associated exists
+					storage = vars[resourceName]
+				else
+					if(passive_handler[resourceName])
+						storage = passive_handler[resourceName]
+				if(cost == 999)
+					cost = storage
+				else if(cost == 0.5)
+					cost = storage/2
+				else
+					if(storage - cost < 0)
+						src << " you need more [resourceName]"
+						return FALSE
 			if(Z.UnarmedOnly)
 				var/obj/Items/Sword/s=src.EquippedSword()
 				if(s)
